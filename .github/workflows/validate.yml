@@ -1,0 +1,33 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax-and-layout:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check required repository layout
+        shell: pwsh
+        run: |
+          $required = @("README.md", "SKILL.md", "中文分类索引.md", "references", "assets", "scripts", "agents")
+          foreach ($item in $required) {
+            if (-not (Test-Path -LiteralPath $item)) {
+              throw "Missing required repository item: $item"
+            }
+          }
+
+      - name: Compile Python scripts
+        run: python -m compileall -q scripts

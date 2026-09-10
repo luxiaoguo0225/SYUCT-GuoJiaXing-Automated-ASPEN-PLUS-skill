@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aspen Plus Automation"
+  short_description: "Drive Aspen Plus V14 via COM, local distillation cases"
+  default_prompt: "Use $aspen-plus-automation to build and run Aspen Plus cases. First model from chemical engineering principles and the user's stated requirements; treat bundled cases/examples only as learning references and never copy them."

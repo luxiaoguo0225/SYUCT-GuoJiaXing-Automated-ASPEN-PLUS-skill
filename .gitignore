@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
+
+# Local Aspen/generated files not intended for commits
+work/
+outputs/
+*.his
+*.sum
+*.prz
+*.bkp~
+*.apwz~
+*.rep~
+*.log
+*.tmp

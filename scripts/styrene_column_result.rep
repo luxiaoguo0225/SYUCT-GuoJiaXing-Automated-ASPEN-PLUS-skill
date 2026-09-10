@@ -1,0 +1,586 @@
+                                                                                
+
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION REPORT                      + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WIN-X64                                       AUGUST 12, 2026     
+ VERSION: 40.0   Build 359                               WEDNESDAY   
+ INSTALLATION:                                           10:38:55 P.M.       
+
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE    I
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+                               TABLE OF CONTENTS                                
+
+
+            RUN CONTROL SECTION....................................  1
+                 RUN CONTROL INFORMATION...........................  1
+
+            FLOWSHEET SECTION......................................  2
+                 FLOWSHEET CONNECTIVITY BY STREAMS.................  2
+                 FLOWSHEET CONNECTIVITY BY BLOCKS..................  2
+                 COMPUTATIONAL SEQUENCE............................  2
+                 OVERALL FLOWSHEET BALANCE.........................  2
+
+            PHYSICAL PROPERTIES SECTION............................  3
+                 COMPONENTS........................................  3
+
+            U-O-S BLOCK SECTION....................................  4
+                 BLOCK:  C1       MODEL: RADFRAC...................  4
+                 BLOCK:  FL1      MODEL: FLASH2....................  8
+                 BLOCK:  R1       MODEL: RSTOIC....................  9
+
+            STREAM SECTION......................................... 11
+                 EB-VAP FEED LIQ RXOUT STY-PROD.................... 11
+                 VAP............................................... 12
+
+            PROBLEM STATUS SECTION................................. 13
+                 BLOCK STATUS...................................... 13
+                                                                                
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 1       
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                              RUN CONTROL SECTION                               
+
+ RUN CONTROL INFORMATION                 
+ -----------------------
+
+ THIS COPY OF ASPEN PLUS LICENSED TO                                 
+
+ TYPE OF RUN: NEW 
+
+ INPUT FILE NAME: _3833yai.inm
+
+ OUTPUT PROBLEM DATA FILE NAME: _3833yai 
+ LOCATED IN:                    
+
+
+ PDF SIZE USED FOR INPUT TRANSLATION:
+   NUMBER OF FILE RECORDS (PSIZE) =     0
+   NUMBER OF IN-CORE RECORDS      =   256
+ PSIZE NEEDED FOR SIMULATION    =   256
+
+ CALLING PROGRAM NAME:          apmain  
+ LOCATED IN: C:\Program Files\AspenTech\Aspen Plus V14.0\Engine\\xeq
+
+ SIMULATION REQUESTED FOR ENTIRE FLOWSHEET
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 2       
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                               FLOWSHEET SECTION                                
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+ ---------------------------------
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   FEED       ----       R1             RXOUT      R1         FL1     
+   VAP        FL1        ----           LIQ        FL1        C1      
+   EB-VAP     C1         ----           STY-PROD   C1         ----    
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+ --------------------------------
+
+   BLOCK        INLETS                         OUTLETS
+   R1           FEED                           RXOUT                       
+   FL1          RXOUT                          VAP LIQ                     
+   C1           LIQ                            EB-VAP STY-PROD             
+
+ COMPUTATIONAL SEQUENCE                  
+ ----------------------
+
+ SEQUENCE USED WAS:
+    R1 FL1 C1                                                              
+
+ OVERALL FLOWSHEET BALANCE               
+ -------------------------
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                              IN          OUT       GENERATION   RELATIVE DIFF.
+   CONVENTIONAL COMPONENTS  
+           (KMOL/HR )
+      EB                  100.000       35.0000      -65.0000     -0.200373E-13
+      STY                 0.00000       65.0000       65.0000     -0.601228E-13
+      H2                  0.00000       65.0000       65.0000      0.907308E-13
+   TOTAL BALANCE
+   MOLE(KMOL/HR )         100.000       165.000       65.0000       0.00000    
+   MASS(KG/HR   )         10616.7       10616.7                   -0.570536E-13
+   ENTHALPY(WATT    )    0.483853E+07  0.262536E+07                0.457405    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 3       
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                          PHYSICAL PROPERTIES SECTION                           
+
+ COMPONENTS                              
+ ----------
+
+  ID       TYPE  ALIAS          NAME
+   EB       C     C8H10-4        ETHYLBENZENE                    
+   STY      C     C8H8           STYRENE                         
+   H2       C     H2             HYDROGEN                        
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 4       
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  C1       MODEL: RADFRAC         
+ -------------------------------
+    INLETS   - LIQ      STAGE  30
+    OUTLETS  - EB-VAP   STAGE   1
+               STY-PROD STAGE  60
+   PROPERTY OPTION SET:   PENG-ROB  STANDARD PR EQUATION OF STATE               
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            95.6466         95.6466       -0.297153E-15
+       MASS(KG/HR   )            10027.3         10027.3       -0.362806E-15
+       ENTHALPY(WATT    )       0.180541E+07    0.249766E+07   -0.277159    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+
+
+                         **********************
+                         ****  INPUT DATA  ****
+                         **********************
+
+   ****   INPUT PARAMETERS   ****
+
+    NUMBER OF STAGES                                        60
+    ALGORITHM OPTION                                      STANDARD    
+    ABSORBER OPTION                                       NO      
+    INITIALIZATION OPTION                                 STANDARD    
+    HYDRAULIC PARAMETER CALCULATIONS                      NO      
+    INSIDE LOOP CONVERGENCE METHOD                        BROYDEN 
+    DESIGN SPECIFICATION METHOD                           NESTED  
+    MAXIMUM NO. OF OUTSIDE LOOP ITERATIONS                 100
+    MAXIMUM NO. OF INSIDE LOOP ITERATIONS                   10
+    MAXIMUM NUMBER OF FLASH ITERATIONS                      30
+    FLASH TOLERANCE                                          0.000100000
+    OUTSIDE LOOP CONVERGENCE TOLERANCE                       0.000100000
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 5       
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  C1       MODEL: RADFRAC (CONTINUED)         
+
+   ****   COL-SPECS   ****
+
+    MOLAR VAPOR DIST / TOTAL DIST                            1.00000    
+    MOLAR REFLUX RATIO                                      15.0000     
+    MOLAR BOTTOMS RATE             KMOL/HR                  62.0000     
+
+   ****    PROFILES   ****
+
+    P-SPEC          STAGE   1  PRES, BAR                     0.40000    
+
+                          *******************
+                          ****  RESULTS  ****
+                          *******************
+
+
+   ***   COMPONENT SPLIT FRACTIONS   ***
+
+                             OUTLET STREAMS 
+                             --------------
+                  EB-VAP       STY-PROD
+    COMPONENT:
+    EB          .99812       .18817E-02
+    STY         .24348E-02   .99757    
+    H2          1.0000       0.0000    
+
+ 
+   ***    SUMMARY OF KEY RESULTS    ***
+
+    TOP STAGE TEMPERATURE          C                       104.259      
+    BOTTOM STAGE TEMPERATURE       C                       113.722      
+    TOP STAGE LIQUID FLOW          KMOL/HR                 498.477      
+    BOTTOM STAGE LIQUID FLOW       KMOL/HR                  62.4148     
+    TOP STAGE VAPOR FLOW           KMOL/HR                  33.2318     
+    BOILUP VAPOR FLOW              KMOL/HR                 559.150      
+    MOLAR REFLUX RATIO                                      15.0000     
+    MOLAR BOILUP RATIO                                       8.95861    
+    CONDENSER DUTY (W/O SUBCOOL)   WATT             -5,166,550.         
+    REBOILER DUTY                  WATT              5,858,800.         
+
+
+   ****   MANIPULATED VARIABLES   ****
+
+                                                 BOUNDS             CALCULATED
+                                          LOWER         UPPER         VALUE
+   MOLAR BOTTOMS RATE         KMOL/HR     60.000        63.000        62.415    
+
+   ****    DESIGN SPECIFICATIONS   **** 
+
+ NO  SPEC-TYPE     QUALIFIERS              UNIT       SPECIFIED     CALCULATED
+                                                        VALUE         VALUE
+  1  MOLE-FRAC     STREAMS: STY-PROD                   0.99900       0.99900    
+                   COMPS:   STY          
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 6       
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  C1       MODEL: RADFRAC (CONTINUED)         
+
+   ****   MAXIMUM FINAL RELATIVE ERRORS   ****
+
+    DEW POINT                       0.18106E-04  STAGE= 20
+    BUBBLE POINT                    0.86026E-05  STAGE= 25
+    COMPONENT MASS BALANCE          0.82120E-06  STAGE= 30 COMP=H2      
+    ENERGY BALANCE                  0.70584E-05  STAGE=  1
+
+
+   ****    PROFILES   ****
+
+   **NOTE** REPORTED VALUES FOR STAGE LIQUID AND VAPOR RATES ARE THE FLOWS
+            FROM THE STAGE INCLUDING ANY SIDE PRODUCT.
+
+                                          ENTHALPY
+ STAGE TEMPERATURE   PRESSURE             J/KMOL             HEAT DUTY
+       C             BAR            LIQUID       VAPOR        WATT    
+
+   1   104.26       0.40000       0.46090E+07  0.41733E+08  -.51665+07
+   2   104.28       0.40000       0.48239E+07  0.41910E+08            
+  29   110.03       0.40000       0.82088E+08  0.11152E+09            
+  30   110.30       0.40000       0.85169E+08  0.11486E+09            
+  31   110.61       0.40000       0.88712E+08  0.11877E+09            
+  32   110.92       0.40000       0.92219E+08  0.12272E+09            
+  59   113.72       0.40000       0.12180E+09  0.15947E+09            
+  60   113.72       0.40000       0.12184E+09  0.15952E+09   .58588+07
+
+ STAGE     FLOW RATE                  FEED RATE               PRODUCT RATE
+            KMOL/HR                    KMOL/HR                  KMOL/HR 
+       LIQUID     VAPOR       LIQUID    VAPOR    MIXED      LIQUID    VAPOR
+   1  498.5      33.23                                                 33.2317
+   2  498.5      531.7                                                        
+  29  493.5      526.8                                                        
+  30  622.0      526.7        95.6465                                         
+  31  621.9      559.6                                                        
+  32  621.8      559.5                                                        
+  59  621.6      559.1                                                        
+  60  62.41      559.1                                       62.4148          
+
+    ****  MASS FLOW PROFILES  ****
+
+ STAGE     FLOW RATE                  FEED RATE               PRODUCT RATE
+            KG/HR                      KG/HR                    KG/HR   
+       LIQUID     VAPOR       LIQUID    VAPOR    MIXED      LIQUID    VAPOR
+   1 0.5292E+05  3527.                                               3526.6259
+   2 0.5292E+05 0.5644E+05                                                    
+  29 0.5173E+05 0.5530E+05                                                    
+  30 0.6518E+05 0.5526E+05  .10027+05                                         
+  31 0.6512E+05 0.5867E+05                                                    
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 7       
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  C1       MODEL: RADFRAC (CONTINUED)         
+
+    ****  MASS FLOW PROFILES  ****
+
+ STAGE     FLOW RATE                  FEED RATE               PRODUCT RATE
+            KG/HR                      KG/HR                    KG/HR   
+       LIQUID     VAPOR       LIQUID    VAPOR    MIXED      LIQUID    VAPOR
+  32 0.6508E+05 0.5862E+05                                                    
+  59 0.6474E+05 0.5824E+05                                                    
+  60  6501.     0.5824E+05                                 6500.7220          
+
+                         ****   MOLE-X-PROFILE     ****
+   STAGE     EB            STY           H2      
+      1    0.99396       0.60433E-02   0.69575E-07
+      2    0.99215       0.78486E-02   0.43605E-08
+     29    0.33717       0.66283       0.39498E-08
+     30    0.31109       0.68891       0.39349E-08
+     31    0.28111       0.71889       0.78284E-12
+     32    0.25143       0.74857       0.15501E-15
+     59    0.13251E-02   0.99867       0.68524-116
+     60    0.99884E-03   0.99900       0.13042-119
+
+                         ****   MOLE-Y-PROFILE     ****
+   STAGE     EB            STY           H2      
+      1    0.99507       0.45795E-02   0.34671E-03
+      2    0.99403       0.59518E-02   0.21735E-04
+     29    0.40687       0.59311       0.21875E-04
+     30    0.37868       0.62130       0.21880E-04
+     31    0.34568       0.65432       0.43738E-08
+     32    0.31235       0.68765       0.87017E-12
+     59    0.18062E-02   0.99819       0.40021-112
+     60    0.13616E-02   0.99864       0.76172-116
+
+                         ****   K-VALUES           ****
+   STAGE     EB            STY           H2      
+      1     1.0011       0.75777        4983.1    
+      2     1.0019       0.75832        4984.2    
+     29     1.2068       0.89477        5533.3    
+     30     1.2173       0.90183        5556.6    
+     31     1.2298       0.91015        5583.5    
+     32     1.2424       0.91859        5610.2    
+     59     1.3630       0.99952        5840.4    
+     60     1.3632       0.99964        5840.7    
+
+                         ****   MASS-X-PROFILE     ****
+   STAGE     EB            STY           H2      
+      1    0.99407       0.59292E-02   0.13212E-08
+      2    0.99230       0.77007E-02   0.82808E-10
+     29    0.34147       0.65853       0.75954E-10
+     30    0.31522       0.68478       0.75706E-10
+     31    0.28500       0.71500       0.15070E-13
+     32    0.25506       0.74494       0.29857E-17
+     59    0.13508E-02   0.99865       0.13263-117
+     60    0.10181E-02   0.99898       0.25242-121
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 8       
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  C1       MODEL: RADFRAC (CONTINUED)         
+
+                         ****   MASS-Y-PROFILE     ****
+   STAGE     EB            STY           H2      
+      1    0.99550       0.44945E-02   0.65861E-05
+      2    0.99416       0.58396E-02   0.41275E-06
+     29    0.41151       0.58849       0.42009E-06
+     30    0.38321       0.61679       0.42042E-06
+     31    0.35003       0.64997       0.84093E-10
+     32    0.31649       0.68351       0.16741E-13
+     59    0.18411E-02   0.99816       0.77459-114
+     60    0.13879E-02   0.99861       0.14743-117
+
+ BLOCK:  FL1      MODEL: FLASH2          
+ ------------------------------
+   INLET STREAM:          RXOUT   
+   OUTLET VAPOR STREAM:   VAP     
+   OUTLET LIQUID STREAM:  LIQ     
+   PROPERTY OPTION SET:   PENG-ROB  STANDARD PR EQUATION OF STATE               
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            165.000         165.000         0.00000    
+       MASS(KG/HR   )            10616.7         10616.7       -0.568823E-13
+       ENTHALPY(WATT    )       0.709426E+07    0.193311E+07    0.727510    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+                          ***  INPUT DATA  ***
+   TWO    PHASE  TP  FLASH
+   SPECIFIED TEMPERATURE C                                  40.0000     
+   SPECIFIED PRESSURE    BAR                                 0.40000    
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 9       
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  FL1      MODEL: FLASH2 (CONTINUED)          
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    C                                    40.000    
+   OUTLET PRESSURE       BAR                                 0.40000    
+   HEAT DUTY             WATT                               -0.51611E+07
+   VAPOR FRACTION                                            0.42032    
+
+
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      EB               0.21212        0.34638        0.26957E-01    0.77825E-01
+      STY              0.39394        0.65350        0.35980E-01    0.55058E-01
+      H2               0.39394        0.12046E-03    0.93706         7778.8    
+
+ BLOCK:  R1       MODEL: RSTOIC          
+ ------------------------------
+   INLET STREAM:          FEED    
+   OUTLET STREAM:         RXOUT   
+   PROPERTY OPTION SET:   PENG-ROB  STANDARD PR EQUATION OF STATE               
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                              IN          OUT       GENERATION   RELATIVE DIFF.
+   TOTAL BALANCE
+   MOLE(KMOL/HR )         100.000       165.000       65.0000       0.00000    
+   MASS(KG/HR   )         10616.7       10616.7                     0.00000    
+   ENTHALPY(WATT    )    0.483853E+07  0.709426E+07               -0.317966    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+                          ***  INPUT DATA  ***
+   STOICHIOMETRY MATRIX:
+
+    REACTION #   1:
+     SUBSTREAM MIXED   :
+     EB        -1.00    STY        1.00    H2         1.00    
+
+
+   REACTION CONVERSION SPECS: NUMBER=    1
+     REACTION #   1:
+     SUBSTREAM:MIXED    KEY COMP:EB       CONV FRAC: 0.6500    
+
+
+
+
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 10      
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                              U-O-S BLOCK SECTION                               
+
+ BLOCK:  R1       MODEL: RSTOIC (CONTINUED)          
+   TWO    PHASE  TP  FLASH
+   SPECIFIED TEMPERATURE C                                 650.000      
+   SPECIFIED PRESSURE    BAR                                 0.40000    
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+   SIMULTANEOUS REACTIONS
+   GENERATE COMBUSTION REACTIONS FOR FEED SPECIES          NO  
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    C                                    650.00    
+   OUTLET PRESSURE       BAR                                 0.40000    
+   HEAT DUTY             WATT                                0.22557E+07
+   VAPOR FRACTION                                             1.0000    
+
+
+
+   REACTION EXTENTS:
+
+      REACTION          REACTION
+      NUMBER            EXTENT  
+                        KMOL/HR         
+      1                  65.000    
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      EB               0.21212        0.24965        0.21212         344.22    
+      STY              0.39394        0.48974        0.39394         325.87    
+      H2               0.39394        0.26060        0.39394         612.40    
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 11      
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                                 STREAM SECTION                                 
+
+ EB-VAP FEED LIQ RXOUT STY-PROD                  
+ ------------------------------
+
+ STREAM ID               EB-VAP     FEED       LIQ        RXOUT      STY-PROD
+ FROM :                  C1         ----       FL1        R1         C1      
+ TO   :                  ----       R1         C1         FL1        ----    
+
+ SUBSTREAM: MIXED   
+ PHASE:                  VAPOR      VAPOR      LIQUID     VAPOR      LIQUID 
+ COMPONENTS: KMOL/HR         
+   EB                    33.0681   100.0000    33.1304    35.0000  6.2342-02
+   STY                    0.1522     0.0       62.5046    65.0000    62.3525
+   H2                  1.1522-02     0.0     1.1522-02    65.0000     0.0   
+ TOTAL FLOW:         
+   KMOL/HR               33.2318   100.0000    95.6466   165.0000    62.4148
+   KG/HR               3526.6259  1.0617+04  1.0027+04  1.0617+04  6500.7220
+   CUM/SEC                0.7114     5.3251  3.1835-03     8.7930  2.1915-03
+ STATE VARIABLES:    
+   TEMP   C             104.2595   650.0000    40.0000   650.0000   113.7222
+   PRES   BAR             0.4000     0.4000     0.4000     0.4000     0.4000
+   VFRAC                  1.0000     1.0000     0.0        1.0000     0.0   
+   LFRAC                  0.0        0.0        1.0000     0.0        1.0000
+   SFRAC                  0.0        0.0        0.0        0.0        0.0   
+ ENTHALPY:           
+   J/KMOL              4.1733+07  1.7419+08  6.7953+07  1.5478+08  1.2184+08
+   J/KG                3.9326+05  1.6407+06  6.4818+05  2.4056+06  1.1698+06
+   WATT                3.8524+05  4.8385+06  1.8054+06  7.0943+06  2.1124+06
+ ENTROPY:            
+   J/KMOL-K           -2.9572+05 -8.7965+04 -3.5023+05  9928.6557 -2.7694+05
+   J/KG-K             -2786.5751  -828.5471 -3340.6549   154.3061 -2658.9789
+ DENSITY:            
+   KMOL/CUM            1.2976-02  5.2164-03     8.3456  5.2125-03     7.9112
+   KG/CUM                 1.3770     0.5538   874.9297     0.3354   823.9763
+ AVG MW                 106.1221   106.1674   104.8375    64.3439   104.1535
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 12      
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                                 STREAM SECTION                                 
+
+ VAP                                             
+ ---
+
+ STREAM ID               VAP     
+ FROM :                  FL1     
+ TO   :                  ----    
+
+ SUBSTREAM: MIXED   
+ PHASE:                  VAPOR  
+ COMPONENTS: KMOL/HR         
+   EB                     1.8696
+   STY                    2.4954
+   H2                    64.9885
+ TOTAL FLOW:         
+   KMOL/HR               69.3534
+   KG/HR                589.3921
+   CUM/SEC                1.2540
+ STATE VARIABLES:    
+   TEMP   C              40.0000
+   PRES   BAR             0.4000
+   VFRAC                  1.0000
+   LFRAC                  0.0   
+   SFRAC                  0.0   
+ ENTHALPY:           
+   J/KMOL              6.6287+06
+   J/KG                7.7999+05
+   WATT                1.2770+05
+ ENTROPY:            
+   J/KMOL-K           -5404.7143
+   J/KG-K              -635.9695
+ DENSITY:            
+   KMOL/CUM            1.5362-02
+   KG/CUM                 0.1306
+ AVG MW                   8.4984
+ ASPEN PLUS   PLAT: WIN-X64   VER: 40.0                   08/12/2026  PAGE 13      
+            ETHYLBENZENE DEHYDROGENATION WITH STYRENE DISTILLATION              
+                             PROBLEM STATUS SECTION                             
+
+ BLOCK STATUS                            
+ ------------
+
+ ****************************************************************************
+ *                                                                          *
+ * Calculations were completed normally                                     *
+ *                                                                          *
+ * All Unit Operation blocks were completed normally                        *
+ *                                                                          *
+ * All streams were flashed normally                                        *
+ *                                                                          *
+ ****************************************************************************
