@@ -1,6 +1,6 @@
 # Aspen Plus Automation Skill
 
-面向 Codex 的 Aspen Plus V14 自动化 skill，重点覆盖 Windows COM（`Apwn.Document`）调用、`.inp`/`.bkp`/`.apwz` 案例操作、流程搭建、运行验证、结果读取与工程案例复用。如有问题请联系作者邮箱：2582693241@qq.com      luxiaoguo0225@gmail.com   
+面向 Codex 的 Aspen Plus V14 自动化 skill，重点覆盖 Windows COM（`Apwn.Document`）调用、`.inp`/`.bkp`/`.apwz` 案例操作、流程搭建、运行验证、结果读取与工程案例复用。如有问题请联系作者邮箱：2582693241@qq.com   //   luxiaoguo0225@gmail.com   
 
 > **核心原则：先原理与需求，后案例参考。**
 >
