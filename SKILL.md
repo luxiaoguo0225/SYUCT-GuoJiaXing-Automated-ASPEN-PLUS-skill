@@ -162,6 +162,15 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
   `Tree.FindNode(r"\Data").NextIncomplete("")`, not `Tree.NextIncomplete`.
 - Set `Visible` after initialization. To keep the GUI open after automation, save the case and launch it with `os.startfile(apwz)`.
 - COM automation may start the Aspen Plus GUI process; call `Quit()` in `finally` and stop a leftover `AspenPlus` process if it remains.
+- **COM connection mechanics (measured)**: `Dispatch("Apwn.Document")` **never attaches** to an
+  already-running instance - the COM SCM always spawns a fresh `aspenplus.exe -Automation -Embedding`,
+  and `GetActiveObject` fails with `MK_E_UNAVAILABLE` (no ROT registration); so pre-launching
+  `aspenplus.exe -Automation` to "attach" is pointless and only costs an extra process/seat. License
+  checkout is decided by `LSHOST`/`LSFORCEHOST` in the **client** process environment (the spawned
+  server inherits it). A successful `Dispatch` does NOT prove the license works - `2040 ... 无法核实许可 /
+  无法实例化` surfaces only at `InitFromFile2`; when `LSHOST` is unresolvable and subnet broadcast is
+  blocked there is no fallback, so set `LSFORCEHOST=<host>` explicitly. See
+  [references/com-attach-and-license-env.md](references/com-attach-and-license-env.md).
 - FlowSheet-level Design Specs in `.inp`: place after all `BLOCK` paragraphs and
   before `EO-CONV-OPTI`; use `DEFINE X MOLE-FLOW STREAM=S SUBSTREAM=MIXED
   COMPONENT=C` (the `STREAM-VAR ... COMPONENT=` form parses wrong or ignores the
@@ -227,6 +236,7 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 - See [references/input-file-and-rstoic.md](references/input-file-and-rstoic.md) for building `.inp` cases and RStoic conversion syntax (其中的完整示例只示范语法与段落组织，数值须按你的需求重设)。
 - See [references/general-modeling-mechanics.md](references/general-modeling-mechanics.md) for version-neutral modeling mechanics: the spec-meeting three-strategy decision, a property-method decision tree, from-scratch object-tree build mechanics, solids/crystallization modeling elements, reaction-kinetics type selection and Arrhenius-to-Aspen conversion, and official-example reuse rules (second-principle). Tree paths/units/nodes must be confirmed on the installed version.
 - See [references/general-verification-methods.md](references/general-verification-methods.md) for version-neutral verification methods: calibration trio, four independent physical benchmarks (mass balance / phase equilibrium / enthalpy balance / duty vs theory), enthalpy-pollution trust checklist, recycle convergence triple-check, and COM automation hygiene.
+- See [references/com-attach-and-license-env.md](references/com-attach-and-license-env.md) for the measured COM connection mechanics: `Dispatch` never attaches (the SCM always spawns `-Automation -Embedding` and the ROT holds no registration), why pre-launching `aspenplus.exe -Automation` is pointless, how `LSHOST`/`LSFORCEHOST` in the client process environment decide license checkout (surfacing only at `InitFromFile2` as error 2040), and the local Sentinel RMS facts (UDP 5093 only, no TCP, subnet broadcast blocked so a wrong `LSHOST` has no fallback).
 
 ### 8.2 第二原则支撑：案例与已验证工程（学习参考）
 
