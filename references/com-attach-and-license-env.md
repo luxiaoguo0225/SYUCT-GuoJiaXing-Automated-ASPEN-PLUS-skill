@@ -3,8 +3,10 @@
 > **层级**：工具与机制层，服从 `SKILL.md` §1 的两级原则。本文只回答"COM 能不能连上、许可什么时候校验、
 > 失败怎么定位"，不改变"原理 + 需求先行、禁止臆想"的第一原则，也不提供任何建模取值。
 > **适用**：Aspen Plus V14（OLE 服务内部版本 40.0），Sentinel RMS 许可服务器（`lservnt.exe`）与客户端同机。
-> **证据**：2026-09-12 在开发机 `GUOJIAXING`（Windows / Python 3.13 / pywin32 312 / Aspen Plus V14）实测，
+> **证据**：2026-09-12 在开发机 `DEV-HOST`（Windows / Python 3.13 / pywin32 312 / Aspen Plus V14）实测，
 > 命令与观察值原样记录；全部试验只用案例的临时副本，未触碰任何交付目录。
+> **脱敏**：本文为公开发布版——主机名统一写作 `DEV-HOST`、内网地址写作 `<LAN-IP>`；
+> 错误码、数值、时序与观察结论**未做任何改动**，只替换了机器标识符。
 
 ## 0. 三句话结论
 
@@ -21,7 +23,7 @@
 | 步骤 | 观察（同一台机、同一时段） |
 | --- | --- |
 | 基线 | 进程表里只有用户自己开的 GUI：`aspenplus.exe "<case>.apwz"`（PID 27364） |
-| 预启动 | 以 `LSHOST=LSFORCEHOST=guojiaxing` 启动 `aspenplus.exe -Automation` → PID 32696 |
+| 预启动 | 以 `LSHOST=LSFORCEHOST=DEV-HOST` 启动 `aspenplus.exe -Automation` → PID 32696 |
 | `Dispatch` | 独立的 Python 进程执行 `Dispatch("Apwn.Document")` → **2.0 s 返回**；进程表**新增** PID 24156，命令行为 `... -Automation -Embedding` |
 | 对象内容 | `app.Tree.FindNode(r"\Data")` 报 `(2002, 'Aspen Plus 40.0 OLE 服务', '未初始化……请先调用 InitNew 或 InitFromFile')` → 拿到的是**全新的空文档**，既不是预启动实例，也不是用户 GUI 里已打开的案例 |
 | 附着 API | `win32com.client.GetActiveObject("Apwn.Document")` → `MK_E_UNAVAILABLE (-2147221021)`：ROT 里没有任何注册 |
@@ -40,10 +42,10 @@
 | 试验 | 发起 Dispatch 的客户进程环境 | 结果 |
 | --- | --- | --- |
 | D | `LSHOST=no-such-host-12345`，无 `LSFORCEHOST` | `InitFromFile2` 失败 `(2040, 'Aspen Plus 40.0 OLE 服务', '无法实例化')`；**重复两次结果一致** |
-| E | 假 `LSHOST` + `LSFORCEHOST=guojiaxing` | Init OK 7.3 s，Run2 OK 2.7 s |
-| 对照 | `LSHOST=guojiaxing`（本机正常值） | Init OK 2.8 s，Run2 OK 1.8 s |
-| F | 假 `LSHOST` + `LSFORCEHOST=guojiaxing:@guojiaxing` | Init OK 2.9 s |
-| G | 假 `LSHOST` + `LSFORCEHOST=guojiaxing:5093@guojiaxing` | Init OK 2.6 s |
+| E | 假 `LSHOST` + `LSFORCEHOST=DEV-HOST` | Init OK 7.3 s，Run2 OK 2.7 s |
+| 对照 | `LSHOST=DEV-HOST`（本机正常值） | Init OK 2.8 s，Run2 OK 1.8 s |
+| F | 假 `LSHOST` + `LSFORCEHOST=DEV-HOST:@DEV-HOST` | Init OK 2.9 s |
+| G | 假 `LSHOST` + `LSFORCEHOST=DEV-HOST:5093@DEV-HOST` | Init OK 2.6 s |
 | H | 假 `LSHOST` + `LSFORCEHOST=127.0.0.1` | Init OK 3.9 s |
 
 补充观察：**`Dispatch` 阶段根本不碰许可**——三组互不相同的环境变量下，`Dispatch` 都是约 2.0 s 返回、
@@ -93,14 +95,14 @@ app.InitFromFile2(case, True)                      # 许可校验点：这里报
 4. 在服务/非交互会话里跑时，机器级环境变量可能继承不到 → 显式写入进程环境再 `Dispatch`。
 5. `.bkp` 的验证与本文无关：仍按 §7.2 的规矩用临时副本，不要在交付目录里用 COM 打开任何文件。
 
-## 6. 本机事实清单（`GUOJIAXING`）
+## 6. 本机事实清单（`DEV-HOST`）
 
 - `lservnt.exe`（Sentinel RMS Development Kit 9.6.0.0028）监听 **UDP 5093**，绑定 `0.0.0.0` 与 `[::]`；
   **没有任何 TCP 监听**（`Test-NetConnection 127.0.0.1 -Port 5093` → False；TCP 直连超时）。
   用 TCP 探测许可服务是错的方向，UDP 才是。
-- UDP 探测 `127.0.0.1:5093` 与 `10.253.35.176:5093` 均收到 1432 B 应答 → 服务可达、回环与 LAN 均可。
-- `LSHOST=GUOJIAXING`（机器级环境变量）→ 解析 `10.253.35.176`（另有 IPv6 `fe80::f069:bc02:49fe:77ee`）；本机自服务。
-- **子网广播被拦**：`SLM Client Tools\lswhere.exe` 在 4 种环境变量组合（含 `LSFORCEHOST=guojiaxing`、
+- UDP 探测 `127.0.0.1:5093` 与 `<LAN-IP>:5093` 均收到 1432 B 应答 → 服务可达、回环与 LAN 均可。
+- `LSHOST=DEV-HOST`（机器级环境变量）→ 解析 `<LAN-IP>`（另有 IPv6 link-local 地址）；本机自服务。
+- **子网广播被拦**：`SLM Client Tools\lswhere.exe` 在 4 种环境变量组合（含 `LSFORCEHOST=DEV-HOST`、
   `127.0.0.1`、带端口写法）下都报 `Error[17]: Probably no servers are running on this subnet`。
   它是广播搜索工具、不看 `LSHOST`/`LSFORCEHOST`，**别拿它当判据**；也正因广播不通，`LSHOST` 指错时没有兜底。
 - 开销参考：首次 `Dispatch` 冷启动约 15 s；空白 `-Embedding` 实例常驻内存约 214 MB。
