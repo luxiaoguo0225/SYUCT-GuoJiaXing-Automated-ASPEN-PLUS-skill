@@ -52,6 +52,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 以下章节是本 skill 的实际模块。任务开始时先定位模块，再按该模块的“原理层 → 案例层”读取；不要先浏览全部案例库。模块之间允许多对多引用。
 
+每个模块的原理层先进入 [`references/first-principles-cards.md`](references/first-principles-cards.md) 对应卡片：M01-P01/P02、M02-P01/P02/P03、M03-P01/P02/P03、M04-P01/P02、M05-P01/P02、M06-P01/P02、M07-P01/P02、M08-P01/P02、M09-P01/P02。卡片完成判断后，再打开该模块列出的深入原理参考和案例。
+
 #### M01 需求、物性与流程边界
 
 **适用任务**：新建流程、组分/相态不确定、物性方法选择、流程拓扑和验收目标尚未确定。
@@ -388,8 +390,11 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 
 第 2.1 节的 M01-M09 是主题入口；先按模块读取对应的原理文件，再按需读取同模块案例。下面的 8.1/8.2 只是完整的原理/案例反向索引，不代表调用顺序。
 
+`references/first-principles-cards.md` 是模块原理层的第一入口，负责把教材提炼、适用条件、Aspen 映射、验证方式和失效边界压缩到同一张卡片；需要公式细节或案例证据时再继续读取卡片列出的参考文件。
+
 ### 8.1 第一原则支撑：原理、方法与机制
 
+- See [references/first-principles-cards.md](references/first-principles-cards.md) for the M01-M09 principle cards: source, applicability, core relation, Aspen mapping, case evidence, and failure boundary. Read the relevant card before opening deeper references or cases.
 - See [references/tianjin-distillation-9-5-calculation.md](references/tianjin-distillation-9-5-calculation.md) for the Tianjin 9.5 binary-distillation sequence: q line, feed thermal state, operating lines, minimum reflux, Fenske/Gilliland stage count, feed-stage estimate, and the joint `q-R-N-N_F` optimization workflow. `scripts/binary_distillation_9_5.py` provides a constant-alpha/constant-molar-overflow preview and is not a substitute for rigorous Aspen.
 - See [references/feed-stage-sensitivity-curves.md](references/feed-stage-sensitivity-curves.md) for the RadFrac 2-D Sensitivity pattern that plots reboiler duty versus feed stage for several theoretical-stage counts, using the Sun Lanyi Example 7.3c setup as the verified reference. For a true Cartesian grid use `SERIES=NO`; `SERIES=YES` produced OFAT rows in the 2026-09-25 test. Set the base RadFrac `NSTAGE` equal to the Sensitivity upper bound, make the bottoms product stage follow `NSTAGE` via `PROD-STAGE`/`PRODUCTS`/product-stream ID, and filter SNS_TAB rows by `ROWSTAT=0`. `scripts/plot_radfrac_feedstage_sensitivity.py` can parse SNS_TAB or a long CSV for an external preview and per-stage minima. See [references/sensitivity-scope-and-configuration.md](references/sensitivity-scope-and-configuration.md) for the mandatory scope boundary and data-provenance rules.
 - See [references/sun-lanyi-ch7-4-radfrac-strict.md](references/sun-lanyi-ch7-4-radfrac-strict.md) for the verified Section 7.4 strict RadFrac workflow: Example 7.3a basic rigorous tower, 7.3b product Design Specs + Vary, 7.3c stage/feed QREB sensitivity, 7.3d/e minimum-reflux RR-N asymptote, and the scope boundary between strict calculation and unrequested TAC optimization.
