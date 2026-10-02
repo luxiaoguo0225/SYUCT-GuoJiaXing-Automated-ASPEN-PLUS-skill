@@ -1,6 +1,6 @@
 # 第一性原理卡片（Aspen Plus 模块入口）
 
-本文件把 `SKILL.md` M01-M09 的原理层压缩成可执行的判断卡片。它不是教材替代品，也不是案例参数表。每张卡片都回答六个问题：
+本文件把 `SKILL.md` M01-M14 的原理层压缩成可执行的判断卡片。它不是教材替代品，也不是案例参数表。每张卡片都回答六个问题：
 
 1. 原理是什么；
 2. 依据哪份教材提炼文档；
@@ -9,9 +9,24 @@
 5. 用什么案例或独立基准验证；
 6. 什么时候必须停下来回到原始资料。
 
+## 完整教材原理入口（本文件20张卡只作概览）
+
+执行任务时必须接着读取主节/相关节的专题K条目并留下工程判断，不能读完概览就直接抄案例。来源章页和阅读证据见 [覆盖表](textbook-source-coverage.md)；判断后读取 [原理—案例对应](principle-case-map.md)。
+
+| SKILL章节 | 教材专题正文 |
+|---|---|
+| M01-P01/P02 | [物性与边界](textbook-properties-and-boundaries.md)，M01-K01–K10 |
+| M02-P01/P02/P03、M06-P01/P02、M07-P01/P02 | [精馏和塔器](textbook-distillation-and-towers.md)，M02-K01–K10、M06-K01–K02、M07-K01–K02 |
+| M03-P01/P02/P03 | [反应工程](textbook-reaction-engineering.md)，M03-K01–K17 |
+| M04-P01/P02 | [流体输送](textbook-fluid-transport.md)，M04-K01–K11 |
+| M05-P01/P02、M06品位/COP | [传热与能源](textbook-heat-and-energy.md)，M05-K01–K15、M06-K03 |
+| M08-P01/P02、M09-P01/P02、M14 | [数值/经济/自定义](textbook-numerics-economics-and-custom-models.md)，M08-K01–K07、M09-K01、M14-K01–K06 |
+| M10/M11（新节） | [固体与传质操作](textbook-solids-and-mass-transfer.md)，M10-K01–K07、M11-K01–K12 |
+| M12/M13（新节） | [特殊物料与动态](textbook-special-materials-and-dynamics.md)，M12-K01–K08、M13-K01–K08 |
+
 ## 使用规则
 
-- 先按任务定位 M01-M09，只读相关卡片；再打开卡片列出的深入参考；最后才读案例。
+- 先按任务定位 M01-M14，概览后必须打开对应教材专题K条目；先判断后读案例。
 - 卡片中的公式用于建立模型和检查量纲，不替代物性包、严格塔、详细评级或厂家数据。
 - 任何经验数值必须标为假设或工程起点，并记录来源、适用条件和敏感性。
 - Aspen 的节点名、单位和 API 以本机版本实测为准；卡片中的路径只是已验证的工作入口。

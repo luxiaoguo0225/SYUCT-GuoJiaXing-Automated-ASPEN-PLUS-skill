@@ -1,5 +1,7 @@
 # Double-Effect Distillation with HeatX and FlowSheet-Level Design Specs
 
+> **适用范围**：本文为原案例/历史用户要求的记录。串联/并联、节能率、压缩比上限、禁止增泵、固定压降与限温只在当前任务继承/重申相应要求或数据支持时采用，不是通用设计定律。先按SKILL第2.1节的教材原理完成当前判断，再按`principle-case-map.md`借鉴实现。文中“必须”保留原任务语境，不能扩大到其他体系。
+
 Read this reference when the user asks to:
 
 - Split a single RadFrac into a **high-pressure + low-pressure** double-effect pair.

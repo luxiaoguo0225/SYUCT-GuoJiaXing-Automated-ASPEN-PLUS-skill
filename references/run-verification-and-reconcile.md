@@ -29,8 +29,7 @@ reporting results.
   iteration-zero messages. A fully converged run can still show `Severe Errors`
   / `Errors` counts (e.g. RadFrac tray dry-up `UDL03.3`, component-balance
   `UDL03.2`, HeatX `HEATX.4` temperature crossover) even when `BLOCK STATUS` says
-  `Calculations were completed normally`. Judge the model by `CONVERGENCE STATUS`
-  (tears + design specs) and `BLOCK STATUS`, not the raw counters.
+  `Calculations were completed normally`. For diagnosis, use `CONVERGENCE STATUS` (tears + design specs), `BLOCK STATUS`, and independent physical residuals together with the message history to distinguish transient from persistent faults. This does not waive the final clean-delivery requirement: save corrected initialization, reopen independently, and rerun until the current task's required `.his`/Control Panel 0 Severe / 0 Error / 0 Warning is satisfied. Unresolved warnings must be reported as unmet acceptance, never hidden.
 - The newest `.his` is written next to the case/working directory with a random
   `_xxxxxx.his` name; copy it immediately after `Run2` (it can be deleted on
   `Quit()`), then count `*** SEVERE ERROR`, `**  ERROR`, and `*   WARNING`.

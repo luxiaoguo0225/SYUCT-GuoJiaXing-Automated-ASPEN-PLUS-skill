@@ -1,5 +1,7 @@
 # Aspen Plus Textbook Workflow and Convergence Guide
 
+> 本文保留作旧概览。完整章节主题已接入SKILL第2.1节的教材专题K条目；来源章页/核对程度见 [教材覆盖](textbook-source-coverage.md)，原理判断后选 [对应案例](principle-case-map.md)。不得把本概览的篇幅当作全部教材知识范围。
+
 This reference condenses the Aspen Plus 教程 (孙兰义) into actionable rules for
 the automation bridge. It complements [engineering-modeling-basics.md](engineering-modeling-basics.md)
 with property-method selection, unit-model choices, flowsheeting tools, and

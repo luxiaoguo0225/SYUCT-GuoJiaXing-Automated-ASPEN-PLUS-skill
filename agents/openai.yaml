@@ -1,4 +1,4 @@
 interface:
   display_name: "Aspen Plus Automation"
-  short_description: "Drive Aspen Plus V14 via COM, local distillation cases"
-  default_prompt: "Use $aspen-plus-automation to build and run Aspen Plus cases. First route the task to the relevant SKILL.md topic section M01-M09; read the matching first-principles card, then reason from its sources and the user's requirements before reading linked cases. Treat bundled cases/examples only as learning references and never copy them. Record the modules, principle cards, deeper principle sources, and case sources used."
+  short_description: "Model Aspen Plus from textbook principles, then cases"
+  default_prompt: "Use $aspen-plus-automation to route the task to SKILL.md sections M01-M14, read their textbook K entries and reason from user requirements with traceable sources before consulting matched cases, then independently validate the model and label unverified capabilities."

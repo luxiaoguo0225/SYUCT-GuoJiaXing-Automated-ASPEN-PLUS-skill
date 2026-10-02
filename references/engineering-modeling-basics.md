@@ -1,5 +1,7 @@
 # Engineering Modeling Basics
 
+> 本文保留作旧概览。完整章节主题已接入SKILL第2.1节的教材专题K条目；来源章页/核对程度见 [教材覆盖](textbook-source-coverage.md)，原理判断后选 [对应案例](principle-case-map.md)。不得把本概览的篇幅当作全部教材知识范围。
+
 > **使用约束（用户规定）**：本文及下列教材是跑流程时的原理依据。凡涉及原理、公式、物性、压降、回流比、设计规定等，必须先以教材原理为准，**禁止臆想或杜撰**；不确定时回到原教材核对或明确标注为假设。若发现本文与教材原文不一致，以教材原文为准并修正本文。
 
 Textbook-backed guidance distilled from:

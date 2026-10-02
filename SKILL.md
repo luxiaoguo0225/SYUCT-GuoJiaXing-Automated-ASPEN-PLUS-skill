@@ -1,6 +1,6 @@
 ---
 name: aspen-plus-automation
-description: Automate locally installed Aspen Plus on Windows through Apwn.Document COM. Use for creating, inspecting, editing and validating .bkp/.apwz/.inp cases; components, properties, reactors and kinetics; RadFrac splitting, HeatX integration, heat pumps, coupled distillation, reactor waste-heat steam generation and PFD layout. Includes V14-tested input patterns, convergence, cold-start delivery checks, and preliminary equipment hydraulic screening. Model from engineering principles and user requirements first; trace assumptions and numbers to authoritative sources. Historical cases teach mechanisms, not universal design values.
+description: Automate locally installed Aspen Plus on Windows through Apwn.Document COM and plan or verify chemical-process models from textbook principles. Use for properties, reactors, separation, pressure transport, heat integration, solids and special materials, optimization, batch or dynamic modeling preparation, and PFD or file delivery. Route to topic sections before cases; specialized-model support must be checked on the installed version. Includes V14-tested input and cold-start workflows; historical case values are not design defaults.
 ---
 
 # Aspen Plus 自动化 (Aspen Plus Automation)
@@ -15,7 +15,7 @@ description: Automate locally installed Aspen Plus on Windows through Apwn.Docum
 
 - **需求先行（个人定义的要求优先）**：先完整收集用户/题目给出的规定——进料组成与状态、目标产物、纯度/回收率、操作压力与温度、能耗或公用工程目标、允许与禁止的技术路线、塔型/拓扑要求（如串联/并联）、温度敏感组分与限温、验收标准等。用户明确规定的，必须按用户规定执行；用户未给全的，按合理工程假设补齐并明确说明假设。
 - **原理驱动**：依据化工原理（热力学、相平衡、分离、反应工程、传递与单元操作）和工程判断，独立推导建模方案——物性方法、模块/塔型选择、设计规定（Design Spec）的数量与目标、操作条件与压力剖面等。每个建模决策都要能回答："这是由哪条原理或哪条用户要求推出的？"
-- **教材溯源，禁止臆想**：建模所用的原理与数值必须有出处。优先级：用户/题目规定 > 权威教材原理 > 有据工程判断。本 skill 已按教材提炼的原理底稿见 `references/engineering-modeling-basics.md`（源自《化工原理》夏清/贾绍义 上、下册、《化学反应工程》朱炳辰 第5版、《化工过程模拟实训——Aspen Plus 教程》孙兰义 第2版等）与 `references/aspen-plus-textbook-guide.md`。凡是公式、物性数据、经验取值、压降、回流比、设计规定目标等，都要能回答“来自哪条教材原理/哪个出处”；查不到或记不准确时，回到教材/参考文档核对，或明确标注“假设”并说明理由——**绝不凭印象编造公式、物性、压降或“经验值”，绝不臆想原理**。
+- **教材溯源，禁止臆想**：建模所用的原理与数值必须有出处。优先级：用户/题目规定 > 权威教材原理 > 有据工程判断。本 skill 的八份独立教材覆盖与证据等级见 `references/textbook-source-coverage.md`；各主题判断以第2.1节链接的专题K条目为主，旧原理底稿见 `references/engineering-modeling-basics.md`（源自《化工原理》夏清/贾绍义 上、下册、《化学反应工程》朱炳辰 第5版、《化工过程模拟实训——Aspen Plus 教程》孙兰义 第2版等）与 `references/aspen-plus-textbook-guide.md`。凡是公式、物性数据、经验取值、压降、回流比、设计规定目标等，都要能回答“来自哪条教材原理/哪个出处”；查不到或记不准确时，回到教材/参考文档核对，或明确标注“假设”并说明理由——**绝不凭印象编造公式、物性、压降或“经验值”，绝不臆想原理**。
 - **先方案后参考**：不得先翻案例再照着搭流程，案例不能替代需求分析与原理推导。
 - **冲突处理**：当"已有案例的做法"与"原理/用户要求"冲突时，以原理和用户要求为准，并在交付说明中主动指出差异与理由。
 
@@ -28,7 +28,7 @@ description: Automate locally installed Aspen Plus on Windows through Apwn.Docum
 ### 1.3 推荐的调用顺序
 
 1. 收集并写清需求、目标与约束（用户规定优先，缺省处用合理工程假设并注明）。
-2. 独立完成原理分析，形成建模方案草案（物性方法、模块、设计规定、压力剖面、操作条件）。**草案中的每个原理与数值都要可溯源到教材/权威资料（拿不准就查 `references/` 或原教材后再定），不许臆想。**
+2. 先按第2.1节定位主节/相关节，读取对应教材专题K条目，再独立完成原理分析，形成建模方案草案（物性方法、模块、设计规定、压力剖面、操作条件）。**草案中的每个原理与数值都要可溯源到教材/权威资料（拿不准就查 `references/` 或原教材后再定），不许臆想。**
 3. 仅在需要时查阅第二原则资料（案例/模式/踩坑记录），用来补全或检验草案，而不是取代它。
 4. 搭建/运行模拟，按 §7.1 验收规则校验，并把结果对照需求与原理复核后再交付。
 5. 若任务涉及塔内件、管道、泵、阀门或换热器水力学，按 §7.4 和 `references/equipment-hydraulics-and-rating.md` 读取 Aspen 阶段水力数据、做初筛并标记验收等级；`scripts/hydraulic_screening.py` 仅做透明的初步算术，不能替代正式评级。
@@ -44,6 +44,12 @@ description: Automate locally installed Aspen Plus on Windows through Apwn.Docum
 
 一个原理文件可以被多个模块引用，一个案例也可以被多个模块引用；模块章节是调用入口，`references/` 只是资料存放位置。
 
+### 1.5 原理判断必须留下可检查的结论
+
+在读取案例前，用本次实际相关的K条目写出：用户目标/约束、依据的K-ID和教材章页、选用模型与排除其他模型的理由、假设/参数来源、适用条件与量纲、跨节压力/温度/热量/组成接口，以及独立验算与验收指标。简单任务可以短写，但不能只列文档名。案例读取后只补实现机制、差异与验证，不倒过来用案例参数决定方案。
+
+章节级摘要用于定位和判断。涉及具体相关式/参数、OCR数学符号、超出范围或本机未验证的专用模块时，回原教材相应页或权威技术资料核对，并记录核对状态。不得把“有教材条目”写成“已逐式核验”或“已V14运行验证”。
+
 ## 2. 概述 (Overview)
 
 Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation interface. The bundled bridge script handles opening cases, editing variables, running calculations, reading results, and saving copies without opening the Aspen GUI by hand.
@@ -52,115 +58,147 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 以下章节是本 skill 的实际模块。任务开始时先定位模块，再按该模块的“原理层 → 案例层”读取；不要先浏览全部案例库。模块之间允许多对多引用。
 
-每个模块的原理层先进入 [`references/first-principles-cards.md`](references/first-principles-cards.md) 对应卡片：M01-P01/P02、M02-P01/P02/P03、M03-P01/P02/P03、M04-P01/P02、M05-P01/P02、M06-P01/P02、M07-P01/P02、M08-P01/P02、M09-P01/P02。卡片完成判断后，再打开该模块列出的深入原理参考和案例。
+原来的20张 [`第一性原理卡片`](references/first-principles-cards.md) 保留作概览；它们不是知识上限。**主模块及相关模块必须继续读取下面对应的教材专题K条目，完成工程判断后再读案例**。按任务只读相关节，不一次加载全部教材。书目/章节/核对程度见 [`教材覆盖`](references/textbook-source-coverage.md)，原理与案例双向对应见 [`对应表`](references/principle-case-map.md)。
 
 #### M01 需求、物性与流程边界
 
-**适用任务**：新建流程、组分/相态不确定、物性方法选择、流程拓扑和验收目标尚未确定。
+**适用任务**：新建流程、物性选型/估算/回归、相平衡、电解质和验收边界。
 
-**原理层（先读）**：`references/engineering-modeling-basics.md`、`references/aspen-plus-textbook-guide.md`、`references/modeling-guide.md`、`references/general-modeling-mechanics.md`。
+**原理层（先读）**：[textbook-properties-and-boundaries.md](references/textbook-properties-and-boundaries.md) 的 M01-K01–K10。落地细节按需查 `engineering-modeling-basics.md、aspen-plus-textbook-guide.md、general-modeling-mechanics.md`。
 
-**案例层（后读）**：`references/reactor-flash-column-example.md`、`references/styrene-recycle-and-dewatering.md`、`references/utility-steam-generation.md`。这些案例分别用于学习流程边界、含水芳烃物性和公用工程边界；不能直接继承组分、物性或操作数值。
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C02/C09/C13/C16/C19。
 
-**跨模块接口**：向 M02-M06 提供组分、物性、流程边界和用户验收目标，接收 M08 的验证约束。
+**输出与接口**：守恒/相态、数据来源、方法选择、自由度与不确定性。对所有工艺模块提供边界和物性。
 
-**模块输出**：需求清单、组分与相态假设、物性方法选择依据、流程边界、自由度和验收标准。
+#### M02 精馏塔与特殊精馏
 
-#### M02 精馏塔与其他分离
+**适用任务**：DSTWU/RadFrac、q/R/N/进料板、平衡/速率塔、萃取/共沸/变压/反应/三相精馏。
 
-**适用任务**：DSTWU/RadFrac、精馏/吸收/汽提、进料状态、理论板、回流比、进料板、严格塔、塔拆分和多效/热耦合分离。
+**原理层（先读）**：[textbook-distillation-and-towers.md](references/textbook-distillation-and-towers.md) 的 M02-K01–K10。落地细节按需查 `tianjin-distillation-9-5-calculation.md、sun-lanyi-ch7-4-radfrac-strict.md、feed-stage-sensitivity-curves.md`。
 
-**原理层（先读）**：`references/tianjin-distillation-9-5-calculation.md`、`references/feed-stage-sensitivity-curves.md`、`references/sun-lanyi-ch7-4-radfrac-strict.md`、`references/engineering-modeling-basics.md`、`references/aspen-plus-textbook-guide.md`。
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C04/C11/C13/C16。
 
-**案例层（后读）**：`references/reactor-flash-column-example.md`、`references/distillation-case-library.md`、`references/column-splitting-and-heat-integration.md`、`references/thermally-coupled-distillation.md`、`references/three-component-thermal-coupling-case.md`、`references/differential-pressure-thermal-coupling.md`、`references/double-effect-user-workflow.md`、`references/double-effect-distillation-and-design-spec.md`、`assets/column-split/`。
+**输出与接口**：物料与相平衡、MESH与规格、级数/效率、压力与热敏边界。压力连M04，热量连M05/M06，水力连M07，DS/收敛连M08；吸收/萃取等独立操作进M11。
 
-**跨模块接口**：与 M03 交换塔压降和压力剖面，与 M04/M05 交换热负荷和相态，与 M06 交换 Design Spec、撕裂流和收敛状态，与 M07 交换塔径和水力负荷。
+#### M03 反应器、动力学与多相反应工程
 
-**模块输出**：分离原理和候选方案、q-R-N-NF 或相应分离计算、塔型/压力剖面、Design Spec 自由度、案例适用性核对和塔验收指标。
+**适用任务**：计量/平衡/速率、间歇/CSTR/PFR、RTD、催化内外传递、固定/流化床、气液/流固/三相反应。
 
-#### M03 反应器与反应动力学
+**原理层（先读）**：[textbook-reaction-engineering.md](references/textbook-reaction-engineering.md) 的 M03-K01–K17。落地细节按需查 `kinetic-reactor-input-workflow-320-322.md、general-modeling-mechanics.md、input-file-and-rstoic.md`。
 
-**适用任务**：RStoic、RPlug、RCSTR、反应集、化学计量、转化率、LHHW/PowerLaw/General、动力学单位换算、反应器与分离耦合。
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C03/C09/C15/C16/C18/C21。
 
-**原理层（先读）**：`references/engineering-modeling-basics.md`、`references/kinetic-reactor-input-workflow-320-322.md`、`references/general-modeling-mechanics.md`、`references/input-file-and-rstoic.md`。
-
-**案例层（后读）**：`references/li-ruijiang-rplug-kinetics-validation.md`、`references/reactor-flash-column-example.md`、`references/utility-steam-generation.md`。案例中的动力学常数、活化能单位、转化率和热负荷只适用于原案例，必须重新核对来源和 Aspen `UnitString`。
-
-**跨模块接口**：与 M01 交换反应物性与进料状态，与 M04 交换反应热和换热边界，与 M06 交换循环初始化和 `.his` 验证。
-
-**模块输出**：反应机理/速率式来源、反应集和单位、反应器类型依据、热/物料边界、案例差异和动力学验证证据。
+**输出与接口**：反应集/速率基准、单位验证、尺寸/选择性、传递限制、热点和验证证据。反应热连M05，压损连M04，收敛连M08，固体连M10/M12。
 
 #### M04 压力输送、压力网络与压力降
 
-**适用任务**：泵、压缩机、阀、管道、换热器/冷凝器/再沸器压力降、塔压降、真空系统、压力可行性和回流/循环网络。
+**适用任务**：静压/表绝压、黏性/流态、管网、泵/汽蚀、压缩/中冷、阀/闪蒸、流量测量。
 
-**原理层（先读）**：`references/engineering-modeling-basics.md`、`references/equipment-hydraulics-and-rating.md`、`references/general-modeling-mechanics.md`、`references/general-verification-methods.md`。
+**原理层（先读）**：[textbook-fluid-transport.md](references/textbook-fluid-transport.md) 的 M04-K01–K11。落地细节按需查 `equipment-hydraulics-and-rating.md、general-verification-methods.md`。
 
-**案例层（后读）**：`references/double-effect-distillation-and-design-spec.md`、`references/double-effect-user-workflow.md`、`references/styrene-recycle-and-dewatering.md`、`references/utility-steam-generation.md`、`references/column-splitting-and-heat-integration.md`。案例中的压降只说明原系统的压力预算和收敛处理，不能当作固定默认值。
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C02/C05/C07/C08/C09/C18。
 
-**跨模块接口**：与 M02 交换塔板压降和压力剖面，与 M03 交换反应器出口压力，与 M05 交换压缩比和换热端压力，与 M07 交换泵功、管径和设备水力校核。
+**输出与接口**：压力路径、真实压头源、几何/物性/压降依据、效率/轴功和最不利工况。向M02/M03/M05提供压力状态，正式设备能力连M07。
 
-**模块输出**：压力网络图、各设备压降依据和符号、压力可行性检查、泵/压缩机需求、真空或小压降例外理由。
+#### M05 传热、蒸发、热量集成与公用工程
 
-#### M05 换热、热量集成与公用工程
+**适用任务**：导热/对流/辐射、HeatX、U/LMTD/NTU/EDR、单多效蒸发、夹点/HEN、蒸汽动力/全厂公用工程。
 
-**适用任务**：HeatX、加热器、冷却器、冷凝器、再沸器、废热回收、熔盐/导热油/加压水、蒸汽生产和换热面积初筛。
+**原理层（先读）**：[textbook-heat-and-energy.md](references/textbook-heat-and-energy.md) 的 M05-K01–K15。落地细节按需查 `heat-carrier-and-salt-properties.md、equipment-hydraulics-and-rating.md`。
 
-**原理层（先读）**：`references/engineering-modeling-basics.md`、`references/heat-carrier-and-salt-properties.md`、`references/equipment-hydraulics-and-rating.md`、`references/general-verification-methods.md`。
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C05/C08/C09/C10/C14/C19。
 
-**案例层（后读）**：`references/utility-steam-generation.md`、`references/column-splitting-and-heat-integration.md`、`references/double-effect-distillation-and-design-spec.md`、`assets/steam-generation/`。必须区分案例的能量闭合、物性可信度和正式换热器评级边界。
-
-**跨模块接口**：与 M02 交换塔冷凝/再沸负荷，与 M03 交换反应热，与 M04 交换两侧压力降，与 M07 交换面积、速度和水力证据。
-
-**模块输出**：热量衡算、载热介质物性来源、换热端温差/LMTD、显式 U 和面积依据、相态/冻结/分解边界、公用工程验收。
+**输出与接口**：热量/温位、壁温与相变边界、面积/压损、蒸发浓缩、热级联/网络及蒸汽供需。压力连M04，热泵连M06，评级连M07，经济目标连M14。
 
 #### M06 热泵、多效与热耦合流程
 
-**适用任务**：蒸汽再压缩热泵、差压热耦合、Petlyuk/隔壁塔、多效精馏、塔间 HeatX、能耗对比和温度敏感组分。
+**适用任务**：蒸汽再压缩、差压耦合、Petlyuk/DWC、多效精馏/蒸发、COP与能源品位。
 
-**原理层（先读）**：`references/engineering-modeling-basics.md`、`references/general-verification-methods.md`、`references/heat-carrier-and-salt-properties.md`。
+**原理层（先读）**：[textbook-distillation-and-towers.md](references/textbook-distillation-and-towers.md) 的 M06-K01–K02，并读[传热与能源](references/textbook-heat-and-energy.md)的M06-K03。落地细节按需查 `general-verification-methods.md、heat-carrier-and-salt-properties.md`。
 
-**案例层（后读）**：`references/thermally-coupled-distillation.md`、`references/column-splitting-and-heat-integration.md`、`references/differential-pressure-thermal-coupling.md`、`references/three-component-thermal-coupling-case.md`、`references/double-effect-user-workflow.md`、`references/pdo-heat-integration-and-delivery-lessons.md`。案例中的压缩比、节能率和塔配置必须按当前温度敏感性、压力预算和产品基准重新验证。
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C05/C06/C07/C08/C10/C14。
 
-**跨模块接口**：与 M02 交换塔分离目标，与 M04 交换压力和压缩功，与 M05 交换热端/冷端相态和 LMTD，与 M07 交换负荷和设备边界。
-
-**模块输出**：热集成拓扑、温度敏感性判断、压缩/换热边界、同一产品基准下的能耗比较和收敛证据。
+**输出与接口**：真实液汽连接、温差/热量/压力可行性、同产品基准热电比较；压缩比、节能率和串并联由当前任务决定。联读M02/M04/M05/M07/M08。
 
 #### M07 设备水力学与评级边界
 
-**适用任务**：塔径、塔板/填料、液泛、漏液、夹带、降液管、泵/阀/管线、换热器面积和初步评级。
+**适用任务**：塔板/填料、塔径、液泛/漏液/夹带、降液管、润湿/分布、泵阀管线和换热器评级。
 
-**原理层（先读）**：`references/equipment-hydraulics-and-rating.md`、`references/engineering-modeling-basics.md`、`references/heat-carrier-and-salt-properties.md`。
+**原理层（先读）**：[textbook-distillation-and-towers.md](references/textbook-distillation-and-towers.md) 的 M07-K01–K02，按对象联读M04-K03–K09、M05-K03–K07。落地细节按需查 `equipment-hydraulics-and-rating.md`。
 
-**案例层（后读）**：`references/utility-steam-generation.md`、`references/column-splitting-and-heat-integration.md`、`references/double-effect-user-workflow.md`，以及脚本 `scripts/hydraulic_screening.py`、`scripts/heat_carrier_screen.py`。脚本只做透明初筛，不能替代厂家评级或 Aspen EDR。
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C04/C08/C09，以及scripts/hydraulic_screening.py、scripts/heat_carrier_screen.py。
 
-**跨模块接口**：与 M02/M04/M05/M06 读取最终工况，任何塔径、压力、内件或负荷变化后都要重新导出数据。
-
-**模块输出**：负荷包络、面积/压降/液泛等检查、证据等级（`PRELIMINARY` 至 `CLOSED`）和正式评级缺口。
+**输出与接口**：最终负荷包络、尺寸/几何、压降、效率和证据等级；脚本只是透明初筛，正式评级需厂家/EDR。工况变化回读对应工艺章节。
 
 #### M08 循环、Design Spec、收敛与结果验证
 
-**适用任务**：Recycle、Tear、BROYDEN、Calculator、Design Spec/Vary、NextIncomplete、Run2、`.his`、Reconcile、冷启动和交付验证。
+**适用任务**：SM/EO、Tear/Broyden、缩放、Calculator/DS、Sensitivity/拟合、.his、冷启动和数据调和。
 
-**原理层（先读）**：`references/general-verification-methods.md`、`references/run-verification-and-reconcile.md`、`references/aspen-input-completeness-and-delivery-lessons.md`、`references/calculator-flowsheeting-options.md`。
+**原理层（先读）**：[textbook-numerics-economics-and-custom-models.md](references/textbook-numerics-economics-and-custom-models.md) 的 M08-K01–K07。落地细节按需查 `run-verification-and-reconcile.md、aspen-input-completeness-and-delivery-lessons.md、calculator-flowsheeting-options.md`。
 
-**案例层（后读）**：`references/three-component-thermal-coupling-case.md`、`references/styrene-recycle-and-dewatering.md`、`references/double-effect-distillation-and-design-spec.md`、`references/utility-steam-generation.md`。案例只提供初始化、限制范围和错误修复模式；最终仍需独立冷启动验证。
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C02/C04/C06/C08/C10/C12/C19。
 
-**跨模块接口**：接收所有物料、热量、压力和自由度设计，向所有模块返回 `.his`、Control Panel、块状态、物料/能量平衡和输入完整性结果。
+**输出与接口**：自由度/残差、相正确初值、有效候选、诊断与最终验收、独立新开及哈希。服务所有工艺章节，不能以数值收敛代替物理可行。
 
-**模块输出**：收敛策略、自由度表、验证证据链、错误/警告清单、独立目录冷启动结果和交付文件哈希。
+#### M09 COM、输入文件与PFD/交付机制
 
-#### M09 COM、输入文件与 PFD/交付机制
+**适用任务**：Apwn.Document、树路径/单位、许可、导入导出、输入完整、用户PFD保真与复现。
 
-**适用任务**：Apwn.Document、对象树、`.inp/.bkp/.apwz/.rep`、导入导出、许可环境、PFD 布局保存和自动化脚本。
+**原理层（先读）**：[textbook-numerics-economics-and-custom-models.md](references/textbook-numerics-economics-and-custom-models.md) 的 M09-K01。落地细节按需查 `general-modeling-mechanics.md、variables-and-troubleshooting.md、com-attach-and-license-env.md、pfd-layout-preservation-and-review.md`。
 
-**原理层（先读）**：`references/general-modeling-mechanics.md`、`references/variables-and-troubleshooting.md`、`references/com-attach-and-license-env.md`、`references/pfd-layout-preservation-and-review.md`。
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C12/C19及scripts/aspen_plus_bridge.py。
 
-**案例层（后读）**：`references/input-file-and-rstoic.md`、`references/calculator-flowsheeting-options.md`、`references/aspen-input-completeness-and-delivery-lessons.md`、`assets/pfd-layout/`、`scripts/aspen_plus_bridge.py`。案例和脚本用于确认版本机制与文件处理方式，不能替代本机实测。
+**输出与接口**：接口/版本证据、可复现文件、PFD布局和冷启动；不决定工艺数值。仅操作已完成工程判断的输入。
 
-**跨模块接口**：服务全部 M01-M08；它不决定物性、反应或设备数值，只负责把已完成的原理方案可靠落地并验证。
+#### M10 颗粒分离、固体床与流态化
 
-**模块输出**：可复现的输入/结果文件、树路径和单位证据、PFD 保真检查、冷启动记录及文件类型/内容核验。
+**适用任务**：固体子物流/PSD、沉降、旋风/离心、过滤/洗涤、Ergun、最小流化、气力输送。
+
+**原理层（先读）**：[textbook-solids-and-mass-transfer.md](references/textbook-solids-and-mass-transfer.md) 的 M10-K01–K07。落地细节按需查 `general-modeling-mechanics.md`。
+
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C15；原理—案例表明确本机验证缺口。
+
+**输出与接口**：粒级/固体质量、面积/周期/压损、相态和传递适用范围。反应连M03，干燥/结晶连M11，非传统固体连M12。
+
+#### M11 吸收、萃取、干燥、结晶与膜分离
+
+**适用任务**：两膜/扩散/Henry、吸收/汽提、反应吸收、LLE、湿空气/干燥速率、过饱和/晶体PSD、膜。
+
+**原理层（先读）**：[textbook-solids-and-mass-transfer.md](references/textbook-solids-and-mass-transfer.md) 的 M11-K01–K12。落地细节按需查 `general-modeling-mechanics.md、aspen-plus-textbook-guide.md`。
+
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C13/C15/C16；膜暂无本机案例，C19仅参考自定义机制。
+
+**输出与接口**：驱动力、平衡/速率、溶剂/气量/面积、再生/母液/产品指标与数据缺口。电解质连M01，反应连M03，热量连M05，粒子连M10，自定义连M14。
+
+#### M12 石油假组分、非常规固体与聚合物
+
+**适用任务**：Assay/TBP、假组分/常减压/集总反应、煤/生物质/固废、气化热解、聚合链段/分布/动力学。
+
+**原理层（先读）**：[textbook-special-materials-and-dynamics.md](references/textbook-special-materials-and-dynamics.md) 的 M12-K01–K08。落地细节按需查 `aspen-plus-textbook-guide.md、general-modeling-mechanics.md`。
+
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C15/C17/C20。
+
+**输出与接口**：表征/基准/物性、切割/产率、元素/焓和产品分布；专用软件与参数核原页/本机。按对象联读M01/M02/M03/M05/M10/M11。
+
+#### M13 动态、控制、开车与批次操作
+
+**适用任务**：库存/ODE/DAE、压力驱动、PID、储槽/非等温CSTR、塔/深冷开车、裂解周期、BatchOp/BatchSep。
+
+**原理层（先读）**：[textbook-special-materials-and-dynamics.md](references/textbook-special-materials-and-dynamics.md) 的 M13-K01–K08。落地细节按需查 `aspen-plus-textbook-guide.md`。
+
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C18；当前仅教材示例入口，不能声称所有动态功能已验证。
+
+**输出与接口**：初始库存/控制与事件、时间轨迹/累计衡算、峰值与可操作性、本机许可/接口。稳态COM不能替代Dynamics；联读实际设备章节。
+
+#### M14 经济优化、自定义模型、ROM与批量计算
+
+**适用任务**：资本/OPEX/TAC、约束/离散优化、用户块/外控、ROM/训练域、批量并行与失败隔离。
+
+**原理层（先读）**：[textbook-numerics-economics-and-custom-models.md](references/textbook-numerics-economics-and-custom-models.md) 的 M14-K01–K06。落地细节按需查 `general-verification-methods.md`。
+
+**案例层（后读）**：[对应表](references/principle-case-map.md) 中 C19/C14；设备验证需另建独立基准。
+
+**输出与接口**：方程/端口/自由度、价格/基年/边界、可行域、独立验证和完整模型复核；按用户目标使用，不因普通精馏自动扩大为经济优化。
 
 ## 3. 前置条件 (Prerequisites)
 
@@ -262,7 +300,7 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
     density/viscosity, equipment type, duty, pressure level, and downstream
     pressure margin. For ordinary positive-pressure exchangers,
     condensers/reboilers, coolers/heaters, and similar equipment, use an
-    engineering starting point around -0.2 bar when reasonable. Use very small
+    case-derived starting point around -0.2 bar only when the matching user requirement and current equipment estimates support it; it is not a general design value. Use very small
     drops such as -0.01 to -0.05 bar only for vacuum/near-vacuum services,
     low-pressure loops, or cases where a return stream would otherwise become
     pressure-infeasible and no real pressure-boosting device is allowed.
@@ -278,14 +316,7 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 - After every `Run2`, read the newest `.his` before reporting; the GUI summary
   can hide errors. See [references/run-verification-and-reconcile.md](references/run-verification-and-reconcile.md) for `.his` error checking, `Reconcile()` tear-stream initialization, complete HeatX specs, PFD stripping, and report unit conversion.
 - Use a partial-vapor condenser when H2 or other noncondensables are present; a total condenser can produce unphysical cryogenic overhead temperatures.
-- TEMPERATURE-SENSITIVE COMPONENTS FIRST: when the system has a component that degrades
-  or polymerises above a temperature limit (styrene >~100 C), energy-saving technology
-  selection must consider whether the technology RAISES temperature, not just the original
-  column delta-T. Heat pumps compress/superheat the overhead vapour (can exceed 100 C on
-  styrene-bearing vapour) and are structurally infeasible when the bottoms already run
-  above the limit (hot side must condense above bottoms temp). Prefer heat integration /
-  thermal coupling / multi-effect which do not raise temperature. See
-  [references/thermally-coupled-distillation.md](references/thermally-coupled-distillation.md).
+- TEMPERATURE-SENSITIVE COMPONENTS FIRST: use sourced limits for the actual composition, inhibitor, residence time and local wall/film temperature. Compare every candidate's compression, tower-pressure and heat-exchange temperature changes. Heat pumps, thermal coupling and multi-effect each require an independent temperature/phase/pressure feasibility check; none is automatically temperature-safe. Use M02-K08, M03-K09 and M06-K01–K03 before the historical [thermal-coupling case](references/thermally-coupled-distillation.md).
 
 - HEAT-CARRIER PROPERTIES ARE DESIGN DATA, NOT DEFAULT DATA: for molten salt / thermal oil / pressurized-water carriers take cp, rho, mu, k and the freezing/decomposition limits from an authoritative source (nitrate salt: INL/EXT-10-18297 = OSTI 980801; water: IAPWS-IF97). Aspen's databank is NOT usable for molten nitrates: measured here, 40 wt% KNO3 + 60 wt% NaNO3 gives cp ~1.15 kJ/(kg.K) and rho ~438 kg/m3 -> cp low by ~40%, density low by ~4x (pump power / volume flow / dT all wrong). ALWAYS audit a case by back-calculating cp = Q/(m*dT) from a Heater duty and rho = m/(FLUID_POWER/dP) from a Pump; reject any case whose back-calculated values differ from handbooks by >10%. Entering user property data additionally requires the GUI Prop-Data + Model Selection route - file injection alone is silently ignored. See [references/heat-carrier-and-salt-properties.md](references/heat-carrier-and-salt-properties.md).
 
@@ -353,31 +384,19 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 - Reactor waste heat plus two-column integration: read [references/pdo-heat-integration-and-delivery-lessons.md](references/pdo-heat-integration-and-delivery-lessons.md) for stage remapping, steam-loop degrees of freedom, heat-grade matching, pressure budgets, units and cold-start evidence. The PDO energy subsystem was validated; its original deep-cold quench issue was not resolved. User layout reference and rejected automatic routing are documented separately; case numbers are not defaults.
 - For vapor recompression heat pumps, sweep the compression ratio and check
   `REB-HX` overall and zone LMTD plus the condensing/boiling minimum approach;
-  do not set the compression ratio above 2.5. See [references/column-splitting-and-heat-integration.md](references/column-splitting-and-heat-integration.md).
+  the original case limits compression ratio to 2.5; determine the current limit from machinery, discharge temperature, phase state and user constraints. See [references/column-splitting-and-heat-integration.md](references/column-splitting-and-heat-integration.md).
 - For the styrene heat-pump split flowsheet, reuse and preserve the
   user-preferred PFD layout in `assets/column-split/styrene_heatpump_user_layout.bkp`;
   do not strip its `GRAPHICS_BACKUP` / `PFS` section unless explicitly asked.
-- For differential-pressure thermal coupling (差压热耦合 = two-column vapor recompression): LP tower overhead vapour -> compressor -> HP tower bottom; HP overhead vapour -> HeatX -> LP reboiler (main coupling); auxiliary reboiler/condenser only for load mismatch. Keep compression ratio <= 2.5, check HeatX LMTD/min-approach, use phase-correct tear-stream initial values, compare energy on the same product basis. C3 propylene/propane case: conventional 200-stage heat 6.39e7 kJ/h -> compressor 4.92e6 kJ/h (-92.3%). See [references/differential-pressure-thermal-coupling.md](references/differential-pressure-thermal-coupling.md).
+- For differential-pressure thermal coupling (差压热耦合 = two-column vapor recompression): LP tower overhead vapour -> compressor -> HP tower bottom; HP overhead vapour -> HeatX -> LP reboiler (main coupling); auxiliary reboiler/condenser only for load mismatch. The cited case uses compression ratio <= 2.5 (not a universal cap); check HeatX LMTD/min-approach, use phase-correct tear-stream initial values, compare energy on the same product basis. C3 propylene/propane case: conventional 200-stage heat 6.39e7 kJ/h -> compressor 4.92e6 kJ/h (-92.3%). See [references/differential-pressure-thermal-coupling.md](references/differential-pressure-thermal-coupling.md).
 - Three-component thermally coupled distillation (Petlyuk two-column equivalent): the coupling is STREAM-based, not tray-heat-duty-based - a prefractionator with CONDENSER=NONE REBOILER=NONE and EMPTY COL-SPECS gets its reflux (REF-PF liquid) and reboil vapor (REBV-PF vapor) from the main column as tear streams; verify PF duty 0/0. REBV-PF flow is the dominant B/C-split variable; side-draw stage must match the V-PF feed stage; more MC stages can make it WORSE (design spec lowers RR and starves the B/C stripping section). To clear transient UDL03.x dry-up errors in .his: seed the tear-stream inputs from converged results AND tighten the design-spec LIMITS around the solution - Reconcile() API alone does not fix them. See [references/three-component-thermal-coupling-case.md](references/three-component-thermal-coupling-case.md).
-- Double-effect distillation must PREFER the SERIES topology (column-1 bottoms
-  -> column-2 feed); PARALLEL (split feed) requires asking the client first.
-  Follow the user-mandated workflow (baseline ->
-  series split, overhead sum & bottoms deviation < 5% -> HP/LP -> bare towers +
-  external condenser/reboiler -> HP overhead to LP reboiler HeatX -> >= 35%
-  energy saving, energy may be sacrificed for recovery/purity; final `.his` =
-  0/0/0 and Control Panel free of errors/warnings; Reconcile may seed values).
-  注意区分：本条目中的**用户规定的流程与验收标准属于第一原则（必须执行）**；具体的塔拆分/HeatX/收敛细节属于第二原则经验。
-  Every applicable non-pressure-changing module gets a justified NEGATIVE
-  pressure drop: ordinary positive-pressure services should usually start near
-  -0.2 bar, while tiny drops are reserved for vacuum/low-pressure or
-  pressure-infeasible return loops; NO compensation pumps. See
-  [references/double-effect-user-workflow.md](references/double-effect-user-workflow.md).
+- The historical double-effect task preferred SERIES topology and specified >=35% energy saving, strict clean logs and no compensation pumps. Apply its topology, saving target and equipment restrictions when the current user requirements inherit them; otherwise choose and justify the current topology and target from M02/M04/M05/M06. Pressure drops require current geometry/phase/property evidence, not a blanket 0.2 bar. The case realization is in [references/double-effect-user-workflow.md](references/double-effect-user-workflow.md).
 
 ### 7.4 设备水力学与验收边界
 
 - 水力学结论必须标明等级：`PRELIMINARY`、`SOURCE_BOUND`、`ASPEN_EVIDENCE`、`VENDOR_RATING` 或 `CLOSED`。不得把初估或工具调用成功写成最终设计通过。
 - 塔器水力学至少检查面积闭合、降液管、堰和液层、开孔或填料几何、压降、漏液、夹带、液泛和正常/最小/最大/扰动负荷包络。填料塔还要检查湿润、分布、分段、再分布器、压降和 HETP。
-- 换热面积必须建立在**显式、有依据的 U** 上：`1/U = 1/h_hot + R_foul + δ/λ + 1/h_cold`，h 用真实物性 + Dittus-Boelter/沸腾关联式；Shortcut HeatX 的 `U-OPTION=PHASE` 实测对所有相态组合都返回同一个默认 850 W/(m²·K)，**不是**设计值（改为显式 U 或 Detailed/EDR，并留 10-25% 面积裕量）。同时校核**冷端膜温 ≥ 凝固点 + 20 K**：本案例 250 ℃ 盐冷端在 h_salt≈900 时壁面盐温仅 219-223 ℃，已贴着 NaNO3-KNO3 的 222 ℃ 凝固点。见 [references/heat-carrier-and-salt-properties.md](references/heat-carrier-and-salt-properties.md)。
+- 换热面积用显式、有依据的U或详细模型；热阻/关联式的面积基准、流态和物性范围按M05-K03/K06核查。`U-OPTION=PHASE`在旧熔盐案例测试中返回默认850 W/(m²·K)，不代表通用设计U或所有版本行为。校核局部壁温/膜温的凝固、分解和腐蚀边界；旧案例10–25%面积裕量、凝固点+20 K仅为原任务起点，当前裕量由来源/设备/工况重新确定。见 [references/heat-carrier-and-salt-properties.md](references/heat-carrier-and-salt-properties.md)。
 - `HYDRAULIC=NO` 的干净物料模拟只证明物料和能量计算，不证明塔内件水力学。任何塔径、压力、内件或负荷改变后，必须从同一最终 Aspen 工况重新导出阶段数据并复算。
 - 换热器要区分 HeatX、Shortcut、Detailed 和真正的 Aspen EDR，并确认同设备身份、负荷、面积、压降、速度和材料证据。
 - `scripts/hydraulic_screening.py` 可从 Aspen 结果中提取塔径、阶段负荷与水力数据做透明初筛；输出必须保留适用条件和证据等级，不能替代厂家评级。
@@ -388,57 +407,20 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 
 ### 8.0 读取顺序
 
-第 2.1 节的 M01-M09 是主题入口；先按模块读取对应的原理文件，再按需读取同模块案例。下面的 8.1/8.2 只是完整的原理/案例反向索引，不代表调用顺序。
+第 2.1 节的 M01-M14 是实际主题入口；先按模块读取对应的原理文件，再按需读取同模块案例。下面的 8.1/8.2 只是完整的原理/案例反向索引，不代表调用顺序。
 
-`references/first-principles-cards.md` 是模块原理层的第一入口，负责把教材提炼、适用条件、Aspen 映射、验证方式和失效边界压缩到同一张卡片；需要公式细节或案例证据时再继续读取卡片列出的参考文件。
+`references/first-principles-cards.md` 是旧概览卡片；本次任务的正文判断必须进入第2.1节教材专题K条目。`references/textbook-source-coverage.md` 提供章页与核对状态，`references/principle-case-map.md` 在判断完成后提供多对多案例引用。
 
-### 8.1 第一原则支撑：原理、方法与机制
+### 8.1 原理与来源
 
-- See [references/first-principles-cards.md](references/first-principles-cards.md) for the M01-M09 principle cards: source, applicability, core relation, Aspen mapping, case evidence, and failure boundary. Read the relevant card before opening deeper references or cases.
-- See [references/tianjin-distillation-9-5-calculation.md](references/tianjin-distillation-9-5-calculation.md) for the Tianjin 9.5 binary-distillation sequence: q line, feed thermal state, operating lines, minimum reflux, Fenske/Gilliland stage count, feed-stage estimate, and the joint `q-R-N-N_F` optimization workflow. `scripts/binary_distillation_9_5.py` provides a constant-alpha/constant-molar-overflow preview and is not a substitute for rigorous Aspen.
-- See [references/feed-stage-sensitivity-curves.md](references/feed-stage-sensitivity-curves.md) for the RadFrac 2-D Sensitivity pattern that plots reboiler duty versus feed stage for several theoretical-stage counts, using the Sun Lanyi Example 7.3c setup as the verified reference. For a true Cartesian grid use `SERIES=NO`; `SERIES=YES` produced OFAT rows in the 2026-09-25 test. Set the base RadFrac `NSTAGE` equal to the Sensitivity upper bound, make the bottoms product stage follow `NSTAGE` via `PROD-STAGE`/`PRODUCTS`/product-stream ID, and filter SNS_TAB rows by `ROWSTAT=0`. `scripts/plot_radfrac_feedstage_sensitivity.py` can parse SNS_TAB or a long CSV for an external preview and per-stage minima. See [references/sensitivity-scope-and-configuration.md](references/sensitivity-scope-and-configuration.md) for the mandatory scope boundary and data-provenance rules.
-- See [references/sun-lanyi-ch7-4-radfrac-strict.md](references/sun-lanyi-ch7-4-radfrac-strict.md) for the verified Section 7.4 strict RadFrac workflow: Example 7.3a basic rigorous tower, 7.3b product Design Specs + Vary, 7.3c stage/feed QREB sensitivity, 7.3d/e minimum-reflux RR-N asymptote, and the scope boundary between strict calculation and unrequested TAC optimization.
-- TWO-FILE STRICT DELIVERY: when both optimum design and minimum reflux are requested, file 1 is the S-1 full grid over NSTAGE x FEED-STAGE; file 2 fixes the selected best NSTAGE and FEED-STAGE and performs a single-point sensitivity for RR/QREB/QCOND. If the user says not to calculate other stages, do not sweep NSTAGE in file 2. Keep the Sensitivity block name S-1 and fix both Vary ranges to one value for the verified stable single-point workflow. The two files must both derive their result tables from Aspen SNS_TAB.
-- See [references/engineering-modeling-basics.md](references/engineering-modeling-basics.md) for textbook-derived modeling fundamentals and design checks.
-- See [references/aspen-plus-textbook-guide.md](references/aspen-plus-textbook-guide.md) for property methods, unit-model workflows, flowsheeting tools, and convergence strategies.
-- See [references/modeling-guide.md](references/modeling-guide.md) for stream specs, property methods, module selection, and connectivity.
-- See [references/kinetic-reactor-input-workflow-320-322.md](references/kinetic-reactor-input-workflow-320-322.md) for the three-part kinetic-reactor workflow: define the reaction set first, organize the literature expression in `General`, then implement it with `LHHW` or `PowerLaw`, and select `RCSTR` or `RPlug` based on reactor hydrodynamics.
-- See [references/variables-and-troubleshooting.md](references/variables-and-troubleshooting.md) for the COM object model, node API, variable path conventions, and failure modes.
-- See [references/run-verification-and-reconcile.md](references/run-verification-and-reconcile.md) for `.his` error checking, `Reconcile()` tear-stream initialization, complete HeatX specs, PFD stripping, and report unit conversion.
-- See [references/calculator-flowsheeting-options.md](references/calculator-flowsheeting-options.md) for the verified Calculator (Flowsheeting Options) workflow: GUI-exported `.inp` + `CALCULATOR` section, `DEFINE` shorthand, `READ-VARS`/`WRITE-VARS`, `EXECUTE BEFORE BLOCK`, FSPLIT by stream name, and `TEAR` declarations.
-- See [references/input-file-and-rstoic.md](references/input-file-and-rstoic.md) for building `.inp` cases and RStoic conversion syntax (其中的完整示例只示范语法与段落组织，数值须按你的需求重设)。
-- See [references/general-modeling-mechanics.md](references/general-modeling-mechanics.md) for version-neutral modeling mechanics: the spec-meeting three-strategy decision, a property-method decision tree, from-scratch object-tree build mechanics, solids/crystallization modeling elements, reaction-kinetics type selection and Arrhenius-to-Aspen conversion, and official-example reuse rules (second-principle). Tree paths/units/nodes must be confirmed on the installed version.
-- See [references/general-verification-methods.md](references/general-verification-methods.md) for version-neutral verification methods: calibration trio, four independent physical benchmarks (mass balance / phase equilibrium / enthalpy balance / duty vs theory), enthalpy-pollution trust checklist, recycle convergence triple-check, and COM automation hygiene.
-- See [references/equipment-hydraulics-and-rating.md](references/equipment-hydraulics-and-rating.md) for reading Aspen stage hydraulic data, preliminary tray/packed-column screening, piping/pump/valve checks, heat-exchanger rating boundaries, evidence levels, and the output template. `scripts/hydraulic_screening.py` implements only transparent preliminary arithmetic and cannot close a formal rating.
-- See [references/heat-carrier-and-salt-properties.md](references/heat-carrier-and-salt-properties.md) for heat-carrier property selection and heat-exchanger area checks: INL/EXT-10-18297 nitrate-salt correlations (cp/rho/mu; 222 C melting, 560 C limit), NIST phase-change anchors for oils and liquid metals, IAPWS-IF97 saturation pressures for pressurized water, the 30-second audit (cp = Q/(m dT), rho = m/(FLUID_POWER/dP)), Dittus-Boelter h_salt + fouling -> U -> area, cold-end wall temperature vs freezing point, and the measured limitation that Aspen user property data cannot be injected by file editing (GUI Prop-Data + Model Selection required). `scripts/heat_carrier_screen.py` implements the preliminary screening arithmetic.
-- See [references/com-attach-and-license-env.md](references/com-attach-and-license-env.md) for the measured COM connection mechanics: `Dispatch` never attaches (the SCM always spawns `-Automation -Embedding` and the ROT holds no registration), why pre-launching `aspenplus.exe -Automation` is pointless, how `LSHOST`/`LSFORCEHOST` in the client process environment decide license checkout (surfacing only at `InitFromFile2` as error 2040), and the local Sentinel RMS facts (UDP 5093 only, no TCP, subnet broadcast blocked so a wrong `LSHOST` has no fallback).
+- [教材来源与全部章节覆盖](references/textbook-source-coverage.md)：八份独立教材、重复本识别、原页入口和核对状态。
+- 第2.1节14个章节已链接八份教材专题正文，任务时读取相关K条目；[旧概览卡](references/first-principles-cards.md)与[旧工程基础](references/engineering-modeling-basics.md)保留兼容。
+- [Aspen教材指南](references/aspen-plus-textbook-guide.md)、[建模机制](references/general-modeling-mechanics.md)、[独立验证](references/general-verification-methods.md)用于本机落地，不替代专题原理。
+- 按对象查[严格塔](references/sun-lanyi-ch7-4-radfrac-strict.md)、[二元计算](references/tianjin-distillation-9-5-calculation.md)、[动力学输入](references/kinetic-reactor-input-workflow-320-322.md)、[设备评级](references/equipment-hydraulics-and-rating.md)、[载热物性](references/heat-carrier-and-salt-properties.md)。
 
-### 8.2 第二原则支撑：案例与已验证工程（学习参考）
+### 8.2 案例与机制
 
-- See [references/reactor-flash-column-example.md](references/reactor-flash-column-example.md) and `scripts/build_styrene_column.py` for the complete styrene column example (flowsheet 结构与 design-spec 写法可学，数值目标不可照抄)。
-- See [references/distillation-case-library.md](references/distillation-case-library.md) for local heat pump, pressure-swing, azeotropic, batch, dividing-wall, extractive, and multi-effect distillation case folders and their reusable patterns. Use those cases as workflow and model-pattern references, then verify all chemistry, units, stream specs, and energy targets against the current project.
-- See [references/column-splitting-and-heat-integration.md](references/column-splitting-and-heat-integration.md) for splitting a column into bare RadFrac + external condenser/reboiler and for stream-to-stream HeatX heat integration.
-- See [references/thermally-coupled-distillation.md](references/thermally-coupled-distillation.md) for Petlyuk/DWC thermal coupling (prefractionator + main column, side draws, flowsheet DESIGN-SPEC) and for the temperature-sensitive-component rule (styrene >100 C polymerisation) when choosing energy-saving technology.
-- See [references/differential-pressure-thermal-coupling.md](references/differential-pressure-thermal-coupling.md) for the 热耦精馏 article summary: thermally coupled distillation applicability (B-major feed, alpha_AB~alpha_BC, fixed pressure, high-purity intermediate only) and the differential-pressure two-column vapor-recompression upgrade (LP tower overhead -> compressor -> HP tower bottom; HP overhead -> HeatX -> LP reboiler; auxiliary reboiler/condenser for load mismatch). C3 propylene/propane case: conventional 200 stages @ 1800-2100 kPa vs 145+55 split towers; heat 6.39e7 kJ/h replaced by compressor 4.92e6 kJ/h (-92.3%).
-- See [references/three-component-thermal-coupling-case.md](references/three-component-thermal-coupling-case.md) for the validated 2026-08-31 three-component (EtOH/BuOH/HexOH) thermally coupled distillation build: Petlyuk two-column equivalent (PF prefractionator with CONDENSER=NONE REBOILER=NONE + main column MC), coupling by REF-PF/REBV-PF tear streams (NO tray heat duties - the coupling is stream-based, not heat-duty-based), BROYDEN tears + phase-correct initial values, flowsheet DESIGN-SPEC on MC RR, REBV-PF sweep for the B/C split bottleneck, and the .his 36-error UDL03.1/UDL03.3 fix (seed tear streams from converged values + tighten DS LIMITS -> 0/0/0 persistent; Reconcile() API alone does NOT fix transient dry-up). Energy: -19.7% reboiler vs fixed-RR=1.3 conventional, ~equal vs near-minimum-reflux optimized conventional.
-- See [references/styrene-recycle-and-dewatering.md](references/styrene-recycle-and-dewatering.md) for water/aromatic systems: PR+UNIQUAC+HENRY+FREE-WATER properties (do NOT write `PR`/`UN` section IDs), FLASH3 three-phase cold recovery of noncondensables, stripper (CONDENSER=NONE, feed on stage 1) for dissolved water, Calculator-based EB/water recycle with tear-stream initial values, `<bar>` on DP-STAGE/DP-COL, and the warning-clearing checklist.
-- See [references/li-ruijiang-rplug-kinetics-validation.md](references/li-ruijiang-rplug-kinetics-validation.md) for the Li Ruijiang low-water-ratio ethylbenzene dehydrogenation LHHW input path, RPlug adiabatic validation setup, unit conversions, and the 2026-08-19 Aspen verification workflow.
-- See [references/double-effect-user-workflow.md](references/double-effect-user-workflow.md) for the user-mandated double-effect workflow, acceptance (`.his` 0/0/0 + Control Panel clean), Reconcile, and pressure-drop selection by fluid/equipment/pressure level (ordinary services near 0.2 bar, tiny drops only for vacuum/pressure-infeasible loops, no compensation pumps).
-- See [references/utility-steam-generation.md](references/utility-steam-generation.md) for the validated 2026-09-22 公用工程蒸汽生产装置 (waste-heat steam generation, 6 modules M0203+M0204+E0207+E0208+M0205+T0206) studied from the user's case AND a runnable self-built case (assets/steam-generation/waste_heat_steam_generation.inp: 600 kW recovered heat -> 60/40 NaNO3-KNO3 carrier loop -> 25 bar drum, 925 kg/h saturated steam, blowdown 0.46 %, salt-loop energy closure -0.000 % incl. pump work, STEAMNBS water enthalpy within 0.08 % of IAPWS-IF97). Hand-written .inp gotchas recorded there: block-level PROPERTIES overrides require the method to be declared in the global PROPERTIES section (else 2041), non-default databank components need explicit DATABANKS/ PROP-SOURCES (else 2041), and tear streams take an initial value but not a full STREAM spec M0203+M0204+E0207+E0208+M0205+T0206): reactor Q-stream feeds a Heater (`PRES` only, duty from the heat stream) -> molten-salt carrier loop (Mixer/FSplit recycle+purge, Calculator closes salt balance) -> HeatX `CALC-TYPE=DESIGN` + `T-HOT` -> Flash2 drum with `TEMP`+`DUTY=0` back-solving the drum pressure; 840 kW, 1081 kg/h of 38 bar/247 C saturated steam, recirculation ratio 1.387, energy balance closes to 0.01 %, water enthalpy 6.3 % high vs IAPWS-IF97 (and the case has NO blowdown, NO pumps, NO pressure drop - fix those before reusing).
-- See [references/double-effect-distillation-and-design-spec.md](references/double-effect-distillation-and-design-spec.md) for the HP/LP double-effect + HeatX workflow, the reboil-vapor initial-state rule, flowSheet-level `DESIGN-SPEC` `.inp` syntax, pressure-drop modeling (HeatX `PRES-HOT/PRES-COLD`, reflux/reboiler-circulation pumps), and the deliverable save/validate procedure.
-- Account for pressure drops in EVERY pressure-changing unit by entering a
-  NEGATIVE value in the module's pressure field (negative = pressure drop,
-  positive = absolute outlet pressure): HeatX `PARAM ... PRES-HOT=-0.2
-  PRES-COLD=-0.03`, Heater/Flash2 `PARAM PRES=-0.2` for ordinary
-  positive-pressure service. Size it by equipment and system pressure:
-  near-vacuum/low-pressure or pressure-pinched return paths may need small
-  drops (-0.01 to -0.05 bar), but do not start there by habit. Do NOT add
-  extra pumps to "close" the network unless they represent a real pressure
-  boosting device; instead tune tower pressure/profile or document the
-  pressure-feasible small-drop exception. Never write `HOT-SIDE ... DP=...`
-  (2041). After
-  moving a HeatX feed in FLOWSHEET, also update the `FEEDS HOT=... COLD=...`
-  sentence inside the block. With drops the Design-Spec curve can get very
-  steep — tighten `LIMITS` around the solution so SECANT does not oscillate.
-  See
-  [references/double-effect-distillation-and-design-spec.md](references/double-effect-distillation-and-design-spec.md).
+- [原理—案例双向对应](references/principle-case-map.md)是案例唯一完整索引：包含具体文件/章节、H/T/L/U证据、借鉴内容、参数/拓扑差异和验证缺口。
+- [案例目录](references/distillation-case-library.md)仅在原理决定技术路线后定位模板；[Sensitivity范围](references/sensitivity-scope-and-configuration.md)保留用户规定的扫描与交付边界。
+- 工具机制按需读[Calculator](references/calculator-flowsheeting-options.md)、[输入/RStoic](references/input-file-and-rstoic.md)、[输入完整/SEP](references/aspen-input-completeness-and-delivery-lessons.md)、[运行/Reconcile](references/run-verification-and-reconcile.md)、[COM/许可](references/com-attach-and-license-env.md)、[树变量/排错](references/variables-and-troubleshooting.md)、[PFD保真](references/pfd-layout-preservation-and-review.md)。
+- 原始`assets/`和`scripts/`路径保留；文档维护成功不代表相应案例已重新运行，不通过修改案例记录提升验证等级。
