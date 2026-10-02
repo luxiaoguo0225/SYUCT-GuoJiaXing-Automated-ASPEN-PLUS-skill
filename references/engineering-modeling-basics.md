@@ -244,6 +244,17 @@ In Aspen, `DSTWU` implements this Winn-Underwood-Gilliland shortcut for one feed
 and two products. Use it to obtain first estimates, then switch to `RadFrac`
 with those estimates as initial values. A reflux ratio of `1.2-2.0 * Rmin` is a
 normal starting point.
+**Mandatory column-build sequence (user requirement):**
+
+1. Build and converge `DSTWU` with the light/heavy keys, recoveries, pressure, feed state and condenser type.
+2. Obtain the DSTWU `NSTAGE-RR` table, compute `NxRR = NSTAGE*RR`, and plot `NxRR` versus `NSTAGE`.
+3. Take the minimum of `NxRR` as the shortcut-recommended theoretical stage count; read the corresponding RR and feed stage.
+4. Transfer those values to `RadFrac` as initial values and converge with the real property method and product specifications.
+5. Run Sensitivity: vary feed stage, NSTAGE, pressure and relevant operating variables around the shortcut design.
+6. For minimum-reflux work, increase NSTAGE while keeping the intended feed-stage relation; treat the RR plateau as the rigorous minimum reflux estimate.
+7. Verify convergence, purity/recovery, mass/energy balance, hydraulics, and save native Aspen plots in `.apwz`.
+
+Do not start a new column design directly from RadFrac without first obtaining and documenting the shortcut basis.
 
 Key component choices:
 

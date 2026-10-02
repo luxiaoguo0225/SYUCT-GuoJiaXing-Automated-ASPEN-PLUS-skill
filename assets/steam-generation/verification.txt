@@ -1,0 +1,46 @@
+=== KEY ASPEN RESULTS : self-built waste-heat steam generation case (2026-09-22) ===
+
+--- water / steam loop ---
+BFW     T= 105.0000 C  P=  5.0000 bar  m=    930.0000 kg/h  n=  51.62284 kmol/h  vf=0.000000
+BFWP    T= 106.4609 C  P= 27.0000 bar  m=    930.0000 kg/h  n=  51.62284 kmol/h  vf=0.000000
+WFED    T= 202.4507 C  P= 26.6000 bar  m=   4842.6164 kg/h  n= 268.80606 kmol/h  vf=0.000000
+WMIX    T= 223.9892 C  P= 25.0000 bar  m=   4842.6164 kg/h  n= 268.80606 kmol/h  vf=0.191107
+STEAM   T= 223.9892 C  P= 25.0000 bar  m=    925.4559 kg/h  n=  51.37061 kmol/h  vf=1.000000
+WLIQ    T= 223.9892 C  P= 25.0000 bar  m=   3917.1604 kg/h  n= 217.43545 kmol/h  vf=0.000000
+WREC    T= 223.9892 C  P= 25.0000 bar  m=   3912.6164 kg/h  n= 217.18321 kmol/h  vf=0.000000
+WRECP   T= 224.1185 C  P= 26.6000 bar  m=   3912.6164 kg/h  n= 217.18321 kmol/h  vf=0.000000
+BLOW    T= 223.9892 C  P= 25.0000 bar  m=      4.5831 kg/h  n=   0.25440 kmol/h  vf=0.000000
+--- salt loop ---
+SALTMK  T= 250.0000 C  P=  3.0000 bar  m=    260.0000 kg/h  n=   2.86406 kmol/h  vf=0.000000
+SALTRC  T= 250.0000 C  P=  3.0000 bar  m=  25740.0000 kg/h  n= 283.54192 kmol/h  vf=0.000000
+SALTCP  T= 250.6094 C  P=  5.0000 bar  m=  26000.0000 kg/h  n= 286.40598 kmol/h  vf=0.000000
+SALTH   T= 322.3018 C  P=  4.2000 bar  m=  26000.0000 kg/h  n= 286.40598 kmol/h  vf=0.000000
+SALTR   T= 250.0000 C  P=  3.0000 bar  m=  26000.0000 kg/h  n= 286.40598 kmol/h  vf=0.000000
+SALTPG  T= 250.0000 C  P=  3.0000 bar  m=    260.0000 kg/h  n=   2.86406 kmol/h  vf=0.000000
+
+--- blocks ---
+E0101 (salt heater, recovered waste heat) duty = 600.000 kW
+E0102 (HeatX) duty = 605.086 kW ; LMTD = 58.74 K ; AREA= 12.120           DUTY=0.60509E+06       FT=1.00000
+T0201 (steam drum) T = 223.989 C at P = 25.000 bar, duty = 0
+P0101 (salt circulation pump) brake power = 5.086 kW (.his)
+convergence: LOOP $OLVER01 ITER  547:     *** CONVERGED *** , MAX ERR/TOL    -0.99667        TIME =      3.32
+
+=== VERIFICATION (same converged run) ===
+1) WATER MASS BALANCE : BFW 930.000 = STEAM 925.456 + BLOW 4.5831 = 930.0390 kg/h ; residual 0.0390 kg/h (0.0042 %)
+   -> 残差为撕裂流收敛容差残差（已把 CONV-OPTIONS 的 TOL 收紧到 1E-5，本工况 .his 无 BALMAS 告警）。
+2) SALT MASS BALANCE  : makeup 260.000 kg/h = purge 260.000 kg/h ; circulating 26000.0 kg/h (exact closure)
+3) SALT-LOOP ENERGY   : E0101 600.000 kW + P0101 pump 5.086 kW = 605.086 kW vs E0102 605.086 kW -> dev -0.000 %
+4) WATER-SIDE ENTHALPY: dh_steam = 2361.7 kJ/kg ; dh_blowdown = 521.5 kJ/kg ; sum = 607.80 kW vs 605.09 kW -> dev +0.448 %
+5) SALT LOOP STATE    : m = 7.222 kg/s ; dT = 72.30 K ; implied cp = 1.1490 kJ/(kg.K) (Aspen databank)
+6) CIRCULATION/BLOWDOWN: N = WREC/STEAM = 4.228 ; drum-inlet vapour fraction = 0.1911 ; blowdown = 0.4928 % of BFW
+7) HEAT TRANSFER      : approach hot-out/cold-in = 47.55 K ; hot-in/cold-out = 98.31 K ; LMTD = 58.74 K ; UA = 10302 W/K ; area 12.120 m2 -> U = 850 W/(m2.K)
+
+=== INDEPENDENT CROSS-CHECK vs IAPWS-IF97 (iapws 1.5.5) ===
+saturation T at 25 bar : IF97 223.96 C | Aspen/STEAMNBS 223.99 C | diff 0.03 K
+dh 105 C/27 bar -> 25 bar sat vapour : IF97 2359.9 | Aspen 2361.7 kJ/kg | dev +0.077 %
+dh 105 C/27 bar -> 25 bar sat liquid : IF97 519.9 | Aspen 521.5 kJ/kg | dev +0.317 %
+latent heat at 25 bar : IF97 1840.1 kJ/kg
+
+=== .his STATUS ===
+errors 0 ; warnings 0 :
+all unit-operation BLKSTAT = 0 ; flowsheet converged ; Control-Panel-clean

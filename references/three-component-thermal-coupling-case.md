@@ -3,7 +3,7 @@
 > 系统：乙醇(A)/正丁醇(B)/1-己醇(C)，UNIQUAC；进料 2000 kg/h、25℃、2 bar、摩尔组成 0.2/0.6/0.2（B 最多、A≈C，符合文章推荐条件）
 > 产品：D 乙醇 248.6 kg/h、侧线丁醇 1200 kg/h、B 己醇 551.4 kg/h，均 ≥99.9 wt%
 > 结论速览：副塔零冷热负荷（真热耦）；vs 固定 RR=1.3 常规双塔再沸 -19.7%、冷凝 -25.6%；vs 近最小回流优化常规（54 板）能耗持平但省 1 台再沸器+1 台冷凝器
-> 交付：`%USERPROFILE%\Documents\Codex\2026-08-31\a-b-b-c-a-c\outputs\`（thermally_coupled.* / conventional_baseline.* / conventional_refstyle.*）
+> 交付：`C:\Users\guoxi\Documents\Codex\2026-08-31\a-b-b-c-a-c\outputs\`（thermally_coupled.* / conventional_baseline.* / conventional_refstyle.*）
 
 ## 0. 概念：热耦不是"在塔板上加热负荷"
 

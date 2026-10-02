@@ -28,9 +28,9 @@ Some files are older Aspen versions. Open them with V14 `InitFromFile2` directly
 
 ## Today's validated Aspen automation paths
 
-- Original user column: `%USERPROFILE%\Desktop\新建文件夹\8.11拆塔演示to codex.bkp`.
-- Split-only deliverable: `%USERPROFILE%\Documents\Codex\2026-08-11\ni\outputs\8_11_column_split_heatpump\baseline_split\`.
-- Heat pump deliverable: `%USERPROFILE%\Documents\Codex\2026-08-11\ni\outputs\8_11_column_split_heatpump\heatpump_split\`.
+- Original user column: `C:\Users\guoxi\Desktop\新建文件夹\8.11拆塔演示to codex.bkp`.
+- Split-only deliverable: `C:\Users\guoxi\Documents\Codex\2026-08-11\ni\outputs\8_11_column_split_heatpump\baseline_split\`.
+- Heat pump deliverable: `C:\Users\guoxi\Documents\Codex\2026-08-11\ni\outputs\8_11_column_split_heatpump\heatpump_split\`.
 
 ## Reusable workflow patterns
 

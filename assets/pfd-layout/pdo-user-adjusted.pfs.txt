@@ -1,0 +1,2922 @@
+GRAPHICS_BACKUP
+PFS V 5.00
+$CONFIG
+paramdata APV140 ENRTL-RK
+paramdata APV140 VLE-IG
+paramdata APV140 VLE-RK
+paramdata APV140 VLE-HOC
+paramdata APV140 LLE-LIT
+paramdata APV140 LLE-ASPEN
+paramdata APV140 VLE-LIT
+paramdata APV140 BINARY
+paramdata APV140 HENRY-AP
+paramdata APV140 PITZER
+paramdata APV140 EOS-LIT
+paramdata APV140 SRK-ASPEN
+paramdata APV140 PC-SAFT
+paramdata APV140 POLYPCSF
+paramdata APV140 HYSYS
+paramdata APESV140 AP-EOS
+paramdata NISTV140 NIST-HOC
+paramdata NISTV140 NIST-IG
+paramdata NISTV140 NIST-RK
+paramdata NISTV140 NIST-EOS
+purebank APV140 PURE40
+purebank APV140 AQUEOUS
+purebank APV140 SOLIDS
+purebank APV140 INORGANIC
+purebank APESV140 AP-EOS
+purebank NISTV140 NIST-TRC
+regdbank 0
+ftn_check 1
+autoblockid 1
+autostreamid 1
+showblockid 1
+showstreamid 1
+autoplacement 1
+grid 2
+gridresolution 0.100000
+scale 0
+streamprefix S
+blockprefix B
+labelscale 1.150000
+3DOn 1
+qwformat %.0f
+wformat %.0f
+tempformat %.0f
+presformat %.2f
+flowformat %.0f
+strmqwformat %.0f
+strmwformat %.0f
+vflowformat %.0f
+mflowformat %.0f
+vfracformat %.2f
+pseudobatch 0
+partial 1
+animation 1
+runanyway 0
+globalqw 0
+globalw 0
+globaltemp 1
+globalpres 1
+globalflow 0
+globalstrmqw 0
+globalstrmw 0
+globalvflow 0
+globalmflow 0
+globalvfrac 0
+globalshowcalcerror 1
+globalshowcalcwarning 1
+globalshowdisabled 1
+tooldrawvisible 0
+browserheight 7530
+browserwidth 10725
+browsertreewidth 2450
+polyplusenabled 1
+dynaplusenabled 1
+bfracenabled 1
+rtfenabled 1
+rspenabled 1
+initializeicarus 17
+pinchenabled 0
+linklimit 5000
+material_color 0
+material_style 0
+material_width 1
+material_termid  
+heat_color 0
+heat_style 1
+heat_width 1
+heat_termid Q
+work_color 0
+work_style 2
+work_width 1
+work_termid W
+connections_color 9
+connections_style 3
+connections_width 1
+connections_termid C
+measurements_color 4
+measurements_style 4
+measurements_width 1
+measurements_termid M
+power_color 10
+power_style 5
+power_width 1
+power_termid I
+displayeoconn 0
+displaycalcs 0
+displaytransfers 0
+displaymeas 0
+displaydesignspecs 0
+displaycalccons 0
+displaymeascons 0
+displayothercons 0
+displayeomeas 1
+displayeomeastype 2
+displayothermanipconn 0
+showeoviews 0
+eoautosave 1
+allow_system_userprops 0
+copy_estimation 1
+copy_retrieved 1
+purge_incomp_params 0
+set_default_biparams 0
+set_default_dataset1 0
+set_default_dataset0 1
+bestinput 0
+autosmrun 0
+genallpropset 0
+strmresformdefault 0
+roottype 0
+exchangerfile 1
+streamformat 1
+runsettingfile 1
+usermodelfile 1
+fortranfile 0
+timeout 1000
+auto_evaluate 0
+customglobaldatapropset1 0 | Custom1 | * | %.2f | 0 | 6
+customglobaldatapropset2 0 | Custom2 | * | %.2f | 1 | 7
+customglobaldatapropset3 0 | Custom3 | * | %.2f | 2 | 8
+customglobaldatapropset4 0 | Custom4 | * | %.2f | 4 | 9
+customglobaldatapropset5 0 | Custom5 | * | %.2f | 5 | 10
+customglobaldatapropset6 0 | Custom6 | * | %.2f | 6 | 11
+customglobaldatapropset7 0 | Custom7 | * | %.2f | 7 | 12
+economics_active 0
+ignoreEOVarNameFixupsOnImport 1
+tpsaupgrade 0
+#
+$_APWNSHELL_SETTINGS
+<FileRootSettings><CaseFileSettings>&lt;CaseFileSettings StreamSummaryFormSettings="&amp;lt;src&amp;gt;&amp;lt;ReferencedPaths&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Streams.HEAVY-TO&amp;lt;/Path&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Streams.H-VAP&amp;lt;/Path&amp;gt;&amp;lt;/ReferencedPaths&amp;gt;&amp;lt;ReferencedTemplates /&amp;gt;&amp;lt;/src&amp;gt;" xmlns="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure" /&gt;</CaseFileSettings><CommonShellSettings>&lt;CommonShellSettings xmlns="http://schemas.aspentech.com/xaml/presentation/visualisation/commonshell" xmlns:atapi="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:atapmaa="clr-namespace:AspenTech.AspenPlus.Modules.ApwnApplication;assembly=ApwnShell" xmlns:atapie="clr-namespace:AspenTech.AspenPlus.Infrastructure.Events;assembly=AspenTech.AspenPlus.Infrastructure" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:apmab="clr-namespace:AspenPlus.Modules.ApwnBrowser;assembly=ApwnShell" xmlns:cxv="http://schemas.aspentech.com/xaml/presentation/cxsviewmodel"&gt;&lt;CommonShellSettings.CurrentWorkspace&gt;&lt;ShellWorkspace ActivationBarState="&amp;lt;DashboardPanel IsExpanded=&amp;quot;false&amp;quot; IsTurnedOff=&amp;quot;false&amp;quot; Version=&amp;quot;40&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EconomicAnalysis.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;!--This is the current state of Economics Analysis Dashboard--&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;Root&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;OnOffState Value=&amp;quot;Off&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;CapitalCost Value=&amp;quot;&amp;quot; Units=&amp;quot;USD&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;UtilityCost Value=&amp;quot;&amp;quot; Units=&amp;quot;USD/Year&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;HasError&amp;amp;gt;false&amp;amp;lt;/HasError&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;_statusCode Value=&amp;quot;-1&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Flags&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isRunCompleted Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isRunning Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButActivated Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButLoaded Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButSized Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButMapped Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_completeEvaluatedNotAutoRun Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isSimulationChanged Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isInStopping Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isOnOffButtonCanBeUsed Value=&amp;quot;true&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isResetDashboardButLeaveItOn Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;/Flags&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/Root&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EnergyAnalysis.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;!--This is the current state of Energy Analysis Dashboard--&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;Root&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsExpanded&amp;amp;gt;false&amp;amp;lt;/IsExpanded&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;OnOff&amp;amp;gt;Off&amp;amp;lt;/OnOff&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Status&amp;amp;gt;NotReady&amp;amp;lt;/Status&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;PUS&amp;amp;gt;&amp;amp;lt;/PUS&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Percent&amp;amp;gt;&amp;amp;lt;/Percent&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Units&amp;amp;gt;MW&amp;amp;lt;/Units&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/Root&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EdrActivation.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;EDR&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowModelStatus&amp;amp;gt;false&amp;amp;lt;/IsShowModelStatus&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowRiskStatus&amp;amp;gt;false&amp;amp;lt;/IsShowRiskStatus&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowLegend&amp;amp;gt;false&amp;amp;lt;/IsShowLegend&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;DetailCount&amp;amp;gt;0&amp;amp;lt;/DetailCount&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/EDR&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.GHGEmission.DashboardItem&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/DashboardPanel&amp;gt;" Layout="&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;xamDockManager version=&amp;quot;21.1.20211.27&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;contentPanes&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;FlowsheetScreenFactory&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-10-01T14:38:50.6156199Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen2&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-10-01T14:31:13.3085051Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen1&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-10-01T14:30:23.0601783Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;ModelLibraryScreenFactoryKey&amp;quot; location=&amp;quot;DockedBottom&amp;quot; lastActivatedTime=&amp;quot;2026-10-01T14:28:13.7228164Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/contentPanes&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;panes&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;splitPane splitterOrientation=&amp;quot;Vertical&amp;quot; location=&amp;quot;DockedBottom&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;contentPane name=&amp;quot;ModelLibraryScreenFactoryKey&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;/splitPane&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/panes&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;documents splitterOrientation=&amp;quot;Vertical&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;splitPane splitterOrientation=&amp;quot;Vertical&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;tabGroup selectedIndex=&amp;quot;0&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;FlowsheetScreenFactory&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen1&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen2&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;/tabGroup&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;/splitPane&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/documents&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/xamDockManager&amp;gt;" NavigationGroupToSelect="Simulation" IsNavigationPaneMinimized="False" IsRibbonMinimized="False"&gt;&lt;ShellWorkspace.Screens&gt;&lt;WorkspaceScreenData PaneName="FlowsheetScreenFactory" ScreenFactoryKey="FlowsheetScreenFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapi:StringScreenSubject subject="{assembly:Null}" fatherNodePath="{assembly:Null}" NavigationGroupKey="Simulation" /&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;ScreenState Zoom="0.250001" /&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen2" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Streams.H-VAP.Results" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMMATERIAL.MMMATERIAL_RESULT" FormKey="Streams.H-VAP.Results" Header="H-VAP (MATERIAL) - 结果" ResultsOnly="True" PathKey="Top.appModelV8.Streams.H-VAP"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="id"&gt;H-VAP&lt;/s:String&gt;&lt;s:Int32 assembly:Key="IsStream"&gt;1&lt;/s:Int32&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Streams.H-VAP&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Streams.H-VAP"&gt;&lt;apmab:ApwnPlotwizardRule.ProgId&gt;&lt;s:String&gt;WpfPLDISCURVES.RibbonPlotWizardMgr&lt;/s:String&gt;&lt;/apmab:ApwnPlotwizardRule.ProgId&gt;&lt;/apmab:ApwnPlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState FormSettings="&amp;lt;PageSettings&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting&amp;gt;&amp;amp;lt;srcSettings StreamIds=&amp;quot;H-VAP&amp;quot; TemplateName=&amp;quot;Full&amp;quot;&amp;amp;gt;&amp;amp;lt;TFFTable&amp;amp;gt;&amp;amp;lt;GeneralOptions&amp;amp;gt;Description,SourceAndDestination,StreamClass,MaximumErrorTolerance,CostFlow,PhaseLabel,ComponentAttributes,ParticleSizeDistributions,Temperature,Pressure,MolarVaporFraction,MolarLiquidFraction,MolarSolidFraction,MolarEnthalpy,MolarEntropy,MolarDensity,MassVaporFraction,MassLiquidFraction,MassSolidFraction,MassEnthalpy,MassEntropy,MassDensity,EnthalpyFlow,AverageMolecularWeight,BatchProperties&amp;amp;lt;/GeneralOptions&amp;amp;gt;&amp;amp;lt;ScopeOptions&amp;amp;gt;PhasesForMixedSubstream,TotalStream,Substreams,MoleFlows,MassFlows,MoleFractions,MassFractions,VolumeFlows&amp;amp;lt;/ScopeOptions&amp;amp;gt;&amp;amp;lt;Properties&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;TEMP&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;PRES&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;VFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;LFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;SFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSVFRA&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSLFRA&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSSFRA&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;HMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSHMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;SMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSSMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;RHOMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSRHOM&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;HFLMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MWMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MOLEFLOW&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MOLEFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSFLOW&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;VOLFLMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmole_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmole_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmass_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmass_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;vol_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;vol_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;enth_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;enth_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cycle_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;oper_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;ntrain&amp;quot; /&amp;amp;gt;&amp;amp;lt;/Properties&amp;amp;gt;&amp;amp;lt;/TFFTable&amp;amp;gt;&amp;amp;lt;/srcSettings&amp;amp;gt;&amp;lt;/Setting&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/PageSettings&amp;gt;"&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="IsStream"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;1&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Streams.H-VAP" /&gt;&lt;cxv:CxvParameter Name="id" Value="H-VAP" /&gt;&lt;cxv:CxvParameter Name="main_result" Value="@main.@parent.@parent" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen1" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Streams.HEAVY-TO.Results" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMMATERIAL.MMMATERIAL_RESULT" FormKey="Streams.HEAVY-TO.Results" Header="HEAVY-TO (MATERIAL) - 结果" ResultsOnly="True" PathKey="Top.appModelV8.Streams.HEAVY-TO"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="id"&gt;HEAVY-TO&lt;/s:String&gt;&lt;s:Int32 assembly:Key="IsStream"&gt;1&lt;/s:Int32&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Streams.HEAVY-TO&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Streams.HEAVY-TO"&gt;&lt;apmab:ApwnPlotwizardRule.ProgId&gt;&lt;s:String&gt;WpfPLDISCURVES.RibbonPlotWizardMgr&lt;/s:String&gt;&lt;/apmab:ApwnPlotwizardRule.ProgId&gt;&lt;/apmab:ApwnPlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState FormSettings="&amp;lt;PageSettings&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting&amp;gt;&amp;amp;lt;srcSettings StreamIds=&amp;quot;HEAVY-TO&amp;quot; TemplateName=&amp;quot;Full&amp;quot;&amp;amp;gt;&amp;amp;lt;TFFTable&amp;amp;gt;&amp;amp;lt;GeneralOptions&amp;amp;gt;Description,SourceAndDestination,StreamClass,MaximumErrorTolerance,CostFlow,PhaseLabel,ComponentAttributes,ParticleSizeDistributions,Temperature,Pressure,MolarVaporFraction,MolarLiquidFraction,MolarSolidFraction,MolarEnthalpy,MolarEntropy,MolarDensity,MassVaporFraction,MassLiquidFraction,MassSolidFraction,MassEnthalpy,MassEntropy,MassDensity,EnthalpyFlow,AverageMolecularWeight,BatchProperties&amp;amp;lt;/GeneralOptions&amp;amp;gt;&amp;amp;lt;ScopeOptions&amp;amp;gt;PhasesForMixedSubstream,TotalStream,Substreams,MoleFlows,MassFlows,MoleFractions,MassFractions,VolumeFlows&amp;amp;lt;/ScopeOptions&amp;amp;gt;&amp;amp;lt;Properties&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;TEMP&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;PRES&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;VFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;LFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;SFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSVFRA&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSLFRA&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSSFRA&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;HMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSHMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;SMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSSMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;RHOMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSRHOM&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;HFLMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MWMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MOLEFLOW&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MOLEFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSFLOW&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;VOLFLMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmole_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmole_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmass_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmass_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;vol_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;vol_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;enth_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;enth_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cycle_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;oper_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;ntrain&amp;quot; /&amp;amp;gt;&amp;amp;lt;/Properties&amp;amp;gt;&amp;amp;lt;/TFFTable&amp;amp;gt;&amp;amp;lt;/srcSettings&amp;amp;gt;&amp;lt;/Setting&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/PageSettings&amp;gt;"&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="IsStream"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;1&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Streams.HEAVY-TO" /&gt;&lt;cxv:CxvParameter Name="id" Value="HEAVY-TO" /&gt;&lt;cxv:CxvParameter Name="main_result" Value="@main.@parent.@parent" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="ModelLibraryScreenFactoryKey" ScreenFactoryKey="ModelLibraryScreenFactoryKey"&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;ScreenState /&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;/ShellWorkspace.Screens&gt;&lt;/ShellWorkspace&gt;&lt;/CommonShellSettings.CurrentWorkspace&gt;&lt;CommonShellSettings.SavedWorkspaces&gt;&lt;ShellWorkspaceFolder /&gt;&lt;/CommonShellSettings.SavedWorkspaces&gt;&lt;/CommonShellSettings&gt;</CommonShellSettings></FileRootSettings>
+$_END_APWNSHELL_SETTINGS
+#
+PFSVData
+# of PFS Objects = 116
+SIZE -7.52552 58.3988 -36.2716 7.52615
+BLOCK
+ID: BFW-HG2
+Version: 1
+ICON: "HEATER"
+Flag 0
+Section GLOBAL
+At 11.000000 -25.773586
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: BFW-MIX
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At 15.000000 -25.853296
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: BFW-P
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 3.000000 -26.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: C-ACRREC
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At 36.900002 6.224739
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 1
+BLOCK
+ID: C-DEACR
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At 39.000000 0.149071
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: C-DEH
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At 27.000000 -13.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: C-DEWAT
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At 35.000000 -12.001120
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: C-HEAVY
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At 39.000000 -12.826155
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: C-PDO
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At 55.000000 -12.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: C-QUENCH
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At 23.000000 -1.114962
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: CW-HG
+Version: 1
+ICON: "HEATER"
+Flag 0
+Section GLOBAL
+At 7.000000 -20.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: DA-CP
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 43.000000 -0.676598
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: DA-FL
+Version: 1
+ICON: "V-DRUM1"
+Flag 0
+Section GLOBAL
+At 49.000000 0.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: FL-H2
+Version: 1
+ICON: "V-DRUM1"
+Flag 0
+Section GLOBAL
+At 23.000000 -10.274370
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: FL-VL
+Version: 1
+ICON: "V-DRUM1"
+Flag 0
+Section GLOBAL
+At 28.500000 -8.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: H-COND
+Version: 1
+ICON: "HEATER"
+Flag 0
+Section GLOBAL
+At 47.000000 -6.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: H-RP
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 47.000000 -12.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 1
+BLOCK
+ID: H-SPLIT
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At 51.000000 -5.999612
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: H2PUR
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 7.000000 -8.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: HEAT-HG
+Version: 1
+ICON: "HEATER"
+Flag 0
+Section GLOBAL
+At 15.000000 -11.024529
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: HEAT-OX
+Version: 1
+ICON: "HEATER"
+Flag 0
+Section GLOBAL
+At 11.000000 0.749612
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: HG1-R
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 11.000000 -11.400261
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: HG2-R
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 19.000000 -10.650261
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: HX-BFW
+Version: 1
+ICON: "GEN-HS"
+Flag 0
+Section GLOBAL
+At 7.788235 -25.774790
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 2
+BLOCK
+ID: HX-HDA
+Version: 1
+ICON: "GEN-HS"
+Flag 0
+Section GLOBAL
+At 43.000000 -6.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: HY-R
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 35.000000 -0.225929
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: K-OX
+Version: 1
+ICON: "ICON2"
+Flag 0
+Section GLOBAL
+At 19.000000 0.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: K-VL
+Version: 1
+ICON: "ICON2"
+Flag 0
+Section GLOBAL
+At 31.000000 -8.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: K-VLC
+Version: 1
+ICON: "HEATER"
+Flag 0
+Section GLOBAL
+At 35.000000 -9.114963
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: MIXHG
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At 7.000000 -11.774141
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: MIXHY
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At 31.000000 -1.614771
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: MIXOX
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At 3.000000 0.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: MIXVL
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At 31.000000 -12.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: OX-R1
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 7.000000 0.373879
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: OX-R2
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 15.000000 1.123879
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: P-ACRREC
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 43.000000 6.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 1
+BLOCK
+ID: P-DEACR
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 3.000000 -12.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: P-HYD
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 27.200001 -1.940631
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: P-REC
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 31.000000 5.399071
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 1
+BLOCK
+ID: SD-25
+Version: 1
+ICON: "V-DRUM1"
+Flag 0
+Section GLOBAL
+At 27.000000 -25.853527
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: W-CP
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 24.000000 -29.900000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 1
+BLOCK
+ID: W-SPLIT
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At 27.999735 -30.000000
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: WHB1
+Version: 1
+ICON: "HEATER"
+Flag 0
+Section GLOBAL
+At 19.000000 -25.853685
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+BLOCK
+ID: WHB2
+Version: 1
+ICON: "HEATER"
+Flag 0
+Section GLOBAL
+At 23.000000 -25.853685
+Label At -1.000000 -1.650000
+Scale 1.000000 Modifier 0
+STREAM
+ID: ACR-PURE
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 34.862503 5.398585
+Label At -1.076401 0.000000
+ROUTE 0 0
+r r 34.862503 5.398585 0
+x 0 36.104424 5.398585 0
+t l 36.304424 5.398585 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 34.862503 5.398585 0
+x x 31.449520 5.398585 0
+t r 31.249519 5.398585 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: ACR-REC
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 41.075001 6.224739
+Label At 0.317505 0.000000
+ROUTE 0 0
+r r 41.075001 6.224739 0
+x 0 42.424404 6.224739 0
+t l 42.624405 6.224739 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 41.075001 6.224739 0
+x x 37.325966 6.224739 0
+t r 37.125965 6.224739 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: ACR-RECD
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 43.600002 3.337369
+Label At 0.000000 -0.782984
+ROUTE 0 0
+r r 43.600002 3.337369 0
+y x 43.600002 0.675225 0
+x 0 39.647888 0.675225 0
+t r 39.447887 0.675225 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 43.600002 3.337369 0
+y x 43.600002 5.999514 0
+x x 43.449516 5.999514 0
+t r 43.249516 5.999514 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: ACR-RECP
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 30.275002 2.419476
+Label At 0.000000 -0.300465
+ROUTE 0 0
+r r 30.275002 2.419476 0
+y 0 30.275002 5.623810 0
+x 0 30.424404 5.623810 0
+t l 30.624405 5.623810 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 30.275002 2.419476 0
+y y 30.275002 -1.385788 0
+x x 30.499662 -1.385788 0
+t l 30.699663 -1.385788 0
+$ D -0.000031 0.230104
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: ACR-WAT
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 24.612501 -1.941117
+Label At 1.411068 0.000000
+ROUTE 0 0
+r r 24.612501 -1.941117 0
+x 0 23.795578 -1.941117 0
+t r 23.595577 -1.941117 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 24.612501 -1.941117 0
+x x 26.750483 -1.941117 0
+t l 26.950483 -1.941117 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: ACR-WATP
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 29.699999 -1.715892
+Label At 0.076241 0.000000
+ROUTE 0 0
+r r 29.699999 -1.715892 0
+x 0 27.775597 -1.715892 0
+t r 27.575596 -1.715892 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 29.699999 -1.715892 0
+x x 30.449694 -1.715892 0
+t l 30.649694 -1.715892 0
+$ C 2.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: AIR
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 1
+At 0.400224 -0.079485
+Label At 0.794133 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 0.400224 -0.079485 0
+x x 2.499863 -0.079485 0
+t l 2.699863 -0.079485 0
+$ D 0.000169 -0.078365
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: ALDEHYDE
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 34.996002 7.526154
+Label At 0.628056 0.000000
+ROUTE 0 0
+r r 34.996002 7.526154 0
+x x 36.252113 7.526154 0
+y 0 36.252113 6.750893 0
+t l 36.452114 6.750893 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: BFW
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 1
+At 0.875483 -26.000484
+Label At 1.674999 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 0.875483 -26.000484 0
+x x 2.550482 -26.000484 0
+t l 2.750482 -26.000484 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: BFW-H
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 9.950001 -25.774319
+Label At 0.065878 0.000000
+ROUTE 0 0
+r r 9.950001 -25.774319 0
+x 0 8.386791 -25.774319 0
+t r 8.186791 -25.774319 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 9.950001 -25.774319 0
+x x 10.575845 -25.774319 0
+t l 10.775845 -25.774319 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: BFW-H2
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 13.650001 -25.774319
+Label At -0.677806 0.000000
+ROUTE 0 0
+r r 13.650001 -25.774319 0
+x 0 11.422923 -25.774319 0
+t r 11.222923 -25.774319 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 13.650001 -25.774319 0
+x x 14.500114 -25.774319 0
+t l 14.700114 -25.774319 0
+$ D 0.000421 0.080097
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: BFWP
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 6.212501 -25.774319
+Label At 0.090109 0.000000
+ROUTE 0 0
+r r 6.212501 -25.774319 0
+x y 5.375000 -25.774319 0
+y x 5.375000 -25.775261 0
+x 0 3.575596 -25.775261 0
+t r 3.375596 -25.775261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 6.212501 -25.774319 0
+x x 7.188680 -25.774319 0
+t l 7.388680 -25.774319 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: CRUDE
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 24.749866 -13.000000
+Label At 0.037018 0.000000
+ROUTE 0 0
+r r 24.749866 -13.000000 0
+x y 22.999733 -13.000000 0
+y 0 22.999733 -10.872373 0
+t d 22.999733 -10.672373 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 24.749866 -13.000000 0
+x x 26.574036 -13.000000 0
+t l 26.774036 -13.000000 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: CW-HOT
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 8.000000 -22.625366
+Label At 0.000000 0.387730
+ROUTE 0 0
+r r 8.000000 -22.625366 0
+y x 8.000000 -20.000732 0
+x 0 7.422923 -20.000732 0
+t r 7.222923 -20.000732 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 8.000000 -22.625366 0
+y y 8.000000 -25.323847 0
+t u 8.000000 -25.523848 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: CW-IN
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 1
+At 4.888289 -20.000732
+Label At 1.687556 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 4.888289 -20.000732 0
+x x 6.575845 -20.000732 0
+t l 6.775845 -20.000732 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: CW-OUT
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 2
+At 8.404392 -27.092442
+Label At -0.828922 0.704966
+ROUTE 0 0
+r l 8.404392 -27.092442 0
+x y 7.575470 -27.092442 0
+y 0 7.575470 -26.224791 0
+t d 7.575470 -26.024790 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DA-BOT
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 41.787498 -0.677084
+Label At -1.305050 0.000000
+ROUTE 0 0
+r r 41.787498 -0.677084 0
+x 0 39.795578 -0.677084 0
+t r 39.595577 -0.677084 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 41.787498 -0.677084 0
+x x 42.550484 -0.677084 0
+t l 42.750484 -0.677084 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DA-HX
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 45.750000 -3.675299
+Label At 0.000000 0.675299
+ROUTE 0 0
+r r 45.750000 -3.675299 0
+y y 45.750000 -6.000000 0
+x x 44.000000 -6.000000 0
+y y 44.000000 -6.000471 0
+x x 43.598560 -6.000471 0
+t r 43.398560 -6.000471 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 45.750000 -3.675299 0
+y y 45.750000 0.000000 0
+x x 46.050423 0.000000 0
+y y 46.050423 -0.000891 0
+x x 48.550423 -0.000891 0
+t l 48.750423 -0.000891 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DA-P
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 44.000000 -3.975442
+Label At 0.000000 1.374512
+ROUTE 0 0
+r r 44.000000 -3.975442 0
+y y 44.000000 -0.451859 0
+x x 43.575596 -0.451859 0
+t r 43.375595 -0.451859 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 44.000000 -3.975442 0
+y y 44.000000 -4.750000 0
+x x 42.000000 -4.750000 0
+y y 42.000000 -6.000000 0
+x x 41.900444 -6.000000 0
+y y 41.900444 -6.000471 0
+x x 42.400444 -6.000471 0
+t l 42.600445 -6.000471 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DA-V
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 43.719223 1.993899
+Label At 1.333199 0.000000
+ROUTE 0 0
+r r 43.719223 1.993899 0
+x y 48.999733 1.993899 0
+y 0 48.999733 0.599784 0
+t u 48.999733 0.399784 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 43.719223 1.993899 0
+x x 38.421444 1.993899 0
+y x 38.421444 0.287210 0
+x x 38.573856 0.287210 0
+t l 38.773857 0.287210 0
+$ D -0.000179 0.138139
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DEACR-B
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 22.675650 -4.250000
+Label At 2.324350 0.000000
+ROUTE 0 0
+r r 22.675650 -4.250000 0
+x x 49.000000 -4.250000 0
+y y 49.000000 -4.000000 0
+x x 48.999924 -4.000000 0
+y y 48.999924 -0.598003 0
+x y 48.999733 -0.598003 0
+t d 48.999733 -0.398003 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 22.675650 -4.250000 0
+x x 1.000000 -4.250000 0
+y y 1.000000 -4.000000 0
+x x 0.750000 -4.000000 0
+y y 0.750000 -12.000000 0
+x x 2.050481 -12.000000 0
+y y 2.050481 -12.000486 0
+x x 2.550481 -12.000486 0
+t l 2.750481 -12.000486 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DEACR-HP
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 5.687500 -11.775261
+Label At 0.071245 0.000000
+ROUTE 0 0
+r r 5.687500 -11.775261 0
+x 0 3.575595 -11.775261 0
+t r 3.375595 -11.775261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 5.687500 -11.775261 0
+x x 6.499696 -11.775261 0
+t l 6.699696 -11.775261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DEH-B
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 28.735119 -12.000000
+Label At -0.485119 -0.913077
+ROUTE 0 0
+r r 28.735119 -12.000000 0
+x x 28.250000 -12.000000 0
+y y 28.250000 -13.826155 0
+x x 27.795578 -13.826155 0
+t r 27.595577 -13.826155 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 28.735119 -12.000000 0
+x x 29.999697 -12.000000 0
+y y 29.999697 -12.001120 0
+x x 30.499695 -12.001120 0
+t l 30.699696 -12.001120 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DEWAT-B
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 37.799999 -12.826155
+Label At 0.074520 0.000000
+ROUTE 0 0
+r r 37.799999 -12.826155 0
+x y 37.174999 -12.826155 0
+y x 37.174999 -12.827274 0
+x 0 35.795578 -12.827274 0
+t r 35.595577 -12.827274 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 37.799999 -12.826155 0
+x x 38.574036 -12.826155 0
+t l 38.774036 -12.826155 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: DEWAT-FE
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 33.724998 -12.001120
+Label At 0.242580 0.000000
+ROUTE 0 0
+r r 33.724998 -12.001120 0
+x 0 31.500305 -12.001120 0
+t r 31.300304 -12.001120 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 33.724998 -12.001120 0
+x x 34.574036 -12.001120 0
+t l 34.774036 -12.001120 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: H-HX
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 44.869671 -5.000000
+Label At -0.494672 0.270000
+ROUTE 0 0
+r r 44.869671 -5.000000 0
+x x 42.750000 -5.000000 0
+y y 42.750000 -5.050000 0
+x x 42.787235 -5.050000 0
+y y 42.787235 -5.550000 0
+t u 42.787235 -5.750000 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 44.869671 -5.000000 0
+x x 46.000000 -5.000000 0
+y y 46.000000 -6.000000 0
+x x 46.075844 -6.000000 0
+y y 46.075844 -6.000733 0
+x x 46.575844 -6.000733 0
+t l 46.775845 -6.000733 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: H-LIQ
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 49.650002 -6.000733
+Label At 0.042484 0.000000
+ROUTE 0 0
+r r 49.650002 -6.000733 0
+x 0 47.422924 -6.000733 0
+t r 47.222923 -6.000733 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 49.650002 -6.000733 0
+x x 50.499695 -6.000733 0
+t l 50.699696 -6.000733 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: H-R0
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 51.650002 -9.000803
+Label At 0.000000 0.000194
+ROUTE 0 0
+r r 51.650002 -9.000803 0
+y x 51.650002 -6.000733 0
+x 0 51.502548 -6.000733 0
+t r 51.302547 -6.000733 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 51.650002 -9.000803 0
+y y 51.650002 -12.000485 0
+x x 47.449520 -12.000485 0
+t r 47.249519 -12.000485 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: H-REF
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 42.355255 -14.803775
+Label At -0.007652 0.000000
+ROUTE 0 0
+r r 42.355255 -14.803775 0
+x y 46.271622 -14.803775 0
+y 0 46.271622 -11.775261 0
+x 0 46.424404 -11.775261 0
+t l 46.624405 -11.775261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 42.355255 -14.803775 0
+x x 38.423588 -14.803775 0
+y x 38.423588 -12.965436 0
+x x 38.576485 -12.965436 0
+t l 38.776485 -12.965436 0
+$ D 0.002449 -0.139281
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: H-VAP
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 39.691277 -7.000000
+Label At 1.638256 0.000000
+ROUTE 0 0
+r r 39.691277 -7.000000 0
+x x 39.447304 -7.000000 0
+y y 39.447304 -10.584648 0
+x x 39.447884 -10.584648 0
+y y 39.447884 -11.652308 0
+t u 39.447884 -11.852308 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 39.691277 -7.000000 0
+x x 43.211761 -7.000000 0
+y y 43.211761 -6.450942 0
+t d 43.211761 -6.250942 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: H2-FEED
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 1
+At 5.104086 -8.798093
+Label At 0.820915 0.301071
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 5.104086 -8.798093 0
+x x 5.925001 -8.798093 0
+y y 5.925001 -8.195951 0
+x x 6.551122 -8.195951 0
+t l 6.751122 -8.195951 0
+$ D 0.001483 -0.195054
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: H2-GAS
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 14.675556 -5.192039
+Label At -1.228704 0.000000
+ROUTE 0 0
+r r 14.675556 -5.192039 0
+x y 22.999733 -5.192039 0
+y 0 22.999733 -9.674586 0
+t u 22.999733 -9.874586 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 14.675556 -5.192039 0
+x x 3.893971 -5.192039 0
+y x 3.893971 -8.100897 0
+x x 6.499639 -8.100897 0
+t l 6.699639 -8.100897 0
+$ C 2.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: H2-PURE
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 6.350000 -10.896578
+Label At 1.250000 1.933182
+ROUTE 0 0
+r r 6.350000 -10.896578 0
+y x 6.350000 -9.925897 0
+x y 7.600000 -9.925897 0
+y x 7.600000 -8.000896 0
+x 0 7.451644 -8.000896 0
+t r 7.251644 -8.000896 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 6.350000 -10.896578 0
+y x 6.350000 -11.641400 0
+x x 6.499938 -11.641400 0
+t l 6.699938 -11.641400 0
+$ D 0.000244 0.133862
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: H2-REJ
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 8.398378 -7.861691
+Label At -0.425392 0.000000
+ROUTE 0 0
+r l 8.398378 -7.861691 0
+x 0 7.451539 -7.861691 0
+t r 7.251539 -7.861691 0
+$ D -0.000104 0.139205
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: H2REC
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 20.989170 -6.250000
+Label At 0.000000 0.000000
+ROUTE 0 0
+r r 20.989170 -6.250000 0
+x x 36.500000 -6.250000 0
+y y 36.500000 -8.000000 0
+x x 36.511688 -8.000000 0
+y y 36.511688 -9.115695 0
+x x 35.422924 -9.115695 0
+t r 35.222923 -9.115695 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 20.989170 -6.250000 0
+x x 5.500000 -6.250000 0
+y y 5.500000 -8.001140 0
+x x 5.998444 -8.001140 0
+y y 5.998444 -8.000896 0
+x x 6.549639 -8.000896 0
+t l 6.749639 -8.000896 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: HEAVY-B
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 40.945576 -13.652308
+Label At -0.575001 0.000000
+ROUTE 0 0
+r l 40.945576 -13.652308 0
+x 0 39.795578 -13.652308 0
+t r 39.595577 -13.652308 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: HEAVY-TO
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 53.025002 -8.836188
+Label At 0.000000 0.000195
+ROUTE 0 0
+r r 53.025002 -8.836188 0
+y x 53.025002 -5.671988 0
+x 0 51.503853 -5.671988 0
+t r 51.303852 -5.671988 0
+$ D 0.001305 0.328744
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 53.025002 -8.836188 0
+y y 53.025002 -12.000000 0
+x x 54.574036 -12.000000 0
+t l 54.774036 -12.000000 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: HG1OUT
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 13.787500 -11.025261
+Label At 0.207459 0.000000
+ROUTE 0 0
+r r 13.787500 -11.025261 0
+x 0 11.725001 -11.025261 0
+t r 11.525002 -11.025261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 13.787500 -11.025261 0
+x x 14.575845 -11.025261 0
+t l 14.775845 -11.025261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: HG2FEE
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 16.212502 -11.025261
+Label At 0.687498 0.000000
+ROUTE 0 0
+r r 16.212502 -11.025261 0
+x 0 15.422923 -11.025261 0
+t r 15.222923 -11.025261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 16.212502 -11.025261 0
+x x 18.274998 -11.025261 0
+t l 18.474998 -11.025261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: HG2OUT
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 21.762501 -10.275261
+Label At -0.594271 0.000000
+ROUTE 0 0
+r r 21.762501 -10.275261 0
+x 0 19.725002 -10.275261 0
+t r 19.525002 -10.275261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 21.762501 -10.275261 0
+x x 22.550423 -10.275261 0
+t l 22.750423 -10.275261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: HGFEED
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 9.500000 -11.775261
+Label At -0.609533 0.000000
+ROUTE 0 0
+r r 9.500000 -11.775261 0
+x 0 7.500304 -11.775261 0
+t r 7.300304 -11.775261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 9.500000 -11.775261 0
+x x 10.274999 -11.775261 0
+t l 10.474998 -11.775261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: HYFEED
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 33.500000 -0.600929
+Label At -0.612347 0.000000
+ROUTE 0 0
+r r 33.500000 -0.600929 0
+x x 31.500307 -0.600929 0
+y 0 31.500307 -1.615891 0
+t r 31.300306 -1.615891 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 33.500000 -0.600929 0
+x x 34.274998 -0.600929 0
+t l 34.474998 -0.600929 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: HYOUT
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 37.186256 0.150009
+Label At -0.307068 0.000000
+ROUTE 0 0
+r r 37.186256 0.150009 0
+x y 35.873058 0.150009 0
+y 0 35.873058 0.149071 0
+x 0 35.725002 0.149071 0
+t r 35.525002 0.149071 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 37.186256 0.150009 0
+x x 38.499458 0.150009 0
+y x 38.499458 0.149071 0
+x x 38.574036 0.149071 0
+t l 38.774036 0.149071 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: LIGHT
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 37.396252 -10.674999
+Label At -0.974186 0.000000
+ROUTE 0 0
+r l 37.396252 -10.674999 0
+x y 35.447884 -10.674999 0
+y 0 35.447884 -10.827273 0
+t u 35.447884 -11.027273 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: MAKEUP-W
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 1
+At 29.000000 0.625713
+Label At 0.000000 -1.072199
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r d 29.000000 0.625713 0
+y y 29.000000 -1.518686 0
+x x 30.499662 -1.518686 0
+t l 30.699663 -1.518686 0
+$ D -0.000031 0.097206
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: OX-GAS
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 25.403803 0.200001
+Label At -1.955917 0.000000
+ROUTE 0 0
+r l 25.403803 0.200001 0
+x y 23.447886 0.200001 0
+y 0 23.447886 0.058884 0
+t u 23.447886 -0.141116 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: OX1OUT
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 9.787500 0.748879
+Label At 0.080443 0.000000
+ROUTE 0 0
+r r 9.787500 0.748879 0
+x 0 7.725000 0.748879 0
+t r 7.525000 0.748879 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 9.787500 0.748879 0
+x x 10.575844 0.748879 0
+t l 10.775844 0.748879 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: OX2FEE
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 12.212501 0.748879
+Label At 0.649607 0.000000
+ROUTE 0 0
+r r 12.212501 0.748879 0
+x 0 11.422923 0.748879 0
+t r 11.222923 0.748879 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 12.212501 0.748879 0
+x x 14.275001 0.748879 0
+t l 14.475000 0.748879 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: OXFEED
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 5.505298 -0.003104
+Label At -0.734581 0.000000
+ROUTE 0 0
+r r 5.505298 -0.003104 0
+x x 3.500306 -0.003104 0
+y 0 3.500306 -0.001121 0
+t r 3.300306 -0.001121 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 5.505298 -0.003104 0
+x x 6.275000 -0.003104 0
+y x 6.275000 -0.001121 0
+t l 6.475000 -0.001121 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: OXOUT
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 20.906298 -1.114962
+Label At 0.037020 0.000000
+ROUTE 0 0
+r r 20.906298 -1.114962 0
+x y 19.312595 -1.114962 0
+y 0 19.312595 -0.364962 0
+t d 19.312595 -0.164962 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 20.906298 -1.114962 0
+x x 22.574038 -1.114962 0
+t l 22.774038 -1.114962 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: OXRAW
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 17.141747 1.499756
+Label At 0.325417 0.000000
+ROUTE 0 0
+r r 17.141747 1.499756 0
+x x 16.248650 1.499756 0
+y y 16.248650 1.498879 0
+x x 15.724999 1.498879 0
+t r 15.525000 1.498879 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 17.141747 1.499756 0
+x x 18.687473 1.499756 0
+y y 18.687473 0.488092 0
+t u 18.687473 0.288092 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: PDO-LIGH
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 58.398827 -10.674999
+Label At -1.806179 0.000000
+ROUTE 0 0
+r l 58.398827 -10.674999 0
+x y 55.447884 -10.674999 0
+y 0 55.447884 -10.826154 0
+t u 55.447884 -11.026154 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: PDO-PROD
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 58.194626 -12.826154
+Label At -1.939655 0.000000
+ROUTE 0 0
+r l 58.194626 -12.826154 0
+x 0 55.795578 -12.826154 0
+t r 55.595577 -12.826154 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: PROPYLEN
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 1
+At 0.400224 -0.204027
+Label At 1.697220 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 0.400224 -0.204027 0
+x x 1.550000 -0.204027 0
+y y 1.550000 -0.204027 0
+x x 2.500506 -0.204027 0
+t l 2.700506 -0.204027 0
+$ D 0.000812 -0.202907
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: QHG1
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 1 TERMINAL 0
+At 11.575001 -15.549999
+Label At 0.000000 0.000000
+ROUTE 0 0
+r r 11.575001 -15.549999 0
+y x 11.575001 -10.525000 0
+x 0 11.375000 -10.525000 0
+y 0 11.375000 -10.675261 0
+t u 11.375000 -10.875261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 11.575001 -15.549999 0
+y y 11.575001 -20.574999 0
+x y 7.000114 -20.574999 0
+y y 7.000114 -20.425005 0
+t d 7.000114 -20.225004 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: QHG2
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 1 TERMINAL 0
+At 13.410850 -18.144928
+Label At 0.000000 -2.319401
+ROUTE 0 0
+r r 13.410850 -18.144928 0
+y x 13.410850 -7.514341 0
+x 0 19.375000 -7.514341 0
+y 0 19.375000 -9.925261 0
+t u 19.375000 -10.125261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 13.410850 -18.144928 0
+y y 13.410850 -31.094913 0
+x y 11.000114 -31.094913 0
+y y 11.000114 -26.198591 0
+t d 11.000114 -25.998590 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: QOX1
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 1 TERMINAL 0
+At -6.386218 -12.534861
+Label At 0.000000 -2.419028
+ROUTE 0 0
+r r -6.386218 -12.534861 0
+y x -6.386218 6.363794 0
+x y 7.375000 6.363794 0
+y 0 7.375000 1.098879 0
+t u 7.375000 0.898879 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -6.386218 -12.534861 0
+y y -6.386218 -36.271572 0
+x y 19.004366 -36.271572 0
+y y 19.004366 -26.278690 0
+x x 19.000116 -26.278690 0
+t d 19.000116 -26.078690 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: QOX2
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 1 TERMINAL 0
+At 20.852261 -12.346426
+Label At 0.000000 -0.579851
+ROUTE 0 0
+r r 20.852261 -12.346426 0
+y x 20.852261 6.595345 0
+x y 15.375000 6.595345 0
+y 0 15.375000 1.848879 0
+t u 15.375000 1.648879 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 20.852261 -12.346426 0
+y y 20.852261 -32.544540 0
+x y 23.000116 -32.544540 0
+y y 23.000116 -26.278690 0
+t d 23.000116 -26.078690 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: STEAM
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 1
+At 0.400224 0.244896
+Label At 1.378122 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 0.400224 0.244896 0
+x x 2.500506 0.244896 0
+t l 2.700506 0.244896 0
+$ D 0.000812 0.246017
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: V-LIGHT
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 27.447884 -9.875445
+Label At 0.000000 0.667214
+ROUTE 0 0
+r r 27.447884 -9.875445 0
+y 0 27.447884 -11.826154 0
+t u 27.447884 -12.026154 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 27.447884 -9.875445 0
+y y 27.447884 -8.000891 0
+x x 28.050423 -8.000891 0
+t l 28.250423 -8.000891 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: VL-H2
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 28.799665 -7.000000
+Label At 0.793938 0.000000
+ROUTE 0 0
+r r 28.799665 -7.000000 0
+x x 28.499733 -7.000000 0
+y y 28.499733 -7.400216 0
+t u 28.499733 -7.600216 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 28.799665 -7.000000 0
+x x 30.687473 -7.000000 0
+y y 30.687473 -7.511908 0
+t u 30.687473 -7.711908 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: VL-H2C
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 32.906296 -9.115695
+Label At 0.037926 0.000000
+ROUTE 0 0
+r r 32.906296 -9.115695 0
+x y 31.312595 -9.115695 0
+y 0 31.312595 -8.364963 0
+t d 31.312595 -8.164963 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 32.906296 -9.115695 0
+x x 34.575844 -9.115695 0
+t l 34.775845 -9.115695 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: VL-LIQ
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 30.000000 -9.026577
+Label At 0.000000 -1.473423
+ROUTE 0 0
+r r 30.000000 -9.026577 0
+y y 30.000000 -9.000000 0
+x x 28.499733 -9.000000 0
+y y 28.499733 -8.598002 0
+t d 28.499733 -8.398003 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 30.000000 -9.026577 0
+y y 30.000000 -12.000000 0
+x x 29.949696 -12.000000 0
+y y 29.949696 -12.001121 0
+x x 30.499693 -12.001121 0
+t l 30.699694 -12.001121 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: WB1
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 20.287500 -25.854418
+Label At 0.709064 0.000000
+ROUTE 0 0
+r r 20.287500 -25.854418 0
+x 0 19.422924 -25.854418 0
+t r 19.222923 -25.854418 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 20.287500 -25.854418 0
+x x 22.575844 -25.854418 0
+t l 22.775845 -25.854418 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: WB2
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 25.687500 -25.854418
+Label At -0.711723 0.000000
+ROUTE 0 0
+r r 25.687500 -25.854418 0
+x 0 23.422924 -25.854418 0
+t r 23.222923 -25.854418 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 25.687500 -25.854418 0
+x x 26.550425 -25.854418 0
+t l 26.750425 -25.854418 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: WBF
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 17.725000 -25.854418
+Label At -0.677080 0.000000
+ROUTE 0 0
+r r 17.725000 -25.854418 0
+x 0 15.500306 -25.854418 0
+t r 15.300306 -25.854418 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 17.725000 -25.854418 0
+x x 18.575844 -25.854418 0
+t l 18.775845 -25.854418 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: WH-BLOW
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 2
+At 29.201242 -29.629026
+Label At -0.624010 0.000000
+ROUTE 0 0
+r l 29.201242 -29.629026 0
+x 0 28.503298 -29.629026 0
+t r 28.303297 -29.629026 0
+$ D 0.001015 0.372093
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: WH-LIQ
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 0
+At 26.999735 -28.338060
+Label At 0.000000 0.111734
+ROUTE 0 0
+r r 26.999735 -28.338060 0
+y 0 26.999735 -26.451530 0
+t d 26.999735 -26.251530 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 26.999735 -28.338060 0
+y y 26.999735 -30.001122 0
+x x 27.499428 -30.001122 0
+t l 27.699429 -30.001122 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: WH-STEAM
+Version: 2
+Flag 0
+GLOBAL 114
+TYPE 0 TERMINAL 2
+At 26.999735 -24.250216
+Label At 0.000000 -0.501764
+ROUTE 0 0
+r d 26.999735 -24.250216 0
+y 0 26.999735 -25.253742 0
+t u 26.999735 -25.453743 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: WREC
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 26.599949 -31.210592
+Label At 0.318527 0.000000
+ROUTE 0 0
+r r 26.599949 -31.210592 0
+x y 28.569021 -31.210592 0
+y 0 28.569021 -30.298779 0
+x 0 28.503298 -30.298779 0
+t r 28.303297 -30.298779 0
+$ D 0.001015 -0.297659
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 26.599949 -31.210592 0
+x x 24.601919 -31.210592 0
+y x 24.601919 -29.900486 0
+x x 24.449518 -29.900486 0
+t r 24.249517 -29.900486 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: WRECP
+Version: 2
+Flag 0
+GLOBAL 117
+TYPE 0 TERMINAL 0
+At 18.812500 -29.675261
+Label At 0.074703 0.000000
+ROUTE 0 0
+r r 18.812500 -29.675261 0
+x 0 23.424404 -29.675261 0
+t l 23.624405 -29.675261 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 18.812500 -29.675261 0
+x x 14.350000 -29.675261 0
+y x 14.350000 -25.898317 0
+x x 14.500114 -25.898317 0
+t l 14.700114 -25.898317 0
+$ D 0.000421 -0.043901
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+LEGEND
+Version: 2
+Dim: -7.52552 -35.2 -6.15854 -35.9179
+Size: 0.0737587
+Font: 1 0 =
+# of PFS Objects = 0
+VIEWPORT -43.259144 81.097946 10.918800 -36.655533
+LAYOUT
+TableFormat 1
+Pages 1 1 1 1
+PAGESETUP
+PAPERSIZE 
+PAPERSOURCE 
+ORIENTATION -1
+PRINTPAGENO 1 1
+LEFTMARGIN 10mm
+RIGHTMARGIN 10mm
+TOPMARGIN 10mm
+BOTTOMMARGIN 10mm
+VISIBILITY 0.015000
+PFDFLAG 255 255
+PFDMODE 0
+SCALE 0.073759
+

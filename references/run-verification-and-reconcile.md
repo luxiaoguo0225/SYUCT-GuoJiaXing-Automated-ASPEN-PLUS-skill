@@ -103,7 +103,9 @@ until you reopen the saved file and rerun, then read the `.his` again.
 - Check completeness on the data root, not the tree root:
 
 ```python
-code, path = apwn.Tree.FindNode(r"\Data").NextIncomplete("")
+result = apwn.Tree.FindNode(r"\Data").NextIncomplete("")
+# Observed V14 return: (path, code); complete input is ("", 0).
+path, code = result  # Verify signature on the installed version.
 ```
 
 `apwn.Tree.NextIncomplete("")` can raise
@@ -111,8 +113,10 @@ code, path = apwn.Tree.FindNode(r"\Data").NextIncomplete("")
 
 ## 4. Strip PFD layout without breaking files
 
-- `.bkp`: remove lines from `GRAPHICS_BACKUP` up to, but not including,
-  `$_SUMMARY_FILE`.
+- Strip PFD only when explicitly requested; otherwise preserve the user's layout.
+- `.bkp`: find `GRAPHICS_BACKUP` and the next `$_SUMMARY_FILE`, or `$_ADS_FILE`
+  when SUMMARY is absent. Preserve prefix/suffix bytes; stop if a boundary is unknown.
+  See [pfd-layout-preservation-and-review.md](pfd-layout-preservation-and-review.md).
 - `.inp`: remove everything from `;PFS V 5.00` onward.
 - `.apwz`: rewrite the inner `.bkp` and preserve the zip comment
   (`Aspen_Compound_File_Settings_v1.0` manifest). If the comment is lost,
@@ -124,5 +128,9 @@ code, path = apwn.Tree.FindNode(r"\Data").NextIncomplete("")
 ## 5. Report unit pitfalls
 
 Reports may show `HEAT DUTY` in `WATT` or `CAL/SEC` depending on the case.
-Convert `CAL/SEC * 4.184` to watts before comparing cases. `NET WORK REQUIRED`
-is usually already in `KW`.
+Do not assume every `CAL/SEC` uses 4.184 J/cal. The 2026-10-01 PDO V14 case
+was calibrated against explicit WATT input/export and used 4.1868 J/cal. Check
+UnitString and a known duty in the active unit set; record the measured conversion.
+`NET WORK REQUIRED` is often in `KW`, but verify the report header. Read enthalpy
+leaf values or export the report, not collection-root Value. See
+[pdo-heat-integration-and-delivery-lessons.md](pdo-heat-integration-and-delivery-lessons.md).

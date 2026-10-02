@@ -1,6 +1,6 @@
 ---
 name: aspen-plus-automation
-description: Automate locally installed Aspen Plus on Windows through its COM interface (Apwn.Document). Use when Codex needs to open/create/edit .bkp/.apwz/.inp simulation cases, configure components, property methods, streams, and blocks, run simulations, read results, save copies, split a RadFrac column into external condenser/reboiler loops, add stream-to-stream HeatX heat integration, or study local distillation case folders (heat pump, pressure-swing, azeotropic, batch, dividing-wall, extractive, and multi-effect distillation) (V14 validated). Includes textbook-backed guidance for fluid flow, heat transfer, distillation, absorption, reaction engineering, and convergence. Invocation priority is to build every simulation from engineering principles and the user's stated requirements FIRST, with every principle and numerical value traceable to authoritative textbooks or the user's stated requirements (never fabricated); bundled cases/examples are learning references only - never copy them.
+description: Automate locally installed Aspen Plus on Windows through Apwn.Document COM. Use for creating, inspecting, editing and validating .bkp/.apwz/.inp cases; components, properties, reactors and kinetics; RadFrac splitting, HeatX integration, heat pumps, coupled distillation, reactor waste-heat steam generation and PFD layout. Includes V14-tested input patterns, convergence, cold-start delivery checks, and preliminary equipment hydraulic screening. Model from engineering principles and user requirements first; trace assumptions and numbers to authoritative sources. Historical cases teach mechanisms, not universal design values.
 ---
 
 # Aspen Plus 自动化 (Aspen Plus Automation)
@@ -31,10 +31,134 @@ description: Automate locally installed Aspen Plus on Windows through its COM in
 2. 独立完成原理分析，形成建模方案草案（物性方法、模块、设计规定、压力剖面、操作条件）。**草案中的每个原理与数值都要可溯源到教材/权威资料（拿不准就查 `references/` 或原教材后再定），不许臆想。**
 3. 仅在需要时查阅第二原则资料（案例/模式/踩坑记录），用来补全或检验草案，而不是取代它。
 4. 搭建/运行模拟，按 §7.1 验收规则校验，并把结果对照需求与原理复核后再交付。
+5. 若任务涉及塔内件、管道、泵、阀门或换热器水力学，按 §7.4 和 `references/equipment-hydraulics-and-rating.md` 读取 Aspen 阶段水力数据、做初筛并标记验收等级；`scripts/hydraulic_screening.py` 仅做透明的初步算术，不能替代正式评级。
+
+### 1.4 模块化调用规则（每次调用必须先执行）
+
+本 skill 的“模块”就是下面第 2 节中的主题章节，不是额外的案例目录。每次调用先从用户任务的设备、现象、目标和约束中定位一个主模块及所有相关模块，然后在每个模块内部按固定顺序工作：
+
+1. 先读取该模块的“原理层”，结合用户要求形成物性方法、单元模型、自由度、操作边界和验收指标的判断；
+2. 原理判断完成后，才读取同一模块的“案例层”，只借鉴 Aspen 写法、拓扑、收敛手段和已知失败模式；
+3. 对跨模块任务，先分别完成各模块的原理判断，再读取交叉案例并核对流股状态、压力、温度、热负荷和自由度接口；
+4. 在工作记录或交付说明中列出“主模块/相关模块、原理文件、案例文件、未采用案例及原因”。
+
+一个原理文件可以被多个模块引用，一个案例也可以被多个模块引用；模块章节是调用入口，`references/` 只是资料存放位置。
 
 ## 2. 概述 (Overview)
 
 Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation interface. The bundled bridge script handles opening cases, editing variables, running calculations, reading results, and saving copies without opening the Aspen GUI by hand.
+
+### 2.1 主题模块总入口（原理与案例配对）
+
+以下章节是本 skill 的实际模块。任务开始时先定位模块，再按该模块的“原理层 → 案例层”读取；不要先浏览全部案例库。模块之间允许多对多引用。
+
+#### M01 需求、物性与流程边界
+
+**适用任务**：新建流程、组分/相态不确定、物性方法选择、流程拓扑和验收目标尚未确定。
+
+**原理层（先读）**：`references/engineering-modeling-basics.md`、`references/aspen-plus-textbook-guide.md`、`references/modeling-guide.md`、`references/general-modeling-mechanics.md`。
+
+**案例层（后读）**：`references/reactor-flash-column-example.md`、`references/styrene-recycle-and-dewatering.md`、`references/utility-steam-generation.md`。这些案例分别用于学习流程边界、含水芳烃物性和公用工程边界；不能直接继承组分、物性或操作数值。
+
+**跨模块接口**：向 M02-M06 提供组分、物性、流程边界和用户验收目标，接收 M08 的验证约束。
+
+**模块输出**：需求清单、组分与相态假设、物性方法选择依据、流程边界、自由度和验收标准。
+
+#### M02 精馏塔与其他分离
+
+**适用任务**：DSTWU/RadFrac、精馏/吸收/汽提、进料状态、理论板、回流比、进料板、严格塔、塔拆分和多效/热耦合分离。
+
+**原理层（先读）**：`references/tianjin-distillation-9-5-calculation.md`、`references/feed-stage-sensitivity-curves.md`、`references/sun-lanyi-ch7-4-radfrac-strict.md`、`references/engineering-modeling-basics.md`、`references/aspen-plus-textbook-guide.md`。
+
+**案例层（后读）**：`references/reactor-flash-column-example.md`、`references/distillation-case-library.md`、`references/column-splitting-and-heat-integration.md`、`references/thermally-coupled-distillation.md`、`references/three-component-thermal-coupling-case.md`、`references/differential-pressure-thermal-coupling.md`、`references/double-effect-user-workflow.md`、`references/double-effect-distillation-and-design-spec.md`、`assets/column-split/`。
+
+**跨模块接口**：与 M03 交换塔压降和压力剖面，与 M04/M05 交换热负荷和相态，与 M06 交换 Design Spec、撕裂流和收敛状态，与 M07 交换塔径和水力负荷。
+
+**模块输出**：分离原理和候选方案、q-R-N-NF 或相应分离计算、塔型/压力剖面、Design Spec 自由度、案例适用性核对和塔验收指标。
+
+#### M03 反应器与反应动力学
+
+**适用任务**：RStoic、RPlug、RCSTR、反应集、化学计量、转化率、LHHW/PowerLaw/General、动力学单位换算、反应器与分离耦合。
+
+**原理层（先读）**：`references/engineering-modeling-basics.md`、`references/kinetic-reactor-input-workflow-320-322.md`、`references/general-modeling-mechanics.md`、`references/input-file-and-rstoic.md`。
+
+**案例层（后读）**：`references/li-ruijiang-rplug-kinetics-validation.md`、`references/reactor-flash-column-example.md`、`references/utility-steam-generation.md`。案例中的动力学常数、活化能单位、转化率和热负荷只适用于原案例，必须重新核对来源和 Aspen `UnitString`。
+
+**跨模块接口**：与 M01 交换反应物性与进料状态，与 M04 交换反应热和换热边界，与 M06 交换循环初始化和 `.his` 验证。
+
+**模块输出**：反应机理/速率式来源、反应集和单位、反应器类型依据、热/物料边界、案例差异和动力学验证证据。
+
+#### M04 压力输送、压力网络与压力降
+
+**适用任务**：泵、压缩机、阀、管道、换热器/冷凝器/再沸器压力降、塔压降、真空系统、压力可行性和回流/循环网络。
+
+**原理层（先读）**：`references/engineering-modeling-basics.md`、`references/equipment-hydraulics-and-rating.md`、`references/general-modeling-mechanics.md`、`references/general-verification-methods.md`。
+
+**案例层（后读）**：`references/double-effect-distillation-and-design-spec.md`、`references/double-effect-user-workflow.md`、`references/styrene-recycle-and-dewatering.md`、`references/utility-steam-generation.md`、`references/column-splitting-and-heat-integration.md`。案例中的压降只说明原系统的压力预算和收敛处理，不能当作固定默认值。
+
+**跨模块接口**：与 M02 交换塔板压降和压力剖面，与 M03 交换反应器出口压力，与 M05 交换压缩比和换热端压力，与 M07 交换泵功、管径和设备水力校核。
+
+**模块输出**：压力网络图、各设备压降依据和符号、压力可行性检查、泵/压缩机需求、真空或小压降例外理由。
+
+#### M05 换热、热量集成与公用工程
+
+**适用任务**：HeatX、加热器、冷却器、冷凝器、再沸器、废热回收、熔盐/导热油/加压水、蒸汽生产和换热面积初筛。
+
+**原理层（先读）**：`references/engineering-modeling-basics.md`、`references/heat-carrier-and-salt-properties.md`、`references/equipment-hydraulics-and-rating.md`、`references/general-verification-methods.md`。
+
+**案例层（后读）**：`references/utility-steam-generation.md`、`references/column-splitting-and-heat-integration.md`、`references/double-effect-distillation-and-design-spec.md`、`assets/steam-generation/`。必须区分案例的能量闭合、物性可信度和正式换热器评级边界。
+
+**跨模块接口**：与 M02 交换塔冷凝/再沸负荷，与 M03 交换反应热，与 M04 交换两侧压力降，与 M07 交换面积、速度和水力证据。
+
+**模块输出**：热量衡算、载热介质物性来源、换热端温差/LMTD、显式 U 和面积依据、相态/冻结/分解边界、公用工程验收。
+
+#### M06 热泵、多效与热耦合流程
+
+**适用任务**：蒸汽再压缩热泵、差压热耦合、Petlyuk/隔壁塔、多效精馏、塔间 HeatX、能耗对比和温度敏感组分。
+
+**原理层（先读）**：`references/engineering-modeling-basics.md`、`references/general-verification-methods.md`、`references/heat-carrier-and-salt-properties.md`。
+
+**案例层（后读）**：`references/thermally-coupled-distillation.md`、`references/column-splitting-and-heat-integration.md`、`references/differential-pressure-thermal-coupling.md`、`references/three-component-thermal-coupling-case.md`、`references/double-effect-user-workflow.md`、`references/pdo-heat-integration-and-delivery-lessons.md`。案例中的压缩比、节能率和塔配置必须按当前温度敏感性、压力预算和产品基准重新验证。
+
+**跨模块接口**：与 M02 交换塔分离目标，与 M04 交换压力和压缩功，与 M05 交换热端/冷端相态和 LMTD，与 M07 交换负荷和设备边界。
+
+**模块输出**：热集成拓扑、温度敏感性判断、压缩/换热边界、同一产品基准下的能耗比较和收敛证据。
+
+#### M07 设备水力学与评级边界
+
+**适用任务**：塔径、塔板/填料、液泛、漏液、夹带、降液管、泵/阀/管线、换热器面积和初步评级。
+
+**原理层（先读）**：`references/equipment-hydraulics-and-rating.md`、`references/engineering-modeling-basics.md`、`references/heat-carrier-and-salt-properties.md`。
+
+**案例层（后读）**：`references/utility-steam-generation.md`、`references/column-splitting-and-heat-integration.md`、`references/double-effect-user-workflow.md`，以及脚本 `scripts/hydraulic_screening.py`、`scripts/heat_carrier_screen.py`。脚本只做透明初筛，不能替代厂家评级或 Aspen EDR。
+
+**跨模块接口**：与 M02/M04/M05/M06 读取最终工况，任何塔径、压力、内件或负荷变化后都要重新导出数据。
+
+**模块输出**：负荷包络、面积/压降/液泛等检查、证据等级（`PRELIMINARY` 至 `CLOSED`）和正式评级缺口。
+
+#### M08 循环、Design Spec、收敛与结果验证
+
+**适用任务**：Recycle、Tear、BROYDEN、Calculator、Design Spec/Vary、NextIncomplete、Run2、`.his`、Reconcile、冷启动和交付验证。
+
+**原理层（先读）**：`references/general-verification-methods.md`、`references/run-verification-and-reconcile.md`、`references/aspen-input-completeness-and-delivery-lessons.md`、`references/calculator-flowsheeting-options.md`。
+
+**案例层（后读）**：`references/three-component-thermal-coupling-case.md`、`references/styrene-recycle-and-dewatering.md`、`references/double-effect-distillation-and-design-spec.md`、`references/utility-steam-generation.md`。案例只提供初始化、限制范围和错误修复模式；最终仍需独立冷启动验证。
+
+**跨模块接口**：接收所有物料、热量、压力和自由度设计，向所有模块返回 `.his`、Control Panel、块状态、物料/能量平衡和输入完整性结果。
+
+**模块输出**：收敛策略、自由度表、验证证据链、错误/警告清单、独立目录冷启动结果和交付文件哈希。
+
+#### M09 COM、输入文件与 PFD/交付机制
+
+**适用任务**：Apwn.Document、对象树、`.inp/.bkp/.apwz/.rep`、导入导出、许可环境、PFD 布局保存和自动化脚本。
+
+**原理层（先读）**：`references/general-modeling-mechanics.md`、`references/variables-and-troubleshooting.md`、`references/com-attach-and-license-env.md`、`references/pfd-layout-preservation-and-review.md`。
+
+**案例层（后读）**：`references/input-file-and-rstoic.md`、`references/calculator-flowsheeting-options.md`、`references/aspen-input-completeness-and-delivery-lessons.md`、`assets/pfd-layout/`、`scripts/aspen_plus_bridge.py`。案例和脚本用于确认版本机制与文件处理方式，不能替代本机实测。
+
+**跨模块接口**：服务全部 M01-M08；它不决定物性、反应或设备数值，只负责把已完成的原理方案可靠落地并验证。
+
+**模块输出**：可复现的输入/结果文件、树路径和单位证据、PFD 保真检查、冷启动记录及文件类型/内容核验。
 
 ## 3. 前置条件 (Prerequisites)
 
@@ -69,11 +193,24 @@ python scripts/aspen_plus_bridge.py --open "case.apwz" --set "\Data\Streams\FEED
 
 > 本节是 §1.1 第一原则的操作化：**先做 6.1 的设计，再写文件**。6.3 中的既有示例/脚本属于第二原则的"学习参考"，不得照搬其数值。
 
+### 6.0 模块定位记录（先完成）
+
+按 §2.1 从任务描述定位主模块和相关模块。开始读取案例前，先在工作记录中写下：
+
+```text
+主模块：Mxx 模块名称
+相关模块：Myy、Mzz（没有则写“无”）
+原理层：本次实际读取的 references/... 文件
+案例层：原理判断完成后实际读取的 references/...、assets/... 文件
+```
+
+模块定位不是标签工作：它决定先检查哪些自由度、物性、压力/温度边界和验收指标。一个案例若同时包含精馏、反应、压力网络和热集成，必须分别读取这些模块的原理层，再读取案例并标注其跨模块用途。
+
 ### 6.1 建模前的需求与原理检查清单（先完成）
 
 - **需求清单**：分离/反应任务、进料组成与状态、目标纯度/回收率、操作压力与温度、温度敏感组分与限温、能耗/公用工程目标、允许与禁止的技术路线、拓扑要求、验收标准。
 - **原理清单**：物性方法选择的依据（组分极性/缔合/电解质/水系统/压力温度范围）、模块与塔型选择的依据、自由度与所需规定数、压力剖面可行性、热量/物料平衡的预期量级。
-- 设计草案完成后进入 6.2；需要原理支撑时查阅 §8.1（`references/engineering-modeling-basics.md`、`references/aspen-plus-textbook-guide.md`、`references/modeling-guide.md`）。
+- 设计草案完成后进入 6.2；需要原理支撑时查阅 §8.1（`references/engineering-modeling-basics.md`、`references/aspen-plus-textbook-guide.md`、`references/modeling-guide.md`）。二元连续精馏的 q 线、Rmin、理论板、进料板和优化流程见 `references/tianjin-distillation-9-5-calculation.md`。
 
 ### 6.2 用 `.inp` 落地并运行（机制）
 
@@ -108,6 +245,9 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 
 ### 7.1 第一原则类：原理与需求驱动的建模与验收规则
 
+- COLUMN BUILD SCOPE: if the user only asks for tower basics, deliver the DSTWU/shortcut baseline only. If the user explicitly asks for 精馏塔严格计算, 第7.4节, 严格塔, 最佳理论板数/进料板/回流比, or Sensitivity, then the full Sun Lanyi Section 7.4 workflow is in scope: DSTWU baseline -> RadFrac rigorous tower -> product Design Specs + Vary -> S-1/S-2 strict Sensitivity -> convergence/penalty checks. Do not expand this into full economic/TAC optimization unless the user explicitly requests it.
+
+- For binary continuous distillation, start from the Tianjin 9.5 sequence: mass balance -> q line -> `R_min` -> choose `R` -> Fenske/Gilliland `N` -> feed stage. Treat the textbook `1.1-2.0 R_min` range as an economic rule of thumb, not a mathematical optimum. Use bubble-point feed (`q=1`) as the default baseline when there is no special heat integration. A hotter feed lowers `q`, `V_prime`, and reboiler duty, but the preheat duty must be counted. Re-select the feed stage whenever `q` changes. MANDATORY feed-state gate: do not select the final feed state in one step. Compare the upstream actual state, `q=1` baseline, a hotter/two-phase candidate when heat is available, and saturated/superheated vapor for a vapor feed; exclude any candidate with a documented reason. For every candidate record `T/P/VFRAC/q`, `R_min`, `R`, integer `N/N_F`, `Q_reb`, `Q_cond`, preheat duty, column loads/diameter/flooding, utility cost or the user objective, and robustness. Determine the true optimum of `q`, `R`, integer `N`, and feed stage only with an explicit TAC/utility objective and constraints. See [references/tianjin-distillation-9-5-calculation.md](references/tianjin-distillation-9-5-calculation.md).
 - GLOBAL ACCEPTANCE (every flowsheet, incl. heat pumps and double-effect):
   - Final result must show NO hidden errors in the `.his` file
     (`Summary of Simulation Errors` = 0 Severe / 0 Error / 0 Warning), AND the
@@ -145,6 +285,8 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
   thermal coupling / multi-effect which do not raise temperature. See
   [references/thermally-coupled-distillation.md](references/thermally-coupled-distillation.md).
 
+- HEAT-CARRIER PROPERTIES ARE DESIGN DATA, NOT DEFAULT DATA: for molten salt / thermal oil / pressurized-water carriers take cp, rho, mu, k and the freezing/decomposition limits from an authoritative source (nitrate salt: INL/EXT-10-18297 = OSTI 980801; water: IAPWS-IF97). Aspen's databank is NOT usable for molten nitrates: measured here, 40 wt% KNO3 + 60 wt% NaNO3 gives cp ~1.15 kJ/(kg.K) and rho ~438 kg/m3 -> cp low by ~40%, density low by ~4x (pump power / volume flow / dT all wrong). ALWAYS audit a case by back-calculating cp = Q/(m*dT) from a Heater duty and rho = m/(FLUID_POWER/dP) from a Pump; reject any case whose back-calculated values differ from handbooks by >10%. Entering user property data additionally requires the GUI Prop-Data + Model Selection route - file injection alone is silently ignored. See [references/heat-carrier-and-salt-properties.md](references/heat-carrier-and-salt-properties.md).
+
 ### 7.2 工具与机制规则（COM / `.inp` 语法 / 文件处理；服务于任何原则）
 - **跨版本通用机制/验证文档（工具与机制层，服从 §1 两级原则）**：见 [references/general-modeling-mechanics.md](references/general-modeling-mechanics.md) 与 [references/general-verification-methods.md](references/general-verification-methods.md)。二者只收录跨版本通用方法，不改变“原理+需求先行、禁臆想”的第一原则；其中任何树路径、单位、节点名、API 均须以本机安装版本实测为准，不得把其他版本的结论当通用事实套用。
 
@@ -161,7 +303,7 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 - Check input completeness with
   `Tree.FindNode(r"\Data").NextIncomplete("")`, not `Tree.NextIncomplete`.
 - Set `Visible` after initialization. To keep the GUI open after automation, save the case and launch it with `os.startfile(apwz)`.
-- COM automation may start the Aspen Plus GUI process; call `Quit()` in `finally` and stop a leftover `AspenPlus` process if it remains.
+- COM automation may start the Aspen Plus GUI process; call `Quit()` in `finally`. Terminate leftovers only by verified PIDs belonging to this run, including confirmed child processes; preserve user and unknown instances. Respect any user prohibition on Computer Use or GUI inspection.
 - **COM connection mechanics (measured)**: `Dispatch("Apwn.Document")` **never attaches** to an
   already-running instance - the COM SCM always spawns a fresh `aspenplus.exe -Automation -Embedding`,
   and `GetActiveObject` fails with `MK_E_UNAVAILABLE` (no ROT registration); so pre-launching
@@ -177,14 +319,22 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
   component), `VARY BLOCK-VAR BLOCK=FSPLIT SENTENCE=FRAC VARIABLE=FRAC ID1=out`,
   and tighten the tear tolerance to `CONV-OPTIONS PARAM TOL=0.00001` so outer
   Design Specs can converge. See [references/double-effect-distillation-and-design-spec.md](references/double-effect-distillation-and-design-spec.md).
-- Deliverables: generate `.inp` with `Export(4,...)` and `.bkp` with `Export(1,...)`
-  FROM the `.apwz` (`SaveAs2(...bkp)` can produce a `.bkp` that fails to reopen).
-  Never validate a `.bkp` with `InitFromFile2` — opening it rewrites the file into a
-  tiny input-summary backup. Worse: ANY COM `InitFromFile2` of a file in the SAME
-  folder (even a `.inp`) rewrites that folder's `.bkp`. After generating `.bkp`, do
-  NOT open any file in the deliverable folder via COM; verify the `.bkp` by copying
-  it to a scratch folder and opening/running it there, or launch
-  `aspenplus.exe /a "case.bkp"` (the same command Windows uses on double-click).
+- Deliverables: prefer `.inp` via `Export(4,...)` and `.bkp` via `Export(1,...)` from
+  the saved case. `SaveAs2(...bkp)` has both successful and failed reopen histories;
+  validate the chosen method on the local version. COM initialization can rewrite
+  backups in the opened folder: do NOT initialize any file in the deliverable folder.
+  Copy each candidate into a fresh scratch directory, then use `InitFromFile2` and
+  `Run2(False)` there for cold-start validation. Record source/final hashes and actual
+  file content/type; preserve the delivered bytes. Opening a GUI is not a substitute
+  for run validation, and requires compatibility with the user's tool restrictions.
+- PFD/layout work: read [references/pfd-layout-preservation-and-review.md](references/pfd-layout-preservation-and-review.md).
+  Preserve the latest user layout, anchors and labels; align actual ports, not only
+  equipment centers. Geometry checks, COM runs and visual/user acceptance are separate.
+  Use `scripts/audit_pfd_layout.py` for read-only evidence, never as an approval gate.
+  Do not globally reset labels or promote a user-rejected layout as an accepted example.
+- Heat/enthalpy outputs: verify leaf nodes and UnitString; collection Value and missing
+  output are not scalar results. Calibrate report conversion rather than assuming a
+  universal calorie factor. See [references/pdo-heat-integration-and-delivery-lessons.md](references/pdo-heat-integration-and-delivery-lessons.md).
 
 ### 7.3 第二原则类：来自已验证案例的可复用经验（学习参考；采用前必须回到第一原则校验）
 
@@ -198,6 +348,7 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
   crossover. Detect it by reading the first-flash `V` value in the `.his`.
   See [references/double-effect-distillation-and-design-spec.md](references/double-effect-distillation-and-design-spec.md).
 - Column splitting (RadFrac `CONDENSER=NONE`/`REBOILER=NONE` with external condenser/reboiler) and stream HeatX integration: read [references/column-splitting-and-heat-integration.md](references/column-splitting-and-heat-integration.md) first.
+- Reactor waste heat plus two-column integration: read [references/pdo-heat-integration-and-delivery-lessons.md](references/pdo-heat-integration-and-delivery-lessons.md) for stage remapping, steam-loop degrees of freedom, heat-grade matching, pressure budgets, units and cold-start evidence. The PDO energy subsystem was validated; its original deep-cold quench issue was not resolved. User layout reference and rejected automatic routing are documented separately; case numbers are not defaults.
 - For vapor recompression heat pumps, sweep the compression ratio and check
   `REB-HX` overall and zone LMTD plus the condensing/boiling minimum approach;
   do not set the compression ratio above 2.5. See [references/column-splitting-and-heat-integration.md](references/column-splitting-and-heat-integration.md).
@@ -220,12 +371,29 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
   pressure-infeasible return loops; NO compensation pumps. See
   [references/double-effect-user-workflow.md](references/double-effect-user-workflow.md).
 
+### 7.4 设备水力学与验收边界
+
+- 水力学结论必须标明等级：`PRELIMINARY`、`SOURCE_BOUND`、`ASPEN_EVIDENCE`、`VENDOR_RATING` 或 `CLOSED`。不得把初估或工具调用成功写成最终设计通过。
+- 塔器水力学至少检查面积闭合、降液管、堰和液层、开孔或填料几何、压降、漏液、夹带、液泛和正常/最小/最大/扰动负荷包络。填料塔还要检查湿润、分布、分段、再分布器、压降和 HETP。
+- 换热面积必须建立在**显式、有依据的 U** 上：`1/U = 1/h_hot + R_foul + δ/λ + 1/h_cold`，h 用真实物性 + Dittus-Boelter/沸腾关联式；Shortcut HeatX 的 `U-OPTION=PHASE` 实测对所有相态组合都返回同一个默认 850 W/(m²·K)，**不是**设计值（改为显式 U 或 Detailed/EDR，并留 10-25% 面积裕量）。同时校核**冷端膜温 ≥ 凝固点 + 20 K**：本案例 250 ℃ 盐冷端在 h_salt≈900 时壁面盐温仅 219-223 ℃，已贴着 NaNO3-KNO3 的 222 ℃ 凝固点。见 [references/heat-carrier-and-salt-properties.md](references/heat-carrier-and-salt-properties.md)。
+- `HYDRAULIC=NO` 的干净物料模拟只证明物料和能量计算，不证明塔内件水力学。任何塔径、压力、内件或负荷改变后，必须从同一最终 Aspen 工况重新导出阶段数据并复算。
+- 换热器要区分 HeatX、Shortcut、Detailed 和真正的 Aspen EDR，并确认同设备身份、负荷、面积、压降、速度和材料证据。
+- `scripts/hydraulic_screening.py` 可从 Aspen 结果中提取塔径、阶段负荷与水力数据做透明初筛；输出必须保留适用条件和证据等级，不能替代厂家评级。
+
 ## 8. 参考文档 (References)
 
 > 按两级原则分组：8.1 是**第一原则支撑**（原理/方法/机制，设计时按需查阅）；8.2 是**第二原则支撑**（案例与已验证工程，只作学习参考，采用前回第一原则校验）。
 
+### 8.0 读取顺序
+
+第 2.1 节的 M01-M09 是主题入口；先按模块读取对应的原理文件，再按需读取同模块案例。下面的 8.1/8.2 只是完整的原理/案例反向索引，不代表调用顺序。
+
 ### 8.1 第一原则支撑：原理、方法与机制
 
+- See [references/tianjin-distillation-9-5-calculation.md](references/tianjin-distillation-9-5-calculation.md) for the Tianjin 9.5 binary-distillation sequence: q line, feed thermal state, operating lines, minimum reflux, Fenske/Gilliland stage count, feed-stage estimate, and the joint `q-R-N-N_F` optimization workflow. `scripts/binary_distillation_9_5.py` provides a constant-alpha/constant-molar-overflow preview and is not a substitute for rigorous Aspen.
+- See [references/feed-stage-sensitivity-curves.md](references/feed-stage-sensitivity-curves.md) for the RadFrac 2-D Sensitivity pattern that plots reboiler duty versus feed stage for several theoretical-stage counts, using the Sun Lanyi Example 7.3c setup as the verified reference. For a true Cartesian grid use `SERIES=NO`; `SERIES=YES` produced OFAT rows in the 2026-09-25 test. Set the base RadFrac `NSTAGE` equal to the Sensitivity upper bound, make the bottoms product stage follow `NSTAGE` via `PROD-STAGE`/`PRODUCTS`/product-stream ID, and filter SNS_TAB rows by `ROWSTAT=0`. `scripts/plot_radfrac_feedstage_sensitivity.py` can parse SNS_TAB or a long CSV for an external preview and per-stage minima. See [references/sensitivity-scope-and-configuration.md](references/sensitivity-scope-and-configuration.md) for the mandatory scope boundary and data-provenance rules.
+- See [references/sun-lanyi-ch7-4-radfrac-strict.md](references/sun-lanyi-ch7-4-radfrac-strict.md) for the verified Section 7.4 strict RadFrac workflow: Example 7.3a basic rigorous tower, 7.3b product Design Specs + Vary, 7.3c stage/feed QREB sensitivity, 7.3d/e minimum-reflux RR-N asymptote, and the scope boundary between strict calculation and unrequested TAC optimization.
+- TWO-FILE STRICT DELIVERY: when both optimum design and minimum reflux are requested, file 1 is the S-1 full grid over NSTAGE x FEED-STAGE; file 2 fixes the selected best NSTAGE and FEED-STAGE and performs a single-point sensitivity for RR/QREB/QCOND. If the user says not to calculate other stages, do not sweep NSTAGE in file 2. Keep the Sensitivity block name S-1 and fix both Vary ranges to one value for the verified stable single-point workflow. The two files must both derive their result tables from Aspen SNS_TAB.
 - See [references/engineering-modeling-basics.md](references/engineering-modeling-basics.md) for textbook-derived modeling fundamentals and design checks.
 - See [references/aspen-plus-textbook-guide.md](references/aspen-plus-textbook-guide.md) for property methods, unit-model workflows, flowsheeting tools, and convergence strategies.
 - See [references/modeling-guide.md](references/modeling-guide.md) for stream specs, property methods, module selection, and connectivity.
@@ -236,6 +404,8 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 - See [references/input-file-and-rstoic.md](references/input-file-and-rstoic.md) for building `.inp` cases and RStoic conversion syntax (其中的完整示例只示范语法与段落组织，数值须按你的需求重设)。
 - See [references/general-modeling-mechanics.md](references/general-modeling-mechanics.md) for version-neutral modeling mechanics: the spec-meeting three-strategy decision, a property-method decision tree, from-scratch object-tree build mechanics, solids/crystallization modeling elements, reaction-kinetics type selection and Arrhenius-to-Aspen conversion, and official-example reuse rules (second-principle). Tree paths/units/nodes must be confirmed on the installed version.
 - See [references/general-verification-methods.md](references/general-verification-methods.md) for version-neutral verification methods: calibration trio, four independent physical benchmarks (mass balance / phase equilibrium / enthalpy balance / duty vs theory), enthalpy-pollution trust checklist, recycle convergence triple-check, and COM automation hygiene.
+- See [references/equipment-hydraulics-and-rating.md](references/equipment-hydraulics-and-rating.md) for reading Aspen stage hydraulic data, preliminary tray/packed-column screening, piping/pump/valve checks, heat-exchanger rating boundaries, evidence levels, and the output template. `scripts/hydraulic_screening.py` implements only transparent preliminary arithmetic and cannot close a formal rating.
+- See [references/heat-carrier-and-salt-properties.md](references/heat-carrier-and-salt-properties.md) for heat-carrier property selection and heat-exchanger area checks: INL/EXT-10-18297 nitrate-salt correlations (cp/rho/mu; 222 C melting, 560 C limit), NIST phase-change anchors for oils and liquid metals, IAPWS-IF97 saturation pressures for pressurized water, the 30-second audit (cp = Q/(m dT), rho = m/(FLUID_POWER/dP)), Dittus-Boelter h_salt + fouling -> U -> area, cold-end wall temperature vs freezing point, and the measured limitation that Aspen user property data cannot be injected by file editing (GUI Prop-Data + Model Selection required). `scripts/heat_carrier_screen.py` implements the preliminary screening arithmetic.
 - See [references/com-attach-and-license-env.md](references/com-attach-and-license-env.md) for the measured COM connection mechanics: `Dispatch` never attaches (the SCM always spawns `-Automation -Embedding` and the ROT holds no registration), why pre-launching `aspenplus.exe -Automation` is pointless, how `LSHOST`/`LSFORCEHOST` in the client process environment decide license checkout (surfacing only at `InitFromFile2` as error 2040), and the local Sentinel RMS facts (UDP 5093 only, no TCP, subnet broadcast blocked so a wrong `LSHOST` has no fallback).
 
 ### 8.2 第二原则支撑：案例与已验证工程（学习参考）
@@ -249,6 +419,7 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 - See [references/styrene-recycle-and-dewatering.md](references/styrene-recycle-and-dewatering.md) for water/aromatic systems: PR+UNIQUAC+HENRY+FREE-WATER properties (do NOT write `PR`/`UN` section IDs), FLASH3 three-phase cold recovery of noncondensables, stripper (CONDENSER=NONE, feed on stage 1) for dissolved water, Calculator-based EB/water recycle with tear-stream initial values, `<bar>` on DP-STAGE/DP-COL, and the warning-clearing checklist.
 - See [references/li-ruijiang-rplug-kinetics-validation.md](references/li-ruijiang-rplug-kinetics-validation.md) for the Li Ruijiang low-water-ratio ethylbenzene dehydrogenation LHHW input path, RPlug adiabatic validation setup, unit conversions, and the 2026-08-19 Aspen verification workflow.
 - See [references/double-effect-user-workflow.md](references/double-effect-user-workflow.md) for the user-mandated double-effect workflow, acceptance (`.his` 0/0/0 + Control Panel clean), Reconcile, and pressure-drop selection by fluid/equipment/pressure level (ordinary services near 0.2 bar, tiny drops only for vacuum/pressure-infeasible loops, no compensation pumps).
+- See [references/utility-steam-generation.md](references/utility-steam-generation.md) for the validated 2026-09-22 公用工程蒸汽生产装置 (waste-heat steam generation, 6 modules M0203+M0204+E0207+E0208+M0205+T0206) studied from the user's case AND a runnable self-built case (assets/steam-generation/waste_heat_steam_generation.inp: 600 kW recovered heat -> 60/40 NaNO3-KNO3 carrier loop -> 25 bar drum, 925 kg/h saturated steam, blowdown 0.46 %, salt-loop energy closure -0.000 % incl. pump work, STEAMNBS water enthalpy within 0.08 % of IAPWS-IF97). Hand-written .inp gotchas recorded there: block-level PROPERTIES overrides require the method to be declared in the global PROPERTIES section (else 2041), non-default databank components need explicit DATABANKS/ PROP-SOURCES (else 2041), and tear streams take an initial value but not a full STREAM spec M0203+M0204+E0207+E0208+M0205+T0206): reactor Q-stream feeds a Heater (`PRES` only, duty from the heat stream) -> molten-salt carrier loop (Mixer/FSplit recycle+purge, Calculator closes salt balance) -> HeatX `CALC-TYPE=DESIGN` + `T-HOT` -> Flash2 drum with `TEMP`+`DUTY=0` back-solving the drum pressure; 840 kW, 1081 kg/h of 38 bar/247 C saturated steam, recirculation ratio 1.387, energy balance closes to 0.01 %, water enthalpy 6.3 % high vs IAPWS-IF97 (and the case has NO blowdown, NO pumps, NO pressure drop - fix those before reusing).
 - See [references/double-effect-distillation-and-design-spec.md](references/double-effect-distillation-and-design-spec.md) for the HP/LP double-effect + HeatX workflow, the reboil-vapor initial-state rule, flowSheet-level `DESIGN-SPEC` `.inp` syntax, pressure-drop modeling (HeatX `PRES-HOT/PRES-COLD`, reflux/reboiler-circulation pumps), and the deliverable save/validate procedure.
 - Account for pressure drops in EVERY pressure-changing unit by entering a
   NEGATIVE value in the module's pressure field (negative = pressure drop,

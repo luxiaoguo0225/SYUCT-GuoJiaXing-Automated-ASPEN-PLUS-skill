@@ -1166,7 +1166,7 @@ $_SUMMARY_FILE
  LSET IT (%IT)                                                                  
  IDSET VERS (PROPERTIES) (345 *6 346 *6 347 *6 348 *6 355 *6)                   
  LSET VERS (%VERS)                                                              
- DSET RUN-STATUS VERS @VERS ( "40.0" "WIN-X64" "" "user" "USER_NAME" )        
+ DSET RUN-STATUS VERS @VERS ( "40.0" "WIN-X64" "" "guoxi" "GUOJIAXING" )        
  IDSET STRNAM (PROPERTIES) (1233 *6)                                            
  LSET STRNAM (%STRNAM)                                                          
  IDSET ID_STRPR (PROPERTIES) ( 454 *2 <119> 1236 *2 <125> 1237 *2 <29> 1238 *2  

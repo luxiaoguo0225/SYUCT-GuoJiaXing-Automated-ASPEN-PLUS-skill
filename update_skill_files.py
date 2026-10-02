@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import io
 # 更新 SKILL.md：在 calculator 引用后加新文档引用
 p = "SKILL.md"

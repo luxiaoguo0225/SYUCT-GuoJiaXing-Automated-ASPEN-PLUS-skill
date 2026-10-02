@@ -1,0 +1,41 @@
+{
+  "bkp_sha256": "1a4850ed2773b864a2c4b5d8c2b9979f4ac3d1f2e354115cf8cc5e435e8d8e63",
+  "cold_start_his": "NO ERRORS OR WARNINGS GENERATED",
+  "input_complete": [
+    "",
+    0
+  ],
+  "normal_block_count": 44,
+  "two_columns_baseline_reboiler_kW": 25641.08547174,
+  "two_columns_final_external_reboiler_kW": 16922.914218216,
+  "net_heating_reduction_kW": 8718.171253524,
+  "net_heating_reduction_percent": 34.00078855137636,
+  "integrated_HX_duty_kW": 8735.70000348,
+  "reactor_OX_recovered_kW": 5218.9215247188,
+  "HG1_BFW_recovered_kW": 39.11073965222399,
+  "HG2_BFW_recovered_kW": 1.276825850082,
+  "new_pump_electric_kW": 7.643643596631579,
+  "steam_kg_h": 6995.85055,
+  "blowdown_kg_h": 104.14945,
+  "water_mass_residual_kg_h": -1.1368683772161603e-13,
+  "boiler_heat_input_kW": 5266.541123497106,
+  "boiler_stream_enthalpy_rise_kW": 5266.534565484602,
+  "boiler_energy_relative_residual": -1.2452219302940535e-06,
+  "PDO_mol_percent": 99.68599451704306,
+  "annual_pure_PDO_t_8030h": 60029.18351891752,
+  "IAPWS_25bar_sat_T_C": 223.95648747437707,
+  "Aspen_25bar_sat_T_C": 223.989222,
+  "IAPWS_hfg_kJ_kg": 1840.059536549743,
+  "Aspen_hfg_kJ_kg": 1840.22294796,
+  "kinetic_reaction_sets_unchanged": [
+    "R-OX",
+    "R-HYD",
+    "R-HG"
+  ],
+  "evidence_status": "historical_cold_start_result; not a new live run",
+  "unresolved_scope": [
+    "C-QUENCH deep-cold operation",
+    "hypothetical-component and kinetic applicability",
+    "native visual review of automated PFD"
+  ]
+}

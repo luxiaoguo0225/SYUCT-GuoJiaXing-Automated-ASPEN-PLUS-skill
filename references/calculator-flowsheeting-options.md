@@ -1,4 +1,4 @@
-# Calculator（Flowsheeting Options）调用指南
+﻿# Calculator（Flowsheeting Options）调用指南
 
 > 适用版本：Aspen Plus V14（COM `Apwn.Document` + `.inp`/`.bkp`/`.apwz`）。
 > 结论先行：**Calculator 不是单独模块，而是 `Flowsheeting Options → Calculator` 功能类别（与全局 Design Spec 平级）**。
@@ -103,6 +103,6 @@ F     B=6600-A
 
 ## 7. 学习模板文件
 
-- 用户案例：`%USERPROFILE%/Desktop/无节能无换热/1全流程模拟(无节能技术，无换热网络).bkp`
+- 用户案例：`C:/Users/guoxi/Desktop/无节能无换热/1全流程模拟(无节能技术，无换热网络).bkp`
   （含 `CALCULATOR C-1`、`CALCULATOR H2O`；苯烷基化 + 乙苯脱氢联合流程）
 - 本 skill 验证产物：`styrene_openloop` 系列（开环）与 `styrene_closed_calc*.inp`（闭环+计算器，含 TEAR）。
