@@ -50,6 +50,12 @@ description: Automate locally installed Aspen Plus on Windows through Apwn.Docum
 
 章节级摘要用于定位和判断。涉及具体相关式/参数、OCR数学符号、超出范围或本机未验证的专用模块时，回原教材相应页或权威技术资料核对，并记录核对状态。不得把“有教材条目”写成“已逐式核验”或“已V14运行验证”。
 
+### 1.6 学习教材案例并沉淀到技能
+
+用户要求“学习案例并补充skill”时，先把教材题意、原理、源模型中实际启用的设置和阶段改动对照，独立推导为什么有效、何时失效及如何验算，再把可迁移的判断放进对应主题。源案例、参数清单和目录本身不作为知识沉淀；具体例题编号只作来源。保留教材/源文件不一致、未启用对象、单位/基准变化及验证边界，不把教学设置提升为通用规定。
+
+孙兰义第二版源模型消化形成的42条判断见 [教材与源模型推理](references/sun-lanyi-case-derived-reasoning.md)，在下列主题按需读取；这份资料不新增原案例资产。
+
 ## 2. 概述 (Overview)
 
 Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation interface. The bundled bridge script handles opening cases, editing variables, running calculations, reading results, and saving copies without opening the Aspen GUI by hand.
@@ -66,6 +72,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **原理层（先读）**：[textbook-properties-and-boundaries.md](references/textbook-properties-and-boundaries.md) 的 M01-K01–K10。落地细节按需查 `engineering-modeling-basics.md、aspen-plus-textbook-guide.md、general-modeling-mechanics.md`。
 
+**教材消化判断**：[R01–R04：比较基准、物性证据、相数及回归](references/sun-lanyi-case-derived-reasoning.md#m01)。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C02/C09/C13/C16/C19。
 
 **输出与接口**：守恒/相态、数据来源、方法选择、自由度与不确定性。对所有工艺模块提供边界和物性。
@@ -75,6 +83,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **适用任务**：DSTWU/RadFrac、q/R/N/进料板、平衡/速率塔、萃取/共沸/变压/反应/三相精馏。
 
 **原理层（先读）**：[textbook-distillation-and-towers.md](references/textbook-distillation-and-towers.md) 的 M02-K01–K10。落地细节按需查 `tianjin-distillation-9-5-calculation.md、sun-lanyi-ch7-4-radfrac-strict.md、feed-stage-sensitivity-curves.md`。
+
+**教材消化判断**：[R05–R11：塔问题分型、级位置、压力、再沸器及特殊分离](references/sun-lanyi-case-derived-reasoning.md#m02)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C04/C11/C13/C16。
 
@@ -86,6 +96,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **原理层（先读）**：[textbook-reaction-engineering.md](references/textbook-reaction-engineering.md) 的 M03-K01–K17。落地细节按需查 `kinetic-reactor-input-workflow-320-322.md、general-modeling-mechanics.md、input-file-and-rstoic.md`。
 
+**教材消化判断**：[R12–R17：实际反应类型、速率单位、热路径及用户实现](references/sun-lanyi-case-derived-reasoning.md#m03)。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C03/C09/C15/C16/C18/C21。
 
 **输出与接口**：反应集/速率基准、单位验证、尺寸/选择性、传递限制、热点和验证证据。反应热连M05，压损连M04，收敛连M08，固体连M10/M12。
@@ -95,6 +107,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **适用任务**：静压/表绝压、黏性/流态、管网、泵/汽蚀、压缩/中冷、阀/闪蒸、流量测量。
 
 **原理层（先读）**：[textbook-fluid-transport.md](references/textbook-fluid-transport.md) 的 M04-K01–K11。落地细节按需查 `equipment-hydraulics-and-rating.md、general-verification-methods.md`。
+
+**教材消化判断**：[R18–R19：功率层次、工作点和压力预测](references/sun-lanyi-case-derived-reasoning.md#m04)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C02/C05/C07/C08/C09/C18。
 
@@ -106,6 +120,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **原理层（先读）**：[textbook-heat-and-energy.md](references/textbook-heat-and-energy.md) 的 M05-K01–K15。落地细节按需查 `heat-carrier-and-salt-properties.md、equipment-hydraulics-and-rating.md`。
 
+**教材消化判断**：[R20–R23：设计/校核、温位、多效及内部夹紧](references/sun-lanyi-case-derived-reasoning.md#m05)。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C05/C08/C09/C10/C14/C19。
 
 **输出与接口**：热量/温位、壁温与相变边界、面积/压损、蒸发浓缩、热级联/网络及蒸汽供需。压力连M04，热泵连M06，评级连M07，经济目标连M14。
@@ -115,6 +131,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **适用任务**：蒸汽再压缩、差压耦合、Petlyuk/DWC、多效精馏/蒸发、COP与能源品位。
 
 **原理层（先读）**：[textbook-distillation-and-towers.md](references/textbook-distillation-and-towers.md) 的 M06-K01–K02，并读[传热与能源](references/textbook-heat-and-energy.md)的M06-K03。落地细节按需查 `general-verification-methods.md、heat-carrier-and-salt-properties.md`。
+
+**教材消化判断**：[R24–R26：同产品基准、四股耦合及逐板传热闭合](references/sun-lanyi-case-derived-reasoning.md#m06)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C05/C06/C07/C08/C10/C14。
 
@@ -126,6 +144,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **原理层（先读）**：[textbook-distillation-and-towers.md](references/textbook-distillation-and-towers.md) 的 M07-K01–K02，按对象联读M04-K03–K09、M05-K03–K07。落地细节按需查 `equipment-hydraulics-and-rating.md`。
 
+**教材消化判断**：[R27：最终负荷、水力反馈与效率基准](references/sun-lanyi-case-derived-reasoning.md#m07)。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C04/C08/C09，以及scripts/hydraulic_screening.py、scripts/heat_carrier_screen.py。
 
 **输出与接口**：最终负荷包络、尺寸/几何、压降、效率和证据等级；脚本只是透明初筛，正式评级需厂家/EDR。工况变化回读对应工艺章节。
@@ -136,6 +156,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **原理层（先读）**：[textbook-numerics-economics-and-custom-models.md](references/textbook-numerics-economics-and-custom-models.md) 的 M08-K01–K07。落地细节按需查 `run-verification-and-reconcile.md、aspen-input-completeness-and-delivery-lessons.md、calculator-flowsheeting-options.md`。
 
+**教材消化判断**：[R28–R32：有效规格、变量所有权、残差与可辨识性](references/sun-lanyi-case-derived-reasoning.md#m08)。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C02/C04/C06/C08/C10/C12/C19。
 
 **输出与接口**：自由度/残差、相正确初值、有效候选、诊断与最终验收、独立新开及哈希。服务所有工艺章节，不能以数值收敛代替物理可行。
@@ -145,6 +167,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **适用任务**：Apwn.Document、树路径/单位、许可、导入导出、输入完整、用户PFD保真与复现。
 
 **原理层（先读）**：[textbook-numerics-economics-and-custom-models.md](references/textbook-numerics-economics-and-custom-models.md) 的 M09-K01。落地细节按需查 `general-modeling-mechanics.md、variables-and-troubleshooting.md、com-attach-and-license-env.md、pfd-layout-preservation-and-review.md`。
+
+**教材消化判断**：[R33–R34：激活状态、单位和计算分支](references/sun-lanyi-case-derived-reasoning.md#m09)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C12/C19及scripts/aspen_plus_bridge.py。
 
@@ -166,6 +190,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **原理层（先读）**：[textbook-solids-and-mass-transfer.md](references/textbook-solids-and-mass-transfer.md) 的 M11-K01–K12。落地细节按需查 `general-modeling-mechanics.md、aspen-plus-textbook-guide.md`。
 
+**教材消化判断**：[R35–R36：Henry/LLE、净回收与电解质口径](references/sun-lanyi-case-derived-reasoning.md#m11)。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C13/C15/C16；膜暂无本机案例，C19仅参考自定义机制。
 
 **输出与接口**：驱动力、平衡/速率、溶剂/气量/面积、再生/母液/产品指标与数据缺口。电解质连M01，反应连M03，热量连M05，粒子连M10，自定义连M14。
@@ -175,6 +201,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **适用任务**：Assay/TBP、假组分/常减压/集总反应、煤/生物质/固废、气化热解、聚合链段/分布/动力学。
 
 **原理层（先读）**：[textbook-special-materials-and-dynamics.md](references/textbook-special-materials-and-dynamics.md) 的 M12-K01–K08。落地细节按需查 `aspen-plus-textbook-guide.md、general-modeling-mechanics.md`。
+
+**教材消化判断**：[R37–R38：油品表征、混合基准与馏程规格](references/sun-lanyi-case-derived-reasoning.md#m12)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C15/C17/C20。
 
@@ -186,6 +214,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **原理层（先读）**：[textbook-special-materials-and-dynamics.md](references/textbook-special-materials-and-dynamics.md) 的 M13-K01–K08。落地细节按需查 `aspen-plus-textbook-guide.md`。
 
+**教材消化判断**：[R39–R41：压力驱动、操纵机理与动态验收](references/sun-lanyi-case-derived-reasoning.md#m13)。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C18；当前仅教材示例入口，不能声称所有动态功能已验证。
 
 **输出与接口**：初始库存/控制与事件、时间轨迹/累计衡算、峰值与可操作性、本机许可/接口。稳态COM不能替代Dynamics；联读实际设备章节。
@@ -195,6 +225,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **适用任务**：资本/OPEX/TAC、约束/离散优化、用户块/外控、ROM/训练域、批量并行与失败隔离。
 
 **原理层（先读）**：[textbook-numerics-economics-and-custom-models.md](references/textbook-numerics-economics-and-custom-models.md) 的 M14-K01–K06。落地细节按需查 `general-verification-methods.md`。
+
+**教材消化判断**：[R42：目标函数和优化结论的口径](references/sun-lanyi-case-derived-reasoning.md#m14)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C19/C14；设备验证需另建独立基准。
 
@@ -413,6 +445,7 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 
 ### 8.1 原理与来源
 
+- [孙兰义教材与源模型推理](references/sun-lanyi-case-derived-reasoning.md)：消化后的42条工程判断与独立验算，按M01–M14相关节读取；不作为案例参数库。
 - [教材来源与全部章节覆盖](references/textbook-source-coverage.md)：八份独立教材、重复本识别、原页入口和核对状态。
 - 第2.1节14个章节已链接八份教材专题正文，任务时读取相关K条目；[旧概览卡](references/first-principles-cards.md)与[旧工程基础](references/engineering-modeling-basics.md)保留兼容。
 - [Aspen教材指南](references/aspen-plus-textbook-guide.md)、[建模机制](references/general-modeling-mechanics.md)、[独立验证](references/general-verification-methods.md)用于本机落地，不替代专题原理。

@@ -36,7 +36,8 @@ RadFrac:
   Feed = FEED, stage 25
   Products = ETHBZ-PD stage 1 / STYR-PD stage 65
   Condenser = TOTAL
-  P-SPEC = stage 1: 6 kPa / stage 65: 6.7 kPa
+  P-SPEC = stage 1/condenser: 6 kPa / stage 2: 6.7 kPa
+  Column pressure drop after stage 2 = 7.3 kPa; reboiler pressure = 14 kPa
   COL-SPECS = D:F=0.5853, DP-COL=7.3 kPa, MOLE-RR=5.11
 ```
 
@@ -46,6 +47,7 @@ RadFrac:
 - 直接给定 `D:F` 和 `RR`；
 - 用来验证给定的初值和严格塔收敛；
 - 如果产品纯度不能满足，进入 7.3b。
+- 2026-10-07对照教材PDF219/印刷p210图7-24和源输入修正：6.7 kPa是第二级压力，不是第65级压力；7.3 kPa是其余塔段压降。采用时仍核当前模型的实际压力剖面。
 
 ## 3. Example7.3b：严格塔 + 产品 Design Spec
 
@@ -107,7 +109,7 @@ Sensitivity:
 
 - 进料板跟随 `NSTAGE`，不自由扫描；
 - 每个 N 都要求满足同一产品规定；
-- 当相邻 N 的 `|ΔRR|/RR <= 0.1%` 时，末段 RR 作为严格塔 `R_min` 的工程估计；
+- 大N时RR趋于平台可作为回流极限的工程估计；收敛范围、进料位置搜索及数值精度须独立检查。相邻N变化0.1%若用于本任务，应标为自行规定的停止准则；教材未将该百分比规定为普遍标准。
 - 本例计算结果趋近约 `RR=4.29125`。
 
 如果改变理论板数导致塔底板编号变化，还要让塔底采出级跟随 `NSTAGE`；正确变量为：
@@ -118,7 +120,7 @@ PROD-STAGE + PRODUCTS + 塔底产品流股 ID
 
 不是 `STAGE`。
 
-## 6. Example7.3e：小范围 RR–N 灵敏度
+## 6. Example7.3e：大回流下估计最小理论板数
 
 `Example7.3e-RadFrac.bkp` 是同一类严格塔灵敏度：
 
@@ -131,7 +133,7 @@ Sensitivity:
   Tabulate RR
 ```
 
-它用于较短 NSTAGE 范围内观察 RR 降低趋势，适合作为 7.3d 的补充。
+教材PDF229/印刷p220明确用这一阶段估计最小理论板数：将RR可调上界放大，在较小N范围求满足同一产品规定所需RR。有限回流上界、有限N步长及固定进料板比例得到的是受这些限制的工程估计；严格全回流Nmin还需极限或独立计算核对。它与7.3d增加N寻找回流极限的方向相反。
 
 ## 7. 应用到用户塔的顺序
 
@@ -140,8 +142,8 @@ Sensitivity:
 3. 按 7.3a 设置 RadFrac 基础严格塔。
 4. 按 7.3b 加产品 Design Spec 和 Vary。
 5. 收敛后按 7.3c 做 `NSTAGE × FEED-STAGE → QREB`。
-6. 按 7.3d/e 做 `NSTAGE → RR` 的 `R_min` 分析。
-7. 用户的“最佳理论板数、进料板、回流比”就由这两个灵敏度结果分别确定。
+6. 按 7.3d 增加N估计回流极限；按7.3e在大回流条件下估计最小理论板数，并分别核其有限范围和进料位置限制。
+7. 从有效灵敏度结果确定当前目标下的候选板数、进料板及达标回流比；没有明确的费用或设备目标时，不宣称经济全局最优。
 8. 只有在用户明确要求时才继续做设备成本或 TAC 优化。
 
 ## 8. 与范围规则的关系
