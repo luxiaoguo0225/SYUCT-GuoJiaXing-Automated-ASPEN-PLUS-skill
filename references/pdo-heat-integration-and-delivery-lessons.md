@@ -1,6 +1,6 @@
 # PDO 双塔热集成、反应余热产汽与交付经验
 
-来源：2026-09-27 至 2026-10-01 的用户 PDO 案例修复、节能改造和排版任务；Aspen Plus V14 本机实测。以下数值是案例证据，不能作为其他体系的默认输入。排版经验见 [pfd-layout-preservation-and-review.md](pfd-layout-preservation-and-review.md)。
+来源：2026-09-27 至 2026-10-01 的用户 PDO 案例修复、节能改造和排版任务；Aspen Plus V14 本机实测。以下数值是案例证据，不能作为其他体系的默认输入。
 
 ## 1. 任务范围与结论边界
 
@@ -138,4 +138,4 @@ HEAT-TR-COEF U=0.0119422948
 
 能源稳态 BKP：`1,3-PDO_60kt_双塔热集成_废热产汽.bkp`，SHA256 `1a4850ed2773b864a2c4b5d8c2b9979f4ac3d1f2e354115cf8cc5e435e8d8e63`。本次运行结果的便携副本见 [pdo-energy-validation.json](../assets/pfd-layout/pdo-energy-validation.json)。该 JSON 是历史证据，不是可执行模型或新的实时验证。
 
-操作模式查阅 [run-verification-and-reconcile.md](run-verification-and-reconcile.md)、[utility-steam-generation.md](utility-steam-generation.md)。用户参考图的身份与保存边界查阅排版文档；不将被拒绝的自动布线版本列为成功范例。
+操作模式查阅 [run-verification-and-reconcile.md](run-verification-and-reconcile.md)、[utility-steam-generation.md](utility-steam-generation.md)。

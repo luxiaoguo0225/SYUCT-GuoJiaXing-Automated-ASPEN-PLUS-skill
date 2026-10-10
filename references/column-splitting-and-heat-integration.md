@@ -225,11 +225,6 @@ Copy and adapt these from `assets/column-split/`:
 - `bt_split_hx.inp`: same split plus feed/bottoms HeatX.
 - `bt_split_no_hx.inp`: baseline with same feed temperature and reboiler vapor fraction, for energy comparison.
 - `styrene_heatpump.inp`: styrene vacuum split with external condenser/reboiler plus vapor recompression heat pump.
-- `styrene_heatpump_user_layout.bkp`: user-preferred PFD layout template for
-  the styrene heat-pump split. Use it as the base when regenerating this
-  flowsheet and keep its `GRAPHICS_BACKUP` / `PFS` section. The layout maps only
-  when block IDs and stream names stay the same; do not strip the layout unless
-  explicitly requested.
 
 ## 5. Delivered example files
 

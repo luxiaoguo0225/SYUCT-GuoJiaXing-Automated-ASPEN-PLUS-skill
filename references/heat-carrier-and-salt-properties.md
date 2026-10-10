@@ -106,10 +106,9 @@ U→A 敏感性：400→25.8；500→20.6；600→17.2；**850→12.1**；1000�
 数据集第二字段是**单位集 ID**（本例 `SET1_MOLE`），写错会静默忽略。
 
 ## 5. 交付纪律（本轮踩的坑）
-1. **含 PFD 的 .bkp 不走 .inp 往返**：`Export(4)` 不含图形（`PFS V`/`GRAPHICS`/`DISPLAY`），导入再存会丢用户流程图 → 要改就原地改参数或先备份确认。
-2. **撕裂流初值相态要对**：初值温度比该压力饱和温度高 0.01 K，会让泵首轮报 `FEED HAS 100.00 % VAPOR`，`.his` 记 1 error；液相返流初值留 1-2 K 过冷。
-3. **收敛容差**：大循环比回路的 `BALMAS.1` 告警靠 `CONV-OPTIONS` 的 `WEGSTEIN MAXIT=1000` + `PARAM TOL=1.E-5` 消除（`PARAM ERRTOL=` 会 2041）。
-4. **交付自检**：`.his` 0 error/0 warning + 全部 `BLKSTAT=0` + 物性来源可追溯 + 反推 cp/ρ 与手册一致。
+1. **撕裂流初值相态要对**：初值温度比该压力饱和温度高 0.01 K，会让泵首轮报 `FEED HAS 100.00 % VAPOR`，`.his` 记 1 error；液相返流初值留 1-2 K 过冷。
+2. **收敛容差**：大循环比回路的 `BALMAS.1` 告警靠 `CONV-OPTIONS` 的 `WEGSTEIN MAXIT=1000` + `PARAM TOL=1.E-5` 消除（`PARAM ERRTOL=` 会 2041）。
+3. **交付自检**：`.his` 0 error/0 warning + 全部 `BLKSTAT=0` + 物性来源可追溯 + 反推 cp/ρ 与手册一致。
 
 ## 6. 饱和蒸汽 vs 过热蒸汽
 `VFRAC=1` 只表示单相气；过热蒸汽与饱和蒸汽在 Aspen 里都标 `VAPOR`，**过热度 = T - T_sat(P)**（同一物性包）。

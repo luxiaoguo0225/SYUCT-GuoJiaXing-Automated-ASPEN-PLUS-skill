@@ -164,15 +164,15 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 #### M09 COM、输入文件与PFD/交付机制
 
-**适用任务**：Apwn.Document、树路径/单位、许可、导入导出、输入完整、用户PFD保真与复现。
+**适用任务**：Apwn.Document、树路径/单位、许可、导入导出、输入完整、文件交付与复现。
 
-**原理层（先读）**：[textbook-numerics-economics-and-custom-models.md](references/textbook-numerics-economics-and-custom-models.md) 的 M09-K01。落地细节按需查 `general-modeling-mechanics.md、variables-and-troubleshooting.md、com-attach-and-license-env.md、pfd-layout-preservation-and-review.md`。
+**原理层（先读）**：[textbook-numerics-economics-and-custom-models.md](references/textbook-numerics-economics-and-custom-models.md) 的 M09-K01。落地细节按需查 `general-modeling-mechanics.md、variables-and-troubleshooting.md、com-attach-and-license-env.md`。
 
 **教材消化判断**：[R33–R34：激活状态、单位和计算分支](references/sun-lanyi-case-derived-reasoning.md#m09)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C12/C19及scripts/aspen_plus_bridge.py。
 
-**输出与接口**：接口/版本证据、可复现文件、PFD布局和冷启动；不决定工艺数值。仅操作已完成工程判断的输入。
+**输出与接口**：接口/版本证据、可复现文件、Aspen 默认流程图和冷启动；不决定工艺数值。仅操作已完成工程判断的输入。
 
 #### M10 颗粒分离、固体床与流态化
 
@@ -346,7 +346,7 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
   after checking that the pressure network or vacuum service requires it.
   See [references/engineering-modeling-basics.md](references/engineering-modeling-basics.md).
 - After every `Run2`, read the newest `.his` before reporting; the GUI summary
-  can hide errors. See [references/run-verification-and-reconcile.md](references/run-verification-and-reconcile.md) for `.his` error checking, `Reconcile()` tear-stream initialization, complete HeatX specs, PFD stripping, and report unit conversion.
+  can hide errors. See [references/run-verification-and-reconcile.md](references/run-verification-and-reconcile.md) for `.his` error checking, `Reconcile()` tear-stream initialization, complete HeatX specs, and report unit conversion.
 - Use a partial-vapor condenser when H2 or other noncondensables are present; a total condenser can produce unphysical cryogenic overhead temperatures.
 - TEMPERATURE-SENSITIVE COMPONENTS FIRST: use sourced limits for the actual composition, inhibitor, residence time and local wall/film temperature. Compare every candidate's compression, tower-pressure and heat-exchange temperature changes. Heat pumps, thermal coupling and multi-effect each require an independent temperature/phase/pressure feasibility check; none is automatically temperature-safe. Use M02-K08, M03-K09 and M06-K01–K03 before the historical [thermal-coupling case](references/thermally-coupled-distillation.md).
 
@@ -392,11 +392,8 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
   `Run2(False)` there for cold-start validation. Record source/final hashes and actual
   file content/type; preserve the delivered bytes. Opening a GUI is not a substitute
   for run validation, and requires compatibility with the user's tool restrictions.
-- PFD/layout work: read [references/pfd-layout-preservation-and-review.md](references/pfd-layout-preservation-and-review.md).
-  Preserve the latest user layout, anchors and labels; align actual ports, not only
-  equipment centers. Geometry checks, COM runs and visual/user acceptance are separate.
-  Use `scripts/audit_pfd_layout.py` for read-only evidence, never as an approval gate.
-  Do not globally reset labels or promote a user-rejected layout as an accepted example.
+- 流程图使用 Aspen 原生默认排版。
+
 - Heat/enthalpy outputs: verify leaf nodes and UnitString; collection Value and missing
   output are not scalar results. Calibrate report conversion rather than assuming a
   universal calorie factor. See [references/pdo-heat-integration-and-delivery-lessons.md](references/pdo-heat-integration-and-delivery-lessons.md).
@@ -413,13 +410,10 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
   crossover. Detect it by reading the first-flash `V` value in the `.his`.
   See [references/double-effect-distillation-and-design-spec.md](references/double-effect-distillation-and-design-spec.md).
 - Column splitting (RadFrac `CONDENSER=NONE`/`REBOILER=NONE` with external condenser/reboiler) and stream HeatX integration: read [references/column-splitting-and-heat-integration.md](references/column-splitting-and-heat-integration.md) first.
-- Reactor waste heat plus two-column integration: read [references/pdo-heat-integration-and-delivery-lessons.md](references/pdo-heat-integration-and-delivery-lessons.md) for stage remapping, steam-loop degrees of freedom, heat-grade matching, pressure budgets, units and cold-start evidence. The PDO energy subsystem was validated; its original deep-cold quench issue was not resolved. User layout reference and rejected automatic routing are documented separately; case numbers are not defaults.
+- Reactor waste heat plus two-column integration: read [references/pdo-heat-integration-and-delivery-lessons.md](references/pdo-heat-integration-and-delivery-lessons.md) for stage remapping, steam-loop degrees of freedom, heat-grade matching, pressure budgets, units and cold-start evidence. The PDO energy subsystem was validated; its original deep-cold quench issue was not resolved. Case numbers are not defaults.
 - For vapor recompression heat pumps, sweep the compression ratio and check
   `REB-HX` overall and zone LMTD plus the condensing/boiling minimum approach;
   the original case limits compression ratio to 2.5; determine the current limit from machinery, discharge temperature, phase state and user constraints. See [references/column-splitting-and-heat-integration.md](references/column-splitting-and-heat-integration.md).
-- For the styrene heat-pump split flowsheet, reuse and preserve the
-  user-preferred PFD layout in `assets/column-split/styrene_heatpump_user_layout.bkp`;
-  do not strip its `GRAPHICS_BACKUP` / `PFS` section unless explicitly asked.
 - For differential-pressure thermal coupling (差压热耦合 = two-column vapor recompression): LP tower overhead vapour -> compressor -> HP tower bottom; HP overhead vapour -> HeatX -> LP reboiler (main coupling); auxiliary reboiler/condenser only for load mismatch. The cited case uses compression ratio <= 2.5 (not a universal cap); check HeatX LMTD/min-approach, use phase-correct tear-stream initial values, compare energy on the same product basis. C3 propylene/propane case: conventional 200-stage heat 6.39e7 kJ/h -> compressor 4.92e6 kJ/h (-92.3%). See [references/differential-pressure-thermal-coupling.md](references/differential-pressure-thermal-coupling.md).
 - Three-component thermally coupled distillation (Petlyuk two-column equivalent): the coupling is STREAM-based, not tray-heat-duty-based - a prefractionator with CONDENSER=NONE REBOILER=NONE and EMPTY COL-SPECS gets its reflux (REF-PF liquid) and reboil vapor (REBV-PF vapor) from the main column as tear streams; verify PF duty 0/0. REBV-PF flow is the dominant B/C-split variable; side-draw stage must match the V-PF feed stage; more MC stages can make it WORSE (design spec lowers RR and starves the B/C stripping section). To clear transient UDL03.x dry-up errors in .his: seed the tear-stream inputs from converged results AND tighten the design-spec LIMITS around the solution - Reconcile() API alone does not fix them. See [references/three-component-thermal-coupling-case.md](references/three-component-thermal-coupling-case.md).
 - The historical double-effect task preferred SERIES topology and specified >=35% energy saving, strict clean logs and no compensation pumps. Apply its topology, saving target and equipment restrictions when the current user requirements inherit them; otherwise choose and justify the current topology and target from M02/M04/M05/M06. Pressure drops require current geometry/phase/property evidence, not a blanket 0.2 bar. The case realization is in [references/double-effect-user-workflow.md](references/double-effect-user-workflow.md).
@@ -455,5 +449,5 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
 
 - [原理—案例双向对应](references/principle-case-map.md)是案例唯一完整索引：包含具体文件/章节、H/T/L/U证据、借鉴内容、参数/拓扑差异和验证缺口。
 - [案例目录](references/distillation-case-library.md)仅在原理决定技术路线后定位模板；[Sensitivity范围](references/sensitivity-scope-and-configuration.md)保留用户规定的扫描与交付边界。
-- 工具机制按需读[Calculator](references/calculator-flowsheeting-options.md)、[输入/RStoic](references/input-file-and-rstoic.md)、[输入完整/SEP](references/aspen-input-completeness-and-delivery-lessons.md)、[运行/Reconcile](references/run-verification-and-reconcile.md)、[COM/许可](references/com-attach-and-license-env.md)、[树变量/排错](references/variables-and-troubleshooting.md)、[PFD保真](references/pfd-layout-preservation-and-review.md)。
+- 工具机制按需读[Calculator](references/calculator-flowsheeting-options.md)、[输入/RStoic](references/input-file-and-rstoic.md)、[输入完整/SEP](references/aspen-input-completeness-and-delivery-lessons.md)、[运行/Reconcile](references/run-verification-and-reconcile.md)、[COM/许可](references/com-attach-and-license-env.md)、[树变量/排错](references/variables-and-troubleshooting.md)。
 - 原始`assets/`和`scripts/`路径保留；文档维护成功不代表相应案例已重新运行，不通过修改案例记录提升验证等级。

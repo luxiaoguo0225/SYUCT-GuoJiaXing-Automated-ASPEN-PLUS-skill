@@ -26,7 +26,7 @@
 | C09 | [废热蒸汽](utility-steam-generation.md)，§1–5、物性/水力补充；[载热物性](heat-carrier-and-salt-properties.md) | H，区分原用户模型和自建验证模型 | 余热→载热→蒸汽、排污/泵功、物性反演与U；原38bar/25bar、盐配比/冻结裕量不继承 |
 | C10 | [PDO热集成](pdo-heat-integration-and-delivery-lessons.md)，§1–5 | H+U | 已验证能源子系统、级数重映射、压力/温位、交付；C-QUENCH深冷未解决 |
 | C11 | [案例库](distillation-case-library.md)，Methods/Source folders | L+部分H | 定位变压/萃取/共沸/批次/DWC模板；每个文件仍查来源/版本/状态 |
-| C12 | [Calculator](calculator-flowsheeting-options.md) §2–4；[输入完整性](aspen-input-completeness-and-delivery-lessons.md) §1–5；[PFD](pfd-layout-preservation-and-review.md) §1–6 | H机制证据 | 执行次序、SEP矩阵/续行、文件和用户布局保真；不是工艺参数案例 |
+| C12 | [Calculator](calculator-flowsheeting-options.md) §2–4；[输入完整性](aspen-input-completeness-and-delivery-lessons.md) §1–5 | H机制证据 | 执行次序、SEP矩阵/续行、文件交付；不是工艺参数案例 |
 | C13 | S04 §7.5–7.8 PDF230–250；S07 §6.6 p172–175/PDF202–205 | T；萃取PDF204正文已核 | 吸收/萃取/电解质选块、萃取DS求溶剂；不可抄6级、2000kmol/h溶剂 |
 | C14 | S05 第4章PDF212–306各案例、§3.8 PDF201–209；S06 T11 PDF228–247 | T | 夹点/HEN从热量目标到实际网络、甲醇/苯乙烯等；物流和ΔTmin重算 |
 | C15 | S06 B1 PDF282–292；S07 第7章p180–196/PDF210–226、第14章p371–404/PDF401–434 | T | 固体子物流、化学链、干燥/结晶/过滤/旋风、燃烧/气化；完全分離或平衡产率仅书例假设 |
@@ -98,7 +98,7 @@
 | C05–C08拆塔/热泵/耦合/双效 | M01/M02/M04/M05/M06/M07/M08 |
 | C09–C10蒸汽/PDO | M01/M03/M04/M05/M07/M08/M09；C10先读U范围 |
 | C11目录模板 | 按具体分离任务定位M02/M06/M11/M13，再挑模板 |
-| C12输入/Calculator/PFD | M08/M09，工艺数值还回实际工艺章节 |
+| C12输入/Calculator | M08/M09，工艺数值还回实际工艺章节 |
 | C13吸收/萃取、电解质 | M01/M11/M07/M08；反应吸收加M03 |
 | C14能源网络 | M01/M04/M05/M06/M14，相关反应/分离分别加M03/M02 |
 | C15固体 | M01/M10/M11/M12；有反应加M03，有热处理加M05 |

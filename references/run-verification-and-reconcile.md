@@ -5,8 +5,7 @@
 1. Always read the `.his` file after a run
 2. Reconcile tear streams with `Reconcile()`
 3. HeatX `RATING` spec that stays complete and clean
-4. Strip PFD layout without breaking files
-5. Report unit pitfalls
+4. Report unit pitfalls
 
 ## 1. Always read the `.his` file after a run
 
@@ -110,21 +109,7 @@ path, code = result  # Verify signature on the installed version.
 `apwn.Tree.NextIncomplete("")` can raise
 `Aspen.Navigation: feature not active` even when the model is complete.
 
-## 4. Strip PFD layout without breaking files
-
-- Strip PFD only when explicitly requested; otherwise preserve the user's layout.
-- `.bkp`: find `GRAPHICS_BACKUP` and the next `$_SUMMARY_FILE`, or `$_ADS_FILE`
-  when SUMMARY is absent. Preserve prefix/suffix bytes; stop if a boundary is unknown.
-  See [pfd-layout-preservation-and-review.md](pfd-layout-preservation-and-review.md).
-- `.inp`: remove everything from `;PFS V 5.00` onward.
-- `.apwz`: rewrite the inner `.bkp` and preserve the zip comment
-  (`Aspen_Compound_File_Settings_v1.0` manifest). If the comment is lost,
-  Aspen cannot open the `.apwz` (error 2041 "cannot open file").
-- Saving an `.apwz` from a stripped `.bkp` makes Aspen regenerate a fresh
-  `GRAPHICS_BACKUP`. That is acceptable when the requirement is only to remove
-  the custom layout.
-
-## 5. Report unit pitfalls
+## 4. Report unit pitfalls
 
 Reports may show `HEAT DUTY` in `WATT` or `CAL/SEC` depending on the case.
 Do not assume every `CAL/SEC` uses 4.184 J/cal. The 2026-10-01 PDO V14 case
