@@ -6,6 +6,7 @@
 2. Reconcile tear streams with `Reconcile()`
 3. HeatX `RATING` spec that stays complete and clean
 4. Report unit pitfalls
+5. Effective tolerance and initialization audit
 
 ## 1. Always read the `.his` file after a run
 
@@ -118,3 +119,19 @@ UnitString and a known duty in the active unit set; record the measured conversi
 `NET WORK REQUIRED` is often in `KW`, but verify the report header. Read enthalpy
 leaf values or export the report, not collection-root Value. See
 [pdo-heat-integration-and-delivery-lessons.md](pdo-heat-integration-and-delivery-lessons.md).
+
+## 5. Effective tolerance and initialization audit
+
+A clean `.his` does not prove that the accepted solver settings survived a
+save/reopen. Read back the preset and actual algorithm/initialization settings
+before and after the independent run. Audit effective report tolerances against
+the original model; raw input fields or a preset name alone may conceal a change
+in the effective criterion. Never relax solver or acceptance tolerances.
+
+Custom convergence is permitted in justified special circumstances under the
+current user's instruction; it is not equivalent to SEP component allocation.
+Record the diagnostic basis, changed settings and verification. Independent
+reopening with saved temperature/composition profiles and tear guesses proves
+reproducibility with those disclosed guesses, not initialization independence.
+See [the detailed audit and physical validation boundary](convergence-separation-and-energy-integrity.md),
+Sections 1–4.

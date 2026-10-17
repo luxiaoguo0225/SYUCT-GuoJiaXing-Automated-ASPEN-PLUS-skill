@@ -18,6 +18,7 @@ description: Automate locally installed Aspen Plus on Windows through Apwn.Docum
 - **教材溯源，禁止臆想**：建模所用的原理与数值必须有出处。优先级：用户/题目规定 > 权威教材原理 > 有据工程判断。本 skill 的八份独立教材覆盖与证据等级见 `references/textbook-source-coverage.md`；各主题判断以第2.1节链接的专题K条目为主，旧原理底稿见 `references/engineering-modeling-basics.md`（源自《化工原理》夏清/贾绍义 上、下册、《化学反应工程》朱炳辰 第5版、《化工过程模拟实训——Aspen Plus 教程》孙兰义 第2版等）与 `references/aspen-plus-textbook-guide.md`。凡是公式、物性数据、经验取值、压降、回流比、设计规定目标等，都要能回答“来自哪条教材原理/哪个出处”；查不到或记不准确时，回到教材/参考文档核对，或明确标注“假设”并说明理由——**绝不凭印象编造公式、物性、压降或“经验值”，绝不臆想原理**。
 - **先方案后参考**：不得先翻案例再照着搭流程，案例不能替代需求分析与原理推导。
 - **冲突处理**：当"已有案例的做法"与"原理/用户要求"冲突时，以原理和用户要求为准，并在交付说明中主动指出差异与理由。
+- **数值求解与模型诚信**：优先选择与体系匹配的内置收敛预设；特殊情况下可以使用 Custom / OTHERS，但须有明确的数值诊断依据，记录改动并验证。不得放宽求解或验收容差，只能保持或收紧，且须核验实际生效值。不得用 SEP 的人为组分分配、自定义模块或写入结果来凑目标分离指标。具体边界见 [收敛、分离模型与节能验证](references/convergence-separation-and-energy-integrity.md)。
 
 ### 1.2 第二原则（辅助）：已有案例只用于学习，不用于模仿
 
@@ -56,6 +57,10 @@ description: Automate locally installed Aspen Plus on Windows through Apwn.Docum
 
 孙兰义第二版源模型消化形成的42条判断见 [教材与源模型推理](references/sun-lanyi-case-derived-reasoning.md)，在下列主题按需读取；这份资料不新增原案例资产。
 
+### 1.7 保密项目的经验沉淀
+
+用户要求项目保密时，只把可迁移的判断、适用边界、失效模式与核验方法写入技能。不得加入用户原始数值、拟合参数、模拟结果、具体设备规格、项目专属流程拓扑、文件路径或身份信息，也不得复制模型、数据表、报告、图片、运行日志、复现代码及其编码或压缩版本。改名、换单位、归一化或删除标题不自动构成脱敏。按新增及修改内容检查信息泄露，不把“文件格式校验通过”当作保密审查通过。
+
 ## 2. 概述 (Overview)
 
 Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation interface. The bundled bridge script handles opening cases, editing variables, running calculations, reading results, and saving copies without opening the Aspen GUI by hand.
@@ -74,6 +79,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **教材消化判断**：[R01–R04：比较基准、物性证据、相数及回归](references/sun-lanyi-case-derived-reasoning.md#m01)。
 
+**专项判断**：原料标准、产品质量与工业外推边界见[保密项目通用经验](references/kinetics-recycle-and-delivery-reasoning.md#m01)。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C02/C09/C13/C16/C19。
 
 **输出与接口**：守恒/相态、数据来源、方法选择、自由度与不确定性。对所有工艺模块提供边界和物性。
@@ -86,6 +93,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **教材消化判断**：[R05–R11：塔问题分型、级位置、压力、再沸器及特殊分离](references/sun-lanyi-case-derived-reasoning.md#m02)。
 
+**专项判断**：严格塔与指定分离率模型的边界、非理想多相解的验证见[收敛、分离模型与节能验证](references/convergence-separation-and-energy-integrity.md)第1–4节。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C04/C11/C13/C16。
 
 **输出与接口**：物料与相平衡、MESH与规格、级数/效率、压力与热敏边界。压力连M04，热量连M05/M06，水力连M07，DS/收敛连M08；吸收/萃取等独立操作进M11。
@@ -97,6 +106,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **原理层（先读）**：[textbook-reaction-engineering.md](references/textbook-reaction-engineering.md) 的 M03-K01–K17。落地细节按需查 `kinetic-reactor-input-workflow-320-322.md、general-modeling-mechanics.md、input-file-and-rstoic.md`。
 
 **教材消化判断**：[R12–R17：实际反应类型、速率单位、热路径及用户实现](references/sun-lanyi-case-derived-reasoning.md#m03)。
+
+**专项判断**：固定配比的参数可辨识性、循环净反应指标和独立积分的验证边界见[保密项目通用经验](references/kinetics-recycle-and-delivery-reasoning.md#m03)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C03/C09/C15/C16/C18/C21。
 
@@ -122,6 +133,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **教材消化判断**：[R20–R23：设计/校核、温位、多效及内部夹紧](references/sun-lanyi-case-derived-reasoning.md#m05)。
 
+**专项判断**：换热设计模式与固定设备校核、热电比较边界见[保密项目通用经验](references/kinetics-recycle-and-delivery-reasoning.md#m05)。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C05/C08/C09/C10/C14/C19。
 
 **输出与接口**：热量/温位、壁温与相变边界、面积/压损、蒸发浓缩、热级联/网络及蒸汽供需。压力连M04，热泵连M06，评级连M07，经济目标连M14。
@@ -133,6 +146,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **原理层（先读）**：[textbook-distillation-and-towers.md](references/textbook-distillation-and-towers.md) 的 M06-K01–K02，并读[传热与能源](references/textbook-heat-and-energy.md)的M06-K03。落地细节按需查 `general-verification-methods.md、heat-carrier-and-salt-properties.md`。
 
 **教材消化判断**：[R24–R26：同产品基准、四股耦合及逐板传热闭合](references/sun-lanyi-case-derived-reasoning.md#m06)。
+
+**专项判断**：串联/并联的物料拓扑、双效与MVR的独立热量贡献及同边界比较见[收敛、分离模型与节能验证](references/convergence-separation-and-energy-integrity.md)第5–6节。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C05/C06/C07/C08/C10/C14。
 
@@ -158,6 +173,10 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **教材消化判断**：[R28–R32：有效规格、变量所有权、残差与可辨识性](references/sun-lanyi-case-derived-reasoning.md#m08)。
 
+**专项判断**：灵敏度比较时的控制约束、最终日志身份与失败点处理见[保密项目通用经验](references/kinetics-recycle-and-delivery-reasoning.md#m08)。
+
+**收敛设置核验**：Custom的适用条件、输入/实际容差差异、独立重开与初值稳健性边界见[收敛、分离模型与节能验证](references/convergence-separation-and-energy-integrity.md)第1–4节。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C02/C04/C06/C08/C10/C12/C19。
 
 **输出与接口**：自由度/残差、相正确初值、有效候选、诊断与最终验收、独立新开及哈希。服务所有工艺章节，不能以数值收敛代替物理可行。
@@ -169,6 +188,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **原理层（先读）**：[textbook-numerics-economics-and-custom-models.md](references/textbook-numerics-economics-and-custom-models.md) 的 M09-K01。落地细节按需查 `general-modeling-mechanics.md、variables-and-troubleshooting.md、com-attach-and-license-env.md`。
 
 **教材消化判断**：[R33–R34：激活状态、单位和计算分支](references/sun-lanyi-case-derived-reasoning.md#m09)。
+
+**专项判断**：编辑图表、数值表、冷启动证据和交付包的一致性见[保密项目通用经验](references/kinetics-recycle-and-delivery-reasoning.md#m09)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C12/C19及scripts/aspen_plus_bridge.py。
 
@@ -227,6 +248,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **原理层（先读）**：[textbook-numerics-economics-and-custom-models.md](references/textbook-numerics-economics-and-custom-models.md) 的 M14-K01–K06。落地细节按需查 `general-verification-methods.md`。
 
 **教材消化判断**：[R42：目标函数和优化结论的口径](references/sun-lanyi-case-derived-reasoning.md#m14)。
+
+**专项判断**：部分可变费用、情景分析与完整经济结论的边界见[保密项目通用经验](references/kinetics-recycle-and-delivery-reasoning.md#m14)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C19/C14；设备验证需另建独立基准。
 
@@ -382,8 +405,11 @@ python scripts/build_from_input.py --inp "case.inp" --save "case.apwz" --report 
   before `EO-CONV-OPTI`; use `DEFINE X MOLE-FLOW STREAM=S SUBSTREAM=MIXED
   COMPONENT=C` (the `STREAM-VAR ... COMPONENT=` form parses wrong or ignores the
   component), `VARY BLOCK-VAR BLOCK=FSPLIT SENTENCE=FRAC VARIABLE=FRAC ID1=out`,
-  and tighten the tear tolerance to `CONV-OPTIONS PARAM TOL=0.00001` so outer
-  Design Specs can converge. See [references/double-effect-distillation-and-design-spec.md](references/double-effect-distillation-and-design-spec.md).
+  and audit the effective tear and inner-solver tolerances against the DS accuracy.
+  Historical `CONV-OPTIONS PARAM TOL=0.00001` is a case example, not a required
+  value: retain an already stricter setting and never relax it. See
+  [references/double-effect-distillation-and-design-spec.md](references/double-effect-distillation-and-design-spec.md)
+  and [the tolerance audit](references/convergence-separation-and-energy-integrity.md).
 - Deliverables: prefer `.inp` via `Export(4,...)` and `.bkp` via `Export(1,...)` from
   the saved case. `SaveAs2(...bkp)` has both successful and failed reopen histories;
   validate the chosen method on the local version. COM initialization can rewrite
