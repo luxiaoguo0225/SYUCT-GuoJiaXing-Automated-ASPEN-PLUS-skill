@@ -81,6 +81,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **专项判断**：原料标准、产品质量与工业外推边界见[保密项目通用经验](references/kinetics-recycle-and-delivery-reasoning.md#m01)。
 
+**修复核验**：物性来源、零系数及换库后的复算见[物性与流程修复关口](references/property-provenance-and-repair-gates.md#m01)。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C02/C09/C13/C16/C19。
 
 **输出与接口**：守恒/相态、数据来源、方法选择、自由度与不确定性。对所有工艺模块提供边界和物性。
@@ -94,6 +96,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **教材消化判断**：[R05–R11：塔问题分型、级位置、压力、再沸器及特殊分离](references/sun-lanyi-case-derived-reasoning.md#m02)。
 
 **专项判断**：严格塔与指定分离率模型的边界、非理想多相解的验证见[收敛、分离模型与节能验证](references/convergence-separation-and-energy-integrity.md)第1–4节。
+
+**修复核验**：严格塔规格、操纵量触界及诊断扫描见[物性与流程修复关口](references/property-provenance-and-repair-gates.md#m02)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C04/C11/C13/C16。
 
@@ -175,6 +179,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **专项判断**：灵敏度比较时的控制约束、最终日志身份与失败点处理见[保密项目通用经验](references/kinetics-recycle-and-delivery-reasoning.md#m08)。
 
+**修复核验**：断流后收敛拓扑与压力闭合见[物性与流程修复关口](references/property-provenance-and-repair-gates.md#m08)。
+
 **收敛设置核验**：Custom的适用条件、输入/实际容差差异、独立重开与初值稳健性边界见[收敛、分离模型与节能验证](references/convergence-separation-and-energy-integrity.md)第1–4节。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C02/C04/C06/C08/C10/C12/C19。
@@ -190,6 +196,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **教材消化判断**：[R33–R34：激活状态、单位和计算分支](references/sun-lanyi-case-derived-reasoning.md#m09)。
 
 **专项判断**：编辑图表、数值表、冷启动证据和交付包的一致性见[保密项目通用经验](references/kinetics-recycle-and-delivery-reasoning.md#m09)。
+
+**修复核验**：用户另存文件的范围、来源绑定与新运行证据见[物性与流程修复关口](references/property-provenance-and-repair-gates.md#m09)。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C12/C19及scripts/aspen_plus_bridge.py。
 
