@@ -31,8 +31,9 @@ description: Automate locally installed Aspen Plus on Windows through Apwn.Docum
 1. 收集并写清需求、目标与约束（用户规定优先，缺省处用合理工程假设并注明）。
 2. 先按第2.1节定位主节/相关节，读取对应教材专题K条目，再独立完成原理分析，形成建模方案草案（物性方法、模块、设计规定、压力剖面、操作条件）。**草案中的每个原理与数值都要可溯源到教材/权威资料（拿不准就查 `references/` 或原教材后再定），不许臆想。**
 3. 仅在需要时查阅第二原则资料（案例/模式/踩坑记录），用来补全或检验草案，而不是取代它。
-4. 搭建/运行模拟，按 §7.1 验收规则校验，并把结果对照需求与原理复核后再交付。
-5. 若任务涉及塔内件、管道、泵、阀门或换热器水力学，按 §7.4 和 `references/equipment-hydraulics-and-rating.md` 读取 Aspen 阶段水力数据、做初筛并标记验收等级；`scripts/hydraulic_screening.py` 仅做透明的初步算术，不能替代正式评级。
+4. **涉及精馏时，在搭建精馏工段前先完成物性核验与相图分析，并将结论用于方案选择。** 二元体系检查实际压力下的 Txy/Pxy；三元精馏使用含共沸点和蒸馏边界的 Ternary Map，多组分按关键三元子体系分析并声明降维边界。明确进料/候选产品位置、分离顺序、压力与溶剂方案的依据及未解决限制；不得以残余曲线替代用户要求的三元图。执行细节与进入严格塔的条件见[精馏建模前相图分析](references/phase-diagram-before-distillation.md)。
+5. 搭建/运行模拟，按 §7.1 验收规则校验，并把结果对照需求与原理复核后再交付。
+6. 若任务涉及塔内件、管道、泵、阀门或换热器水力学，按 §7.4 和 `references/equipment-hydraulics-and-rating.md` 读取 Aspen 阶段水力数据、做初筛并标记验收等级；`scripts/hydraulic_screening.py` 仅做透明的初步算术，不能替代正式评级。
 
 ### 1.4 模块化调用规则（每次调用必须先执行）
 
@@ -83,6 +84,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 
 **修复核验**：物性来源、零系数及换库后的复算见[物性与流程修复关口](references/property-provenance-and-repair-gates.md#m01)。
 
+**精馏前置分析**：物性核验后、精馏工段搭建前，执行[相图分析](references/phase-diagram-before-distillation.md)；相图结论受实际参数、温压与相稳定性验证范围约束。
+
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C02/C09/C13/C16/C19。
 
 **输出与接口**：守恒/相态、数据来源、方法选择、自由度与不确定性。对所有工艺模块提供边界和物性。
@@ -98,6 +101,8 @@ Drive a locally installed Aspen Plus through the `Apwn.Document` COM automation 
 **专项判断**：严格塔与指定分离率模型的边界、非理想多相解的验证见[收敛、分离模型与节能验证](references/convergence-separation-and-energy-integrity.md)第1–4节。
 
 **修复核验**：严格塔规格、操纵量触界及诊断扫描见[物性与流程修复关口](references/property-provenance-and-repair-gates.md#m02)。
+
+**搭塔前必须应用**：[精馏建模前相图分析](references/phase-diagram-before-distillation.md)。先用适用相图判断分离路线、关键组分、候选压力及夹带剂/溶剂，再用严格塔确定级数、进料板和回流比。改动关键物性、压力或溶剂后重新核查相图；不得靠盲目加板/调回流绕过热力学诊断。
 
 **案例层（后读）**：[对应表](references/principle-case-map.md) 中 C01/C04/C11/C13/C16。
 
