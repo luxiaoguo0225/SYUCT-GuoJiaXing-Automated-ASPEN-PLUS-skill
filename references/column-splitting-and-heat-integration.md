@@ -1,6 +1,6 @@
 # Column Splitting and Stream Heat Integration
 
-> **适用范围**：本文为原案例/历史用户要求的记录。串联/并联、节能率、压缩比上限、禁止增泵、固定压降与限温只在当前任务继承/重申相应要求或数据支持时采用，不是通用设计定律。先按SKILL第2.1节的教材原理完成当前判断，再按`principle-case-map.md`借鉴实现。文中“必须”保留原任务语境，不能扩大到其他体系。
+> **适用范围**：本文为原案例/历史用户要求的记录。串联/并联、节能率、压缩比上限、禁止增泵、固定压降与限温只在当前任务继承/重申相应要求或数据支持时采用，不是通用设计定律。先按运行模块M01–M15的教材原理完成当前判断，再按`principle-case-map.md`借鉴实现。文中“必须”保留原任务语境，不能扩大到其他体系。
 
 Read this reference when the user asks to:
 
@@ -242,14 +242,4 @@ rely on machine-specific URL protocols or shortcuts from the author's machine.
 
 ## 7. Global acceptance & pressure-drop rules (apply to heat pumps too)
 
-- Final result: read the newest `.his` — must be `0 Severe / 0 Error /
-  0 Warning` (no hidden transient errors), and the Aspen Control Panel must
-  show no error/warning.
-- Hidden errors: use `Reconcile()` on streams and tower modules to seed
-  initial values and try to resolve them; verify on a fresh open.
-- Pressure drop: every module except mixers and pressure-changing devices
-  (pump/valve/compressor) carries a justified NEGATIVE pressure drop. Select
-  the value from fluid phase, equipment type, pressure level, and downstream
-  pressure margin. Ordinary positive-pressure services should usually start
-  near -0.2 bar; reserve -0.01 to -0.05 bar for vacuum/low-pressure or
-  pressure-pinched return loops. NO compensation pumps.
+见[M15中的故障处理正文](../modules/run/diagnostics/column-splitting-and-heat-integration-additional-fixes.md)；此处只保留原案例上下文和旧锚点。

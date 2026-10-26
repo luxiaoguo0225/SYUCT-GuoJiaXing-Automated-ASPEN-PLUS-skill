@@ -1,0 +1,1500 @@
+{
+  "version": 2,
+  "states": [
+    "INTAKE",
+    "RUN",
+    "OUTPUT",
+    "CHECK",
+    "DELIVER"
+  ],
+  "transitions": [
+    [
+      "INTAKE",
+      "RUN"
+    ],
+    [
+      "RUN",
+      "OUTPUT"
+    ],
+    [
+      "OUTPUT",
+      "CHECK"
+    ],
+    [
+      "CHECK",
+      "RUN"
+    ],
+    [
+      "CHECK",
+      "DELIVER"
+    ]
+  ],
+  "entry": "SKILL.md",
+  "intake": "modules/intake.md",
+  "run": "modules/run/index.md",
+  "output": "modules/output/index.md",
+  "check": "modules/output/check.md",
+  "modules": {
+    "M01": {
+      "name": "需求、物性与流程边界",
+      "path": "modules/run/M01-properties-and-boundaries.md",
+      "principles": [
+        "references/textbook-properties-and-boundaries.md",
+        "references/aspen-plus-textbook-guide.md"
+      ],
+      "cases": [
+        "C01",
+        "C02",
+        "C09",
+        "C13",
+        "C16",
+        "C19"
+      ],
+      "related": [
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M08",
+        "M11",
+        "M12",
+        "M15"
+      ]
+    },
+    "M02": {
+      "name": "精馏塔与特殊精馏",
+      "path": "modules/run/M02-distillation.md",
+      "principles": [
+        "references/textbook-distillation-and-towers.md"
+      ],
+      "cases": [
+        "C01",
+        "C04",
+        "C11",
+        "C13",
+        "C16"
+      ],
+      "related": [
+        "M01",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08",
+        "M11",
+        "M15"
+      ]
+    },
+    "M03": {
+      "name": "反应器、动力学与多相反应",
+      "path": "modules/run/M03-reactors.md",
+      "principles": [
+        "references/textbook-reaction-engineering.md"
+      ],
+      "cases": [
+        "C01",
+        "C03",
+        "C09",
+        "C15",
+        "C16",
+        "C18",
+        "C21",
+        "C22"
+      ],
+      "related": [
+        "M01",
+        "M04",
+        "M05",
+        "M08",
+        "M10",
+        "M11",
+        "M12",
+        "M15",
+        "M14"
+      ]
+    },
+    "M04": {
+      "name": "压力输送与压力网络",
+      "path": "modules/run/M04-pressure-transport.md",
+      "principles": [
+        "references/textbook-fluid-transport.md"
+      ],
+      "cases": [
+        "C02",
+        "C05",
+        "C07",
+        "C08",
+        "C09",
+        "C18"
+      ],
+      "related": [
+        "M01",
+        "M02",
+        "M03",
+        "M05",
+        "M06",
+        "M07",
+        "M15"
+      ]
+    },
+    "M05": {
+      "name": "传热、蒸发、热集成与公用工程",
+      "path": "modules/run/M05-heat-and-energy.md",
+      "principles": [
+        "references/textbook-heat-and-energy.md"
+      ],
+      "cases": [
+        "C05",
+        "C08",
+        "C09",
+        "C10",
+        "C14",
+        "C19"
+      ],
+      "related": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M06",
+        "M07",
+        "M14",
+        "M15"
+      ]
+    },
+    "M06": {
+      "name": "热泵、多效与热耦合",
+      "path": "modules/run/M06-thermal-coupling.md",
+      "principles": [
+        "references/textbook-distillation-and-towers.md",
+        "references/textbook-heat-and-energy.md"
+      ],
+      "cases": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C10",
+        "C14"
+      ],
+      "related": [
+        "M01",
+        "M02",
+        "M04",
+        "M05",
+        "M07",
+        "M08",
+        "M14",
+        "M15"
+      ]
+    },
+    "M07": {
+      "name": "设备水力学与评级",
+      "path": "modules/run/M07-hydraulics-rating.md",
+      "principles": [
+        "references/textbook-distillation-and-towers.md"
+      ],
+      "cases": [
+        "C04",
+        "C08",
+        "C09"
+      ],
+      "related": [
+        "M01",
+        "M02",
+        "M04",
+        "M05",
+        "M08",
+        "M15"
+      ]
+    },
+    "M08": {
+      "name": "循环、Design Spec、收敛与验证",
+      "path": "modules/run/M08-numerics.md",
+      "principles": [
+        "references/textbook-numerics-economics-and-custom-models.md"
+      ],
+      "cases": [
+        "C02",
+        "C04",
+        "C06",
+        "C08",
+        "C10",
+        "C12",
+        "C19"
+      ],
+      "related": [
+        "M01",
+        "M02",
+        "M03",
+        "M06",
+        "M09",
+        "M14",
+        "M15"
+      ]
+    },
+    "M09": {
+      "name": "COM、MCP、输入文件与PFD机制",
+      "path": "modules/run/M09-execution-interfaces.md",
+      "principles": [
+        "references/textbook-numerics-economics-and-custom-models.md"
+      ],
+      "cases": [
+        "C12",
+        "C22"
+      ],
+      "related": [
+        "M01",
+        "M08",
+        "M14",
+        "M15"
+      ]
+    },
+    "M10": {
+      "name": "颗粒分离、固体床与流态化",
+      "path": "modules/run/M10-solids.md",
+      "principles": [
+        "references/textbook-solids-and-mass-transfer.md"
+      ],
+      "cases": [
+        "C15"
+      ],
+      "related": [
+        "M01",
+        "M03",
+        "M04",
+        "M05",
+        "M11",
+        "M12",
+        "M15"
+      ]
+    },
+    "M11": {
+      "name": "吸收、萃取、干燥、结晶与膜",
+      "path": "modules/run/M11-mass-transfer.md",
+      "principles": [
+        "references/textbook-solids-and-mass-transfer.md",
+        "references/aspen-plus-textbook-guide.md"
+      ],
+      "cases": [
+        "C13",
+        "C15",
+        "C16"
+      ],
+      "related": [
+        "M01",
+        "M03",
+        "M05",
+        "M07",
+        "M10",
+        "M14",
+        "M15"
+      ]
+    },
+    "M12": {
+      "name": "石油、非常规固体与聚合物",
+      "path": "modules/run/M12-special-materials.md",
+      "principles": [
+        "references/textbook-special-materials-and-dynamics.md",
+        "references/aspen-plus-textbook-guide.md"
+      ],
+      "cases": [
+        "C15",
+        "C17",
+        "C20"
+      ],
+      "related": [
+        "M01",
+        "M02",
+        "M03",
+        "M05",
+        "M10",
+        "M11",
+        "M13",
+        "M15"
+      ]
+    },
+    "M13": {
+      "name": "动态、控制、开车与批次",
+      "path": "modules/run/M13-dynamics-batch.md",
+      "principles": [
+        "references/textbook-special-materials-and-dynamics.md",
+        "references/aspen-plus-textbook-guide.md"
+      ],
+      "cases": [
+        "C18"
+      ],
+      "related": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M08",
+        "M09",
+        "M15"
+      ]
+    },
+    "M14": {
+      "name": "经济优化、自定义、ROM与批量",
+      "path": "modules/run/M14-optimization-custom.md",
+      "principles": [
+        "references/textbook-numerics-economics-and-custom-models.md"
+      ],
+      "cases": [
+        "C14",
+        "C19",
+        "C22"
+      ],
+      "related": [
+        "M01",
+        "M05",
+        "M08",
+        "M09",
+        "M11",
+        "M15",
+        "M03"
+      ]
+    },
+    "M15": {
+      "name": "报错诊断与修复",
+      "path": "modules/run/M15-troubleshooting.md",
+      "principles": [
+        "references/textbook-numerics-economics-and-custom-models.md",
+        "references/textbook-properties-and-boundaries.md",
+        "references/textbook-distillation-and-towers.md",
+        "references/textbook-fluid-transport.md",
+        "references/textbook-reaction-engineering.md",
+        "references/textbook-heat-and-energy.md"
+      ],
+      "cases": [
+        "C02",
+        "C03",
+        "C04",
+        "C06",
+        "C08",
+        "C09",
+        "C10",
+        "C12",
+        "C19",
+        "C16",
+        "C22"
+      ],
+      "related": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08",
+        "M09",
+        "M10",
+        "M11",
+        "M12",
+        "M13",
+        "M14"
+      ]
+    }
+  },
+  "migrations": [
+    {
+      "type": "whole_document",
+      "from": "references/property-provenance-and-repair-gates.md",
+      "to": "modules/run/diagnostics/property-provenance-and-repair-gates.md"
+    },
+    {
+      "type": "whole_document",
+      "from": "references/com-attach-and-license-env.md",
+      "to": "modules/run/diagnostics/com-attach-and-license-env.md"
+    },
+    {
+      "type": "whole_document",
+      "from": "references/run-verification-and-reconcile.md",
+      "to": "modules/run/diagnostics/run-verification-and-reconcile.md"
+    },
+    {
+      "type": "whole_document",
+      "from": "references/aspen-input-completeness-and-delivery-lessons.md",
+      "to": "modules/run/diagnostics/aspen-input-completeness-and-delivery-lessons.md"
+    },
+    {
+      "type": "whole_document",
+      "from": "references/general-verification-methods.md",
+      "to": "modules/run/diagnostics/general-verification-methods.md"
+    },
+    {
+      "type": "section",
+      "from": "references/variables-and-troubleshooting.md",
+      "heading": "## Common Failure Modes",
+      "to": "modules/run/diagnostics/variables-and-troubleshooting-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/aspen-plus-textbook-guide.md",
+      "heading": "### Troubleshooting Checklist",
+      "to": "modules/run/diagnostics/aspen-plus-textbook-guide-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/aspen-plus-textbook-guide.md",
+      "heading": "## RadFrac-Specific Convergence",
+      "to": "modules/run/diagnostics/aspen-plus-textbook-guide-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/calculator-flowsheeting-options.md",
+      "heading": "## 6. 已排除的失败路径（不要再浪费时间）",
+      "to": "modules/run/diagnostics/calculator-flowsheeting-options-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/three-component-thermal-coupling-case.md",
+      "heading": "## 3. 隐藏报错与调和（重要）",
+      "to": "modules/run/diagnostics/three-component-thermal-coupling-case-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/pdo-heat-integration-and-delivery-lessons.md",
+      "heading": "## 8. 失败试验与不应复用的做法",
+      "to": "modules/run/diagnostics/pdo-heat-integration-and-delivery-lessons-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/double-effect-distillation-and-design-spec.md",
+      "heading": "## 6. Check & Reconcile utilities",
+      "to": "modules/run/diagnostics/double-effect-distillation-and-design-spec-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/double-effect-distillation-and-design-spec.md",
+      "heading": "## 10. Getting a SERIES double-effect to ZERO warnings/errors (validated V14)",
+      "to": "modules/run/diagnostics/double-effect-distillation-and-design-spec-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/thermally-coupled-distillation.md",
+      "heading": "## 3. Initial estimates - PHASE matters (root cause of dry-up / severe errors)",
+      "to": "modules/run/diagnostics/thermally-coupled-distillation-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/heat-carrier-and-salt-properties.md",
+      "heading": "## 4. Aspen 写入用户物性的实测限制（重要）",
+      "to": "modules/run/diagnostics/heat-carrier-and-salt-properties-fixes.md"
+    },
+    {
+      "type": "whole_document",
+      "from": "LESSONS_LEARNED.md",
+      "to": "modules/run/diagnostics/historical-lessons.md"
+    },
+    {
+      "type": "section",
+      "from": "references/double-effect-user-workflow.md",
+      "heading": "## 验收与排错",
+      "to": "modules/run/diagnostics/double-effect-user-workflow-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/pdo-heat-integration-and-delivery-lessons.md",
+      "heading": "## 5. HeatX 语法、物性和单位陷阱",
+      "to": "modules/run/diagnostics/pdo-heat-integration-and-delivery-lessons-additional-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/kinetics-recycle-and-delivery-reasoning.md",
+      "heading": "## M08 灵敏度约束、失败点与最终日志",
+      "to": "modules/run/diagnostics/kinetics-recycle-and-delivery-reasoning-additional-fixes.md"
+    },
+    {
+      "type": "section",
+      "from": "references/column-splitting-and-heat-integration.md",
+      "heading": "## 7. Global acceptance & pressure-drop rules (apply to heat pumps too)",
+      "to": "modules/run/diagnostics/column-splitting-and-heat-integration-additional-fixes.md"
+    }
+  ],
+  "resources": {
+    "agents/openai.yaml": {
+      "owner": "I01",
+      "shared_with": [],
+      "role": "invocation"
+    },
+    "assets/column-split/bt_split.bkp": {
+      "owner": "M06",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "assets/column-split/bt_split.inp": {
+      "owner": "M06",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "assets/column-split/bt_split_hx.bkp": {
+      "owner": "M06",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "assets/column-split/bt_split_hx.inp": {
+      "owner": "M06",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "assets/column-split/bt_split_no_hx.inp": {
+      "owner": "M06",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "assets/column-split/styrene_heatpump.bkp": {
+      "owner": "M06",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "assets/column-split/styrene_heatpump.inp": {
+      "owner": "M06",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "assets/pfd-layout/pdo-energy-validation.json": {
+      "owner": "M09",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "assets/steam-generation/README.md": {
+      "owner": "M05",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "assets/steam-generation/verification.txt": {
+      "owner": "M05",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "assets/steam-generation/waste_heat_steam_generation.inp": {
+      "owner": "M05",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "case_asset"
+    },
+    "LESSONS_LEARNED.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "compatibility"
+    },
+    "modules/intake.md": {
+      "owner": "I01",
+      "shared_with": [],
+      "role": "classification"
+    },
+    "modules/migration-ledger.json": {
+      "owner": "R00",
+      "shared_with": [
+        "I01",
+        "O01",
+        "O02"
+      ],
+      "role": "routing_metadata"
+    },
+    "modules/output/check.md": {
+      "owner": "O02",
+      "shared_with": [],
+      "role": "output_check"
+    },
+    "modules/output/index.md": {
+      "owner": "O01",
+      "shared_with": [],
+      "role": "output"
+    },
+    "modules/output/process-acceptance.md": {
+      "owner": "O02",
+      "shared_with": [],
+      "role": "output_check"
+    },
+    "modules/registry.json": {
+      "owner": "R00",
+      "shared_with": [
+        "I01",
+        "O01",
+        "O02"
+      ],
+      "role": "routing_metadata"
+    },
+    "modules/run/diagnostics/aspen-input-completeness-and-delivery-lessons.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/aspen-plus-textbook-guide-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/calculator-flowsheeting-options-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/com-attach-and-license-env.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/double-effect-distillation-and-design-spec-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/general-verification-methods.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/heat-carrier-and-salt-properties-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/historical-lessons.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/initialization-and-coupling-cases.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/pdo-heat-integration-and-delivery-lessons-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/property-provenance-and-repair-gates.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/run-verification-and-reconcile.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/thermally-coupled-distillation-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/three-component-thermal-coupling-case-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/diagnostics/variables-and-troubleshooting-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "O02"
+      ],
+      "role": "diagnostic"
+    },
+    "modules/run/implementation.md": {
+      "owner": "R00",
+      "shared_with": [
+        "I01",
+        "O01",
+        "O02"
+      ],
+      "role": "routing_metadata"
+    },
+    "modules/run/index.md": {
+      "owner": "R00",
+      "shared_with": [
+        "I01",
+        "O01",
+        "O02"
+      ],
+      "role": "routing_metadata"
+    },
+    "modules/run/M01-properties-and-boundaries.md": {
+      "owner": "M01",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M02-distillation.md": {
+      "owner": "M02",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M03-reactors.md": {
+      "owner": "M03",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M04-pressure-transport.md": {
+      "owner": "M04",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M05-heat-and-energy.md": {
+      "owner": "M05",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M06-thermal-coupling.md": {
+      "owner": "M06",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M07-hydraulics-rating.md": {
+      "owner": "M07",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M08-numerics.md": {
+      "owner": "M08",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M09-execution-interfaces.md": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M10-solids.md": {
+      "owner": "M10",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M11-mass-transfer.md": {
+      "owner": "M11",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M12-special-materials.md": {
+      "owner": "M12",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M13-dynamics-batch.md": {
+      "owner": "M13",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M14-optimization-custom.md": {
+      "owner": "M14",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/run/M15-troubleshooting.md": {
+      "owner": "M15",
+      "shared_with": [],
+      "role": "run_module"
+    },
+    "modules/shared/modeling-contract.md": {
+      "owner": "R00",
+      "shared_with": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08",
+        "M09",
+        "M10",
+        "M11",
+        "M12",
+        "M13",
+        "M14",
+        "M15",
+        "I01",
+        "O01",
+        "O02"
+      ],
+      "role": "shared_contract"
+    },
+    "references/aspen-input-completeness-and-delivery-lessons.md": {
+      "owner": "M15",
+      "shared_with": [],
+      "role": "compatibility"
+    },
+    "references/aspen-plus-textbook-guide.md": {
+      "owner": "M01",
+      "shared_with": [
+        "M11",
+        "M12",
+        "M13"
+      ],
+      "role": "shared_reference"
+    },
+    "references/calculator-flowsheeting-options.md": {
+      "owner": "M08",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/column-splitting-and-heat-integration.md": {
+      "owner": "M05",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/com-attach-and-license-env.md": {
+      "owner": "M15",
+      "shared_with": [],
+      "role": "compatibility"
+    },
+    "references/convergence-separation-and-energy-integrity.md": {
+      "owner": "M02",
+      "shared_with": [
+        "M06",
+        "M08",
+        "M15"
+      ],
+      "role": "shared_reference"
+    },
+    "references/differential-pressure-thermal-coupling.md": {
+      "owner": "M04",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/distillation-case-library.md": {
+      "owner": "M02",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/double-effect-distillation-and-design-spec.md": {
+      "owner": "M02",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/double-effect-user-workflow.md": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/engineering-modeling-basics.md": {
+      "owner": "M01",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/equipment-hydraulics-and-rating.md": {
+      "owner": "M04",
+      "shared_with": [
+        "M05",
+        "M07"
+      ],
+      "role": "shared_reference"
+    },
+    "references/feed-stage-sensitivity-curves.md": {
+      "owner": "M02",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/first-principles-cards.md": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/general-modeling-mechanics.md": {
+      "owner": "M01",
+      "shared_with": [
+        "M03",
+        "M09",
+        "M10",
+        "M11",
+        "M12"
+      ],
+      "role": "shared_reference"
+    },
+    "references/general-verification-methods.md": {
+      "owner": "M15",
+      "shared_with": [],
+      "role": "compatibility"
+    },
+    "references/heat-carrier-and-salt-properties.md": {
+      "owner": "M05",
+      "shared_with": [
+        "M06"
+      ],
+      "role": "shared_reference"
+    },
+    "references/input-file-and-rstoic.md": {
+      "owner": "M03",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/kinetic-reactor-input-workflow-320-322.md": {
+      "owner": "M03",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/kinetics-recycle-and-delivery-reasoning.md": {
+      "owner": "M01",
+      "shared_with": [
+        "M03",
+        "M05",
+        "M08",
+        "M09",
+        "M14"
+      ],
+      "role": "shared_reference"
+    },
+    "references/li-ruijiang-rplug-kinetics-validation.md": {
+      "owner": "M03",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/modeling-guide.md": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/pdo-heat-integration-and-delivery-lessons.md": {
+      "owner": "M05",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/phase-diagram-before-distillation.md": {
+      "owner": "M01",
+      "shared_with": [
+        "M02"
+      ],
+      "role": "shared_reference"
+    },
+    "references/principle-case-map.md": {
+      "owner": "R00",
+      "shared_with": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08",
+        "M09",
+        "M10",
+        "M11",
+        "M12",
+        "M13",
+        "M14",
+        "M15"
+      ],
+      "role": "shared_index"
+    },
+    "references/property-provenance-and-repair-gates.md": {
+      "owner": "M15",
+      "shared_with": [],
+      "role": "compatibility"
+    },
+    "references/reactor-flash-column-example.md": {
+      "owner": "M03",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/run-verification-and-reconcile.md": {
+      "owner": "M15",
+      "shared_with": [],
+      "role": "compatibility"
+    },
+    "references/sensitivity-scope-and-configuration.md": {
+      "owner": "M02",
+      "shared_with": [
+        "M03",
+        "M08",
+        "M09",
+        "M14",
+        "M15"
+      ],
+      "role": "shared_reference"
+    },
+    "references/styrene-recycle-and-dewatering.md": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/sun-lanyi-case-derived-reasoning.md": {
+      "owner": "M01",
+      "shared_with": [
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08",
+        "M09",
+        "M11",
+        "M12",
+        "M13",
+        "M14"
+      ],
+      "role": "shared_reference"
+    },
+    "references/sun-lanyi-ch7-4-radfrac-strict.md": {
+      "owner": "M02",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/textbook-distillation-and-towers.md": {
+      "owner": "M02",
+      "shared_with": [
+        "M06",
+        "M07",
+        "M15"
+      ],
+      "role": "principle_source"
+    },
+    "references/textbook-fluid-transport.md": {
+      "owner": "M04",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "principle_source"
+    },
+    "references/textbook-heat-and-energy.md": {
+      "owner": "M05",
+      "shared_with": [
+        "M06",
+        "M15"
+      ],
+      "role": "principle_source"
+    },
+    "references/textbook-numerics-economics-and-custom-models.md": {
+      "owner": "M08",
+      "shared_with": [
+        "M09",
+        "M14",
+        "M15"
+      ],
+      "role": "principle_source"
+    },
+    "references/textbook-properties-and-boundaries.md": {
+      "owner": "M01",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "principle_source"
+    },
+    "references/textbook-reaction-engineering.md": {
+      "owner": "M03",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "principle_source"
+    },
+    "references/textbook-solids-and-mass-transfer.md": {
+      "owner": "M10",
+      "shared_with": [
+        "M11"
+      ],
+      "role": "principle_source"
+    },
+    "references/textbook-source-coverage.md": {
+      "owner": "R00",
+      "shared_with": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08",
+        "M09",
+        "M10",
+        "M11",
+        "M12",
+        "M13",
+        "M14",
+        "M15"
+      ],
+      "role": "shared_index"
+    },
+    "references/textbook-special-materials-and-dynamics.md": {
+      "owner": "M12",
+      "shared_with": [
+        "M13"
+      ],
+      "role": "principle_source"
+    },
+    "references/thermally-coupled-distillation.md": {
+      "owner": "M02",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/three-component-thermal-coupling-case.md": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/tianjin-distillation-9-5-calculation.md": {
+      "owner": "M02",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/utility-steam-generation.md": {
+      "owner": "M05",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "references/variables-and-troubleshooting.md": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "shared_reference"
+    },
+    "scripts/aspen_plus_bridge.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/binary_distillation_9_5.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/build_from_input.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/build_styrene_column.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/check_delivery.py": {
+      "owner": "O02",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/configure_sensitivity_series_plot.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/estimate_min_reflux_asymptote.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/heat_carrier_screen.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/history_check.py": {
+      "owner": "O02",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/hydraulic_screening.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/optimal_stages_from_dstw.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/plot_radfrac_feedstage_sensitivity.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/styrene_column.bkp": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/styrene_column.inp": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/styrene_column_result.apwz": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/styrene_column_result.rep": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "scripts/tests/test_delivery_loop.py": {
+      "owner": "O02",
+      "shared_with": [],
+      "role": "test"
+    },
+    "scripts/validate_modular_skill.py": {
+      "owner": "O02",
+      "shared_with": [],
+      "role": "tool"
+    },
+    "SKILL.md": {
+      "owner": "I01",
+      "shared_with": [
+        "R00",
+        "O01",
+        "O02"
+      ],
+      "role": "entry"
+    },
+    "update_skill_files.py": {
+      "owner": "M09",
+      "shared_with": [],
+      "role": "retired_compatibility"
+    },
+    "中文分类索引.md": {
+      "owner": "I01",
+      "shared_with": [],
+      "role": "navigation"
+    },
+    "references/content-ownership.md": {
+      "owner": "R00",
+      "shared_with": [
+        "I01",
+        "O01",
+        "O02",
+        "M15"
+      ],
+      "role": "generated_navigation"
+    },
+    "modules/run/diagnostics/double-effect-user-workflow-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "M06",
+        "O02"
+      ],
+      "role": "diagnostic_case"
+    },
+    "modules/run/diagnostics/pdo-heat-integration-and-delivery-lessons-additional-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "M05",
+        "M06",
+        "M08",
+        "O02"
+      ],
+      "role": "diagnostic_case"
+    },
+    "modules/run/diagnostics/kinetics-recycle-and-delivery-reasoning-additional-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "M05",
+        "M06",
+        "M08",
+        "O02"
+      ],
+      "role": "diagnostic_case"
+    },
+    "modules/run/diagnostics/column-splitting-and-heat-integration-additional-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "M05",
+        "M06",
+        "M08",
+        "O02"
+      ],
+      "role": "diagnostic_case"
+    },
+    "modules/output/evidence-format.md": {
+      "owner": "O02",
+      "shared_with": [
+        "I01",
+        "R00",
+        "O01",
+        "M09",
+        "M15"
+      ],
+      "role": "evidence_contract"
+    },
+    "scripts/tests/test_history_check.py": {
+      "owner": "O02",
+      "shared_with": [
+        "M15"
+      ],
+      "role": "test"
+    },
+    "references/rplug-native-sensitivity-method.md": {
+      "owner": "M03",
+      "shared_with": [
+        "M01",
+        "M04",
+        "M05",
+        "M08",
+        "M09",
+        "M14",
+        "M15",
+        "O02"
+      ],
+      "role": "shared_reference"
+    },
+    "modules/run/diagnostics/rplug-native-sensitivity-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "M03",
+        "M08",
+        "M09",
+        "M14",
+        "O02"
+      ],
+      "role": "diagnostic_case"
+    },
+    "modules/output/properties-validation.md": {
+      "owner": "O02",
+      "shared_with": [
+        "I01",
+        "R00",
+        "M01",
+        "M03",
+        "M15"
+      ],
+      "role": "stage_check"
+    },
+    "modules/output/kinetics-validation.md": {
+      "owner": "O02",
+      "shared_with": [
+        "I01",
+        "R00",
+        "M01",
+        "M03",
+        "M15"
+      ],
+      "role": "stage_check"
+    },
+    "modules/output/methods/run-audit.md": {
+      "owner": "O02",
+      "shared_with": [
+        "I01",
+        "R00",
+        "M01",
+        "M03",
+        "M15"
+      ],
+      "role": "stage_check"
+    },
+    "modules/shared/validation-stages.md": {
+      "owner": "O02",
+      "shared_with": [
+        "I01",
+        "R00",
+        "M01",
+        "M03",
+        "M15"
+      ],
+      "role": "stage_check"
+    },
+    "scripts/tests/test_stage_validation.py": {
+      "owner": "O02",
+      "shared_with": [
+        "I01",
+        "R00",
+        "M01",
+        "M03",
+        "M15"
+      ],
+      "role": "test"
+    }
+  },
+  "validation_hooks": {
+    "properties": {
+      "id": "P01",
+      "path": "modules/output/properties-validation.md",
+      "event": "properties_entered_or_changed",
+      "return_modules": [
+        "M01",
+        "M09",
+        "M15"
+      ],
+      "success_state": "CONTINUE",
+      "failure_state": "RUN",
+      "required_checks": [
+        "PROP-SOURCES",
+        "PROP-ZEROS",
+        "PROP-APPLICABILITY",
+        "PROP-PHYSICAL",
+        "PROP-READBACK"
+      ],
+      "owner_module": "O02"
+    },
+    "kinetics": {
+      "id": "K01",
+      "path": "modules/output/kinetics-validation.md",
+      "event": "kinetics_entered_or_changed",
+      "prerequisite": "properties",
+      "return_modules": [
+        "M03",
+        "M01",
+        "M05",
+        "M08",
+        "M09",
+        "M15"
+      ],
+      "success_state": "CONTINUE",
+      "failure_state": "RUN",
+      "required_checks": [
+        "EARLY-PROPERTIES",
+        "KIN-INPUT",
+        "KIN-RATES",
+        "KIN-LITERATURE",
+        "KIN-INDUSTRIAL",
+        "KIN-SELECTIVITY",
+        "KIN-RUN"
+      ],
+      "owner_module": "O02"
+    }
+  }
+}

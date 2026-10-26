@@ -1,6 +1,6 @@
 # Aspen Plus Textbook Workflow and Convergence Guide
 
-> 本文保留作旧概览。完整章节主题已接入SKILL第2.1节的教材专题K条目；来源章页/核对程度见 [教材覆盖](textbook-source-coverage.md)，原理判断后选 [对应案例](principle-case-map.md)。不得把本概览的篇幅当作全部教材知识范围。
+> 本文保留作旧概览。完整章节主题已接入运行模块M01–M15的教材专题K条目；来源章页/核对程度见 [教材覆盖](textbook-source-coverage.md)，原理判断后选 [对应案例](principle-case-map.md)。不得把本概览的篇幅当作全部教材知识范围。
 
 This reference condenses the Aspen Plus 教程 (孙兰义) into actionable rules for
 the automation bridge. It complements [engineering-modeling-basics.md](engineering-modeling-basics.md)
@@ -247,52 +247,8 @@ From the 孙兰义 workflow:
 
 ### Troubleshooting Checklist
 
-- Read the first error/warning in the control panel; later messages are often
-  consequences.
-- Raise diagnostic level (`Simulation=3`, `Convergence=5`) to see tear history.
-- Check for component accumulation: every component must have a leaving path.
-- For flat design-spec response, use sensitivity to check bounds and choose a
-  better manipulated variable.
-- For nonmonotonic design specs, use `Bracket=Check bounds`.
-- For wide-boiling absorbers, use `Sum-Rates` or `Absorber=Yes`.
-- For azeotropic systems, use `Azeotropic` convergence with `Newton`.
-- For strongly nonideal systems, use `Nonideal` or `Strongly non-ideal liquid`.
-- For very strict purity specs, converge a relaxed case first, then tighten.
-- Before changing anything, reinitialize so old converged results are not reused.
+[M15中的诊断与修复正文](../modules/run/diagnostics/aspen-plus-textbook-guide-fixes.md)。本处保留案例上下文与旧锚点；修复规则统一维护在M15。
 
 ## RadFrac-Specific Convergence
 
-RadFrac has two algorithm families:
-
-- Inside-out variants: `Standard`, `Sum-Rates`, `Nonideal`.
-- `Newton` (Naphtali-Sandholm) for highly nonideal three-phase and azeotropic
-  systems.
-
-Convergence method presets:
-
-- `Standard`: most two/three-phase columns.
-- `Petroleum/Wide-boiling`: many components, design specs, wide-boiling.
-- `Strongly non-ideal liquid`: slow or failed Standard convergence.
-- `Azeotropic`: azeotropic separations.
-- `Cryogenic`: low-temperature air separation.
-- `Custom`: pick algorithm and initialization manually.
-
-Design-spec handling:
-
-- Nested middle loop: minimizes weighted squared errors; design spec count may
-  exceed manipulated variable count.
-- Simultaneous middle loop: solves specs with the column equations; spec count
-  must equal manipulated count and bounds are not used.
-
-Common RadFrac failure causes:
-
-- Infeasible design specs (for example ignoring a noncondensable component).
-- Conflicting specs (condenser temperature above bubble point for the specified
-  flow).
-- Too-small reflux near minimum reflux or pinch points.
-- Very small/zero internal liquid or vapor flows; adjust `Fminfac`.
-- Wrong property method or missing binary parameters.
-- Total condenser with H2/noncondensables; use partial-vapor condenser.
-
-For absorption, provide top/bottom temperature estimates and consider
-`Petroleum/Wide-boiling` when the boiling range is very wide.
+[M15中的诊断与修复正文](../modules/run/diagnostics/aspen-plus-textbook-guide-fixes.md)。本处保留案例上下文与旧锚点；修复规则统一维护在M15。

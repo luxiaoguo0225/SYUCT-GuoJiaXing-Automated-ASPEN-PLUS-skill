@@ -1,137 +1,230 @@
 # Aspen Plus Automation Skill
 
-面向 Codex 的 Aspen Plus V14 自动化 skill，重点覆盖 Windows COM（`Apwn.Document`）调用、`.inp`/`.bkp`/`.apwz` 案例操作、流程搭建、运行验证、结果读取与工程案例复用。如有问题请联系作者邮箱：2582693241@qq.com   //   luxiaoguo0225@gmail.com   仅供学习交流，非作者本人严禁用于售卖等商业用途。
+**以化工原理为起点，把流程搭建、排错、物性与动力学检查、结果输出和交付验收连接成完整工作流。**
 
-> **核心原则：先原理与需求，后案例参考。**
->
-> 1. 第一原则：依据化工原理和用户明确要求建模；公式、物性、经验值和操作条件必须可溯源，禁止臆造。
-> 2. 第二原则：仓库中的案例只用于学习工作流、Aspen 语法和排错方式；采用任何数值或构型前都必须回到第一原则重新校验。
+这是面向 Codex 的 Windows 本机 Aspen Plus 自动化技能，由陆小果维护并免费分享。技能通过可用的 COM（`Apwn.Document`）或 MCP 工具操作用户本机的 Aspen Plus；既提供执行方法，也规定什么时候检查、检查什么、发现问题后回到哪里修复。
 
-## 按主题章节调用教材知识
+当前采用**同一会话中的多模块工作流**。M01–M15 是可互相调用的工艺与实现模块，P01、K01 是录入后的即时检查，O02 是输出内部的最终检查。独立复算通过模型副本与新 COM 会话完成。
 
-当前按八份独立教材的主章节主题整理了 **117个原理条目、14个SKILL章节、21组案例/教材示例入口**。物性、精馏、反应、输送、换热/蒸发/夹点、热耦合、水力、求解、COM，以及颗粒分离、其他传质操作、特殊物料、动态/批次和经济/自定义模型各有入口。
+作者联系：2582693241@qq.com / luxiaoguo0225@gmail.com。**仅供学习交流，非作者本人严禁用于售卖等商业用途。** 软件商标、案例和授权边界见 [NOTICE.md](NOTICE.md)。
 
-调用顺序：**定位SKILL章节 → 读取相关教材原理 → 结合用户要求形成模型/参数/接口/验算判断 → 读取对应案例 → 建模并独立验证**。原来的20张卡片保留作概览，具体任务继续读专题K条目。
+## 1. 适用任务与完成标准
 
-- [教材来源与章节覆盖](references/textbook-source-coverage.md)：原书章页、文件身份和阅读证据；主章节主题覆盖不等于逐页逐式核验。
-- [原理—案例多对多对应](references/principle-case-map.md)：各原理可用哪些案例，以及每个案例应先读哪些章节。
-- [主题章节入口](SKILL.md#21-主题模块总入口原理与案例配对)：按任务只读取相关原理，避免先套案例。
+| 任务 | 工作重点 |
+|---|---|
+| 从要求搭建或扩展流程 | 明确边界与验收指标，选择物性和反应模型，建立设备与接口，再运行、检查和交付 |
+| 修复已有模型 | 保护原件与用户最新 PFD，从实际输入、状态和日志定位原因，调用相关工艺模块修复并复算 |
+| 核验物性或动力学 | 检查真实生效的数据源、公式、单位和范围，用原始文献、物性数据及可比工业数据验证 |
+| 读取、导出或复算 | 保留实际任务范围与来源身份，输出所需文件、数据、图表及对应证据 |
 
-新专题是工程建模知识摘要，具体专业模块/算法/参数仍须本机和原页核验；本次知识维护没有新增所有设备的Aspen运行验证。仓库不包含整本教材或全文提取。
+任务是否完成由用户要求和当前证据决定。文件能打开、计算收敛、物性适用、设备具备能力、冷重开可复现和文件包完整，是分别需要证明的结论。
 
-## 收敛、分离模型与节能核验
+## 2. 总体工作流
 
-特殊情况下可以有依据地使用Custom收敛，记录修改并验证实际生效的容差；不得放宽求解或验收标准。区分数值求解策略、SEP指定组分分配与自定义物理模型，不能用人为分配结果代替严格分离能力验证。
+**任务判断 → 运行与联调 → 候选输出 → 检查 → 问题返回运行；全部必需项通过后交付。**
 
-串联双效依据实际物料拓扑判断，双效与MVR分别核查热量贡献，并按相同产品和公用工程边界比较。独立重开时披露保存的初值；数值收敛与可复现性不能代替物性、相稳定性或设备能力验证。详见[收敛、分离模型与节能验证](references/convergence-separation-and-energy-integrity.md)。
-
-## 功能范围
-
-- 通过 COM 打开、编辑、运行、读取和另存 Aspen Plus 案例。
-- 从 `.inp` 构建流程并导出 `.apwz`、`.rep` 等结果文件。
-- 配置组分、物性方法、流股、反应器、闪蒸、RadFrac、HeatX、Calculator 和 Design Spec。
-- 拆塔为裸 RadFrac + 外置冷凝器/再沸器，并建立蒸汽再压缩热泵与热集成。
-- 支持热耦合、差压热耦合、双效精馏、吸收、反应工程及收敛排障。
-- 使用 `.his`、Reconcile、物料/能量基准和四基准交叉验证检查结果可靠性。
-
-## 环境要求
-
-- Windows 10/11
-- Aspen Plus V14（已安装并可通过 COM 启动）
-- Python 3.10+
-- `pywin32`
-
-```powershell
-python -m pip install -r requirements.txt
+```mermaid
+flowchart TD
+  I[任务判断 I01] --> T{任务类型}
+  T -->|搭建流程类| R[运行模块 R00]
+  T -->|解决报错类| R
+  R --> B[M01–M14 工艺及实现子模块：按需互调]
+  R --> E[M15 报错诊断与修复：同级互通]
+  B <--> E
+  B --> S{本轮是否完成物性或动力学录入、变更？}
+  E --> S
+  S -->|物性录入或变更| P[P01 立即检查物性]
+  S -->|动力学录入或变更| K[K01 立即检查动力学：先核有效物性]
+  P -->|通过：CONTINUE继续本轮| R
+  K -->|通过：CONTINUE继续本轮| R
+  P -->|失败或缺证据：带问题回运行| R
+  K -->|失败或缺证据：带问题回运行| R
+  S -->|无待处理录入事件且已有候选| G{所有适用前置检查当前有效？}
+  G -->|否：补查或修复后重查| R
+  G -->|是，或I01已明确不适用| O[输出模块 O01：候选交付]
+  O --> C{内部检查子模块 O02}
+  C -->|不满足要求、报错或缺证据：问题清单| R
+  C -->|全部必需项通过| D[最终交付]
 ```
 
-## 安装为 Codex Skill
+### I01：先判断任务，再冻结要求
 
-克隆或下载本仓库后，将仓库目录复制到 Codex skills 目录：
+区分“搭建流程类”和“解决报错类”，再确定主模块与相关模块。混合任务保留两类目标；读取、解释、导出等辅助动作按实际范围处理。
+
+记录原始文件、允许修改范围、禁止项、用户最新 PFD、目标指标、交付清单和验收办法。未知项作为假设或缺口记录，不能为通过检查删掉要求或降低门槛。入口：[I01任务判断](modules/intake.md)。
+
+### R00：按原理组织运行与排错
+
+先读取相关教材原理，形成当前任务的模型、参数、单位、接口和独立验算判断，再参考案例实现。M01–M15可以多次联调；出现异常立即进入M15，按根因返回物性、反应、设备、收敛或接口模块。
+
+每轮保留输入版本、实际设置、运行身份、新日志、结果和未解决项。输入或接口变化后，刷新受影响证据，不能沿用旧结果。入口：[R00运行模块](modules/run/index.md)。
+
+### O01：先形成候选输出
+
+按要求组织原生可编辑文件、数据、图表、报告和来源说明。模型、数字和图表应对应同一最终工况，不能把旧结果拼入新交付。输出仍是候选，必须进入内部O02检查。入口：[O01输出模块](modules/output/index.md)。
+
+### O02：检查决定交付或回流
+
+逐项核用户要求、实际执行、日志、物性与参数、独立衡算、冷重开、图形/设备要求及包一致性。有错误、未达标、证据不足或过期，携问题清单回R00：**修复 → 新运行 → 新输出 → 再检查**。
+
+真正缺少外部数据、许可或物理依据时，保留未通过项并说明边界，不能删要求、改阈值或编造通过。入口：[O02检查子模块](modules/output/check.md)。
+
+## 3. M01–M15：同级互通，按任务组合
+
+模块按问题与接口组合使用，可直接调用登记的相关模块，也可经R00调度。M15与其他模块同级，负责组织取证、诊断和修复联调。
+
+| 模块 | 内容 |
+|---|---|
+| [M01](modules/run/M01-properties-and-boundaries.md) | 需求、物性与流程边界 |
+| [M02](modules/run/M02-distillation.md) | 精馏塔与特殊精馏 |
+| [M03](modules/run/M03-reactors.md) | 反应器、动力学与多相反应 |
+| [M04](modules/run/M04-pressure-transport.md) | 压力输送与压力网络 |
+| [M05](modules/run/M05-heat-and-energy.md) | 传热、蒸发、热集成与公用工程 |
+| [M06](modules/run/M06-thermal-coupling.md) | 热泵、多效与热耦合 |
+| [M07](modules/run/M07-hydraulics-rating.md) | 设备水力学与评级 |
+| [M08](modules/run/M08-numerics.md) | 循环、Design Spec、收敛与验证 |
+| [M09](modules/run/M09-execution-interfaces.md) | COM、MCP、输入文件与PFD机制 |
+| [M10](modules/run/M10-solids.md) | 颗粒分离、固体床与流态化 |
+| [M11](modules/run/M11-mass-transfer.md) | 吸收、萃取、干燥、结晶与膜 |
+| [M12](modules/run/M12-special-materials.md) | 石油、非常规固体与聚合物 |
+| [M13](modules/run/M13-dynamics-batch.md) | 动态、控制、开车与批次 |
+| [M14](modules/run/M14-optimization-custom.md) | 经济优化、自定义、ROM与批量 |
+| [M15](modules/run/M15-troubleshooting.md) | 报错诊断与修复 |
+
+例如：
+
+- **精馏与热集成**：M01物性/相图、M02塔模型，联动M04压力、M05/M06热量、M07水力、M08收敛和M09实现。
+- **动力学反应器**：M03联动M01物性、M04压降、M05反应热、M08数值与M09字段映射。
+- **已有流程报错**：M15从当前证据定位原因，再返回对应模块修复；不能用更多迭代或更宽容差替代根因分析。
+
+## 4. 原理与案例如何共同工作
+
+每个运行模块都有输入、原理层、案例层、跨模块接口和输出/返回要求：
+
+1. **先读原理**：确认公式、自由度、单位、物性、动力学、守恒关系和适用边界。
+2. **形成当前判断**：区分原始文献事实、推导、假设、拟合和外推。
+3. **再查案例**：学习Aspen语法、工具操作和已观察的失败模式，重新核验数值是否适用。
+4. **用当前证据检查**：历史案例完成不等于本次任务已通过。
+
+一个原理可关联多个案例，一个案例也可被多个原理和模块引用。教材、案例与诊断正文保留单一实体，通过交叉引用复用；无现成案例也可以据原理推进，不为套用案例改变题目。
+
+导航：[教材来源与章节覆盖](references/textbook-source-coverage.md) · [原理—案例多对多表](references/principle-case-map.md) · [内容归属表](references/content-ownership.md)。仓库不包含整本教材或全文提取；主题覆盖也不等于逐页逐式核验。
+
+## 5. 录入后立即检查：P01物性与K01动力学
+
+### P01：物性信息录入或修改后
+
+在依赖这些物性搭塔、建立动力学单元或使用结果前完成检查；方法、来源、溶剂、相数或相关操作范围改变后，重查受影响部分。
+
+| 检查重点 | 具体要求 |
+|---|---|
+| 二元参数真实来源 | 逐组分对/方向核数据库、版本、记录与实际命中。纯组分库与二元参数库分开，回读来源字段和数值字段 |
+| 缺失与0值 | 必需物性/拟合数据为0时停止使用当前来源，查找其他适用来源；没有可靠替代则保留未通过项，禁止零填缺参或编造非零值 |
+| 0值的含义 | 公式固定为0或明确不参与的结构项须有原始依据，单列说明；不能把未知的0改名为结构项 |
+| 科学适用性 | 核模型/相关式、单位、温压/组成范围、适用相，以及VLE/LLE/VLLE、相稳定性和所需焓/气相/输送性质证据 |
+| 保存后回读 | 在副本中保存、独立重开，确认生效方法、来源和系数没有丢失或改变；换源后重查相图及受影响计算 |
+
+详见[P01物性检查](modules/output/properties-validation.md)。精馏搭塔前还需进行适用的[相图分析](references/phase-diagram-before-distillation.md)。
+
+### K01：动力学录入或修改后
+
+先确认物性检查有效，再用独立反应器副本进行实际核算，不能等到全流程搭完才比较转化率和选择性。
+
+- 核原始方程、文献位置、反应网络、计量、单位、A/E/Tref、反应相和催化/速率基准。
+- 在适用温度与组成下，独立计算原文速率并对照Aspen实现，检查温度依赖、驱动力与吸附项。
+- 尽量复现原文条件，逐点比较转化率、选择性及必要的收率、温度或轴向轨迹；保留原文值、预测值、差异和有据阈值。
+- 对照有来源且条件可比的工业或中试数据，明确单程/全厂、摩尔/质量/碳基、净生成量等口径；不同条件不能直接混比。
+- 核副反应及副产物去向。仅有主反应时天然得到的“100%选择性”不能充当工业验证。
+
+不符时返回相关模块，修正实现或选择更适用的有据动力学，再录入、运行和检查。不能任意调A/E、规定转化率或人为分配结果凑目标。详见[K01动力学检查](modules/output/kinetics-validation.md)。
+
+## 6. 继续运行与最终交付的区别
+
+| 工具返回 | 含义 |
+|---|---|
+| `CONTINUE` | 某个前置阶段检查通过，可以继续本轮；完整任务尚未交付 |
+| `RUN` | 有失败、未验证、缺失或过期证据，回运行模块修复和取证 |
+| `DELIVER` | 最终合同的必需项全部通过，结论限于实际检查范围 |
+
+最终O02会重新核对前置检查与当前有效设置/范围的子快照，防止换参数后沿用旧PASS。完整模型交付还须按范围检查当前`.his`与Control Panel、实际容差/规格、独立衡算、冷重开、依赖文件及用户要求的PFD或设备证据。
+
+`check_delivery.py`核对合同、文件哈希、运行身份、数值及单位、可识别日志和已登记审查证据。**物性是否科学有效、文献是否可比、设备是否具备能力，仍需实际资料和模型判断。**
+
+记录格式：[输出证据](modules/output/evidence-format.md) · [前置检查格式](modules/shared/validation-stages.md) · [工艺验收](modules/output/process-acceptance.md)。
+
+## 7. 使用环境与安装
+
+- Windows本机，已安装可用的Aspen Plus及所需许可。机制以V14核验经验为基础，其他版本与专用模块逐项确认。
+- Python 3.10+；COM操作需要`pywin32`。按实际安装核接口、注册、单位与位宽，避免盲目更改系统配置。
+- Codex可读取技能并有本机执行工具。常用动作可走已核验MCP；深层树审计、批量或冷重开可走COM。
+
+全新安装示例；已有副本先备份再更新：
 
 ```powershell
-$target = Join-Path $env:USERPROFILE ".codex\skills\aspen-plus-automation"
-New-Item -ItemType Directory -Force -Path $target | Out-Null
-Copy-Item -Path .\* -Destination $target -Recurse -Force
+git clone https://github.com/luxiaoguo0225/SYUCT-GuoJiaXing-Automated-ASPEN-PLUS-skill.git "$env:USERPROFILE\.codex\skills\aspen-plus-automation"
+python -m pip install -r "$env:USERPROFILE\.codex\skills\aspen-plus-automation\requirements.txt"
 ```
 
-重新启动或刷新 Codex 后，可通过 `$aspen-plus-automation` 调用。
-
-## 快速开始
-
-### 1. 使用 COM 桥接脚本
-
-```powershell
-python .\scripts\aspen_plus_bridge.py `
-  --open .\examples\case.apwz `
-  --run `
-  --get "\Data\Streams\PRODUCT\Output\RES_TEMP"
-```
-
-### 2. 从 `.inp` 运行并导出结果
-
-```powershell
-python .\scripts\build_from_input.py `
-  --inp .\scripts\styrene_column.inp `
-  --save .\work\styrene_column.apwz `
-  --report .\work\styrene_column.rep
-```
-
-### 3. 在 Codex 中调用
+在Codex中调用`$aspen-plus-automation`，提供文件、目标、禁止项和交付要求即可，例如：
 
 ```text
-Use $aspen-plus-automation to build and validate an Aspen Plus V14 case.
-Start from the stated requirements and chemical engineering principles.
-Use bundled cases only as learning references, never copy their values.
+使用 $aspen-plus-automation。
+模型路径：<你的模型完整路径>
+目标：修复当前流程的报错，并核对产品指标。
+先备份原件，保留最新PFD和用户禁用状态，不放宽容差。
+物性和动力学变更后立即检查。
+最终给出原生可编辑文件、实际运行/冷重开证据及未通过项。
 ```
 
-## 仓库结构
+## 8. 目录和常用工具
 
 ```text
 .
-├── SKILL.md                       # Codex skill 主入口与完整工作流
-├── README.md                      # GitHub 首页与使用说明
-├── 中文分类索引.md                 # 参考文档中文导航
-├── agents/                        # Codex 智能体配置
-├── assets/column-split/           # 拆塔、热泵、热集成案例资产
-├── references/                    # 原理、机制、验证与案例文档
-├── scripts/                       # COM 桥接、构建脚本和示例
-├── .github/workflows/validate.yml # 基础 CI 校验
-├── .gitattributes                 # 跨平台换行配置
-└── .gitignore                     # 本地生成文件忽略规则
+├── SKILL.md                      # 入口、工作流和全局约束
+├── README.md                     # GitHub介绍与使用说明
+├── 中文分类索引.md               # 中文导航
+├── modules/
+│   ├── intake.md                 # I01任务判断
+│   ├── run/                      # R00、M01–M15与诊断正文
+│   ├── output/                   # O01、O02、P01、K01与验收
+│   ├── shared/                   # 共用约束与阶段格式
+│   └── registry.json             # 互调、状态与资料归属
+├── references/                   # 原理、来源、案例与兼容导航
+├── assets/                       # 历史教学/实现案例资产
+├── scripts/                      # COM、日志、证据与结构工具
+├── agents/openai.yaml            # 技能显示与调用元数据
+└── .github/workflows/validate.yml # 仓库离线CI
 ```
 
-## 文档入口
+`agents/openai.yaml`是技能元数据；当前工作流由同一会话按模块推进。
 
-- [SKILL.md](SKILL.md)：完整调用流程、规则、语法和验收方法。
-- [中文分类索引.md](中文分类索引.md)：按“原理支撑 / 案例学习 / 工具资产”分类导航。
-- [references/engineering-modeling-basics.md](references/engineering-modeling-basics.md)：流体流动、传热、分离与反应工程基础。
-- [references/aspen-plus-textbook-guide.md](references/aspen-plus-textbook-guide.md)：Aspen Plus 物性、模块、收敛和 RadFrac 指南。
-- [references/distillation-case-library.md](references/distillation-case-library.md)：热泵、变压、共沸、间歇、隔板、萃取和多效精馏案例索引。
-- [references/run-verification-and-reconcile.md](references/run-verification-and-reconcile.md)：`.his`、Reconcile 与运行验收。
+| 工具 | 用途 |
+|---|---|
+| [aspen_plus_bridge.py](scripts/aspen_plus_bridge.py) | COM打开、读写、运行与另存 |
+| [build_from_input.py](scripts/build_from_input.py) | 从输入文件执行并导出模型/报告 |
+| [history_check.py](scripts/history_check.py) | 识别日志编码、消息与完成证据 |
+| [check_delivery.py](scripts/check_delivery.py) | 核对冻结合同与候选证据，返回运行或交付状态 |
+| [validate_modular_skill.py](scripts/validate_modular_skill.py) | 核模块关系、资料归属、真实链接与Python语法 |
 
-## GitHub 发布
+这些检查在技能工作流中执行；直接调用独立脚本时，也应显式准备对应合同、输入身份和原始证据。各脚本参数见`--help`。
 
-仓库已经按 GitHub 常规目录组织，可直接使用 Git 上传：
+## 9. 本地验证与GitHub CI
+
+在仓库根目录执行：
 
 ```powershell
-git init -b main
-git add .
-git commit -m "Initial release: Aspen Plus automation skill"
-git remote add origin <YOUR_REPOSITORY_URL>
-git push -u origin main
+python -X utf8 scripts/validate_modular_skill.py
+python -X utf8 -m unittest discover -s scripts/tests -p "test_*.py" -v
 ```
 
-公开仓库前请再次确认：
+CI在push和pull request后运行结构、引用、语法及离线回归，覆盖证据失配、旧日志、指标未达标、前置漏项与失败回流等行为。GitHub托管runner不运行Aspen；具体模型的物性、运行、界面与工业适用性须在本机验证。离线测试通过不等于所有历史案例已重新运行。
 
-1. Aspen 案例和结果文件不包含未授权的企业数据、客户数据或第三方资料。
-2. `NOTICE.md` 中的商标与数据声明符合你的发布条件。
-3. 如需允许他人复用，请自行添加 `LICENSE`；本仓库未替作者选择许可证。
+## 10. 执行与结论边界
 
-## 验证
+- 保留原件，在副本中编辑和验证；只关闭本次拥有的COM会话。
+- 保留最新PFD、真实端口/连线、禁止项和原生Sensitivity等用户指定对象。
+- 不放宽求解或验收容差；不写入计算输出，不用SEP人为分配或自定义模块凑分离指标。
+- 数值收敛、物性有效、独立复现、设备评级、图形可见和包完整分项验收，明确来源、假设、外推与未验证范围。
+- 公开技能只沉淀可复用判断与边界；保密项目的原始数据、参数、拓扑、路径和模型不进入公共技能。
 
-```powershell
-python -m compileall -q .\scripts
-```
-
-GitHub Actions 会在每次 push 和 pull request 时检查 Python 语法及必需目录是否完整。Aspen 本身不会在 GitHub 托管 runner 上运行，因此流程必须在本机 Aspen Plus V14 环境完成最终验证。
+详细约束：[共享建模合同](modules/shared/modeling-contract.md) · [收敛、分离与能量诚信](references/convergence-separation-and-energy-integrity.md)。历史案例数值仅属于其原任务，引用前重新核验条件。

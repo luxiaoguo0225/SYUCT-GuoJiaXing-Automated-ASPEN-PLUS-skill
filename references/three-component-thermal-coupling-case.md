@@ -3,7 +3,7 @@
 > 系统：乙醇(A)/正丁醇(B)/1-己醇(C)，UNIQUAC；进料 2000 kg/h、25℃、2 bar、摩尔组成 0.2/0.6/0.2（B 最多、A≈C，符合文章推荐条件）
 > 产品：D 乙醇 248.6 kg/h、侧线丁醇 1200 kg/h、B 己醇 551.4 kg/h，均 ≥99.9 wt%
 > 结论速览：副塔零冷热负荷（真热耦）；vs 固定 RR=1.3 常规双塔再沸 -19.7%、冷凝 -25.6%；vs 近最小回流优化常规（54 板）能耗持平但省 1 台再沸器+1 台冷凝器
-> 交付：`C:\Users\guoxi\Documents\Codex\2026-08-31\a-b-b-c-a-c\outputs\`（thermally_coupled.* / conventional_baseline.* / conventional_refstyle.*）
+> 交付：`C:\Users\<user>\Documents\Codex\2026-08-31\a-b-b-c-a-c\outputs\`（thermally_coupled.* / conventional_baseline.* / conventional_refstyle.*）
 
 ## 0. 概念：热耦不是"在塔板上加热负荷"
 
@@ -72,14 +72,7 @@ CONV-OPTIONS
 
 ## 3. 隐藏报错与调和（重要）
 
-- 现象：收敛、`BLOCK STATUS` normal，但 `.his` 有 **36 个隐藏报错**（MC 主塔 `UDL03.1` + `UDL03.3` 塔板干涸，瞬态首轮/DS 迭代低回流区触发）。
-- `Reconcile()` API 单独使用**无效**（实测输入没更新、报错数不变；且按 run-verification-and-reconcile.md 经验它本就无法消除此类瞬态干板报错，效果保存后丢失）。
-- **有效方案（"调和"落地）**：
-  1. 把已收敛撕裂流结果写回流股输入（REF-PF 液 98.83℃/500 kg/h/0.198-0.802；REBV-PF 汽 123.65℃/2400 kg/h/0.886-0.114）；
-  2. 收紧 DS-A `LIMITS "5" "8"`（避免 SECANT 扫到 RR≈3.7 干板区）；
-  3. 初值 `MASS-RR=6.37`（解附近）。
-  → `.his` **36 → 0/0/0**，产品与能耗不变；**全新打开 .bkp/.apwz 重跑仍 0/0/0（可持久）**。
-- 验收口径：控制面板/`.his` 应显示 `No Warnings were issued during Input Translation` + `No Errors or Warnings were issued during Simulation`（用户 2026-08-31 指定标准）。
+[M15中的诊断与修复正文](../modules/run/diagnostics/three-component-thermal-coupling-case-fixes.md)。本处保留案例上下文与旧锚点；修复规则统一维护在M15。
 
 ## 4. 能耗对比（同进料、同产品规格）
 

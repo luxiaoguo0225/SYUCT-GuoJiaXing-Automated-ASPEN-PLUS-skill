@@ -10,6 +10,8 @@ permissions:
 jobs:
   syntax-and-layout:
     runs-on: windows-latest
+    env:
+      PYTHONUTF8: "1"
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -22,12 +24,15 @@ jobs:
       - name: Check required repository layout
         shell: pwsh
         run: |
-          $required = @("README.md", "SKILL.md", "中文分类索引.md", "references", "assets", "scripts", "agents")
+          $required = @("README.md", "SKILL.md", "中文分类索引.md", "modules", "references", "assets", "scripts", "agents")
           foreach ($item in $required) {
             if (-not (Test-Path -LiteralPath $item)) {
               throw "Missing required repository item: $item"
             }
           }
 
-      - name: Compile Python scripts
-        run: python -m compileall -q scripts
+      - name: Validate modules, ownership, links and Python syntax
+        run: python scripts/validate_modular_skill.py
+
+      - name: Run offline workflow regressions
+        run: python -m unittest discover -s scripts/tests -p "test_*.py" -v

@@ -9,13 +9,13 @@ secondary source, Aspen template value, or fit and label it clearly.
 ## Useful Local Paths
 
 - Source PDF used in the 2026-08-19 run:
-  `C:\Users\guoxi\Desktop\化工设计\苯乙烯的绿色生产\低水烃比催化剂乙苯脱氢反应动力学研究及工业应用_李瑞江.pdf`
+  `C:\Users\<user>\Desktop\化工设计\苯乙烯的绿色生产\低水烃比催化剂乙苯脱氢反应动力学研究及工业应用_李瑞江.pdf`
 - Aspen V14 LHHW template with styrene RPlug reactions:
-  `C:\Users\guoxi\Desktop\AspenTech\Aspen Plus V14.0\简单＋复杂动力学.bkp`
+  `C:\Users\<user>\Desktop\AspenTech\Aspen Plus V14.0\简单＋复杂动力学.bkp`
 - Working script from the run:
-  `C:\Users\guoxi\Documents\Codex\2026-08-19\new-chat\work\li_ruijiang_aspen\generate_li_ruijiang_case.py`
+  `C:\Users\<user>\Documents\Codex\2026-08-19\new-chat\work\li_ruijiang_aspen\generate_li_ruijiang_case.py`
 - Desktop delivery folder from the run:
-  `C:\Users\guoxi\Desktop\乙苯脱氢_李瑞江_AspenRPlug验证`
+  `C:\Users\<user>\Desktop\乙苯脱氢_李瑞江_AspenRPlug验证`
 
 ## Literature Model
 

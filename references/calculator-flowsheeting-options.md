@@ -1,4 +1,4 @@
-﻿# Calculator（Flowsheeting Options）调用指南
+# Calculator（Flowsheeting Options）调用指南
 
 > 适用版本：Aspen Plus V14（COM `Apwn.Document` + `.inp`/`.bkp`/`.apwz`）。
 > 结论先行：**Calculator 不是单独模块，而是 `Flowsheeting Options → Calculator` 功能类别（与全局 Design Spec 平级）**。
@@ -95,14 +95,10 @@ F     B=6600-A
 
 ## 6. 已排除的失败路径（不要再浪费时间）
 
-- ❌ 手写精简 `.inp` 中直接加 `CALCULATOR` 段 → 2041。
-- ❌ COM 创建：`Calculator.Elements.Add("CALC1")` 能建出空壳，但内部变量表（`FVN_*`/`FORTRAN_EXEC`/`READ_VAR`/`WRITE_VAR`）用 `InsertRow`/`NewChild`/`Add` 均无法填充（"该功能尚未生效"/AE_UNKERR）→ 不可行。
-- ❌ `apwn.RunScript(...)` 探针无副作用（疑似未真正执行或环境隔离）→ 不可靠。
-- ❌ 用流程级 `DESIGN-SPEC` 替代 Calculator 满足"必须用计算器"的需求 → 用户明确拒绝。
-- ❌ `.inp` 转换器对空 `CALCULATOR CALC1`（无 DEFINE/F/READ/WRITE）也拒收 → 计算器必须写完整。
+[M15中的诊断与修复正文](../modules/run/diagnostics/calculator-flowsheeting-options-fixes.md)。本处保留案例上下文与旧锚点；修复规则统一维护在M15。
 
 ## 7. 学习模板文件
 
-- 用户案例：`C:/Users/guoxi/Desktop/无节能无换热/1全流程模拟(无节能技术，无换热网络).bkp`
+- 用户案例：`C:/Users/<user>/Desktop/无节能无换热/1全流程模拟(无节能技术，无换热网络).bkp`
   （含 `CALCULATOR C-1`、`CALCULATOR H2O`；苯烷基化 + 乙苯脱氢联合流程）
 - 本 skill 验证产物：`styrene_openloop` 系列（开环）与 `styrene_closed_calc*.inp`（闭环+计算器，含 TEAR）。

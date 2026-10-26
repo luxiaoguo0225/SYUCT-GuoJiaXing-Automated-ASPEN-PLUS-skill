@@ -1,4 +1,4 @@
 interface:
   display_name: "Aspen Plus Automation"
-  short_description: "Model Aspen Plus from textbook principles, then cases"
-  default_prompt: "Use $aspen-plus-automation to route the task to SKILL.md sections M01-M14, read their textbook K entries and reason from user requirements with traceable sources before consulting matched cases, then independently validate the model and label unverified capabilities."
+  short_description: "Run Aspen modules with immediate property and kinetics checks"
+  default_prompt: "Use $aspen-plus-automation in one modular workflow: classify the task, run M01-M15, immediately check property setup and kinetics after entry, then prepare output and return failed checks to execution before delivery."

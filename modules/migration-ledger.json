@@ -1,0 +1,116 @@
+[
+  {
+    "type": "whole_document",
+    "from": "references/property-provenance-and-repair-gates.md",
+    "to": "modules/run/diagnostics/property-provenance-and-repair-gates.md"
+  },
+  {
+    "type": "whole_document",
+    "from": "references/com-attach-and-license-env.md",
+    "to": "modules/run/diagnostics/com-attach-and-license-env.md"
+  },
+  {
+    "type": "whole_document",
+    "from": "references/run-verification-and-reconcile.md",
+    "to": "modules/run/diagnostics/run-verification-and-reconcile.md"
+  },
+  {
+    "type": "whole_document",
+    "from": "references/aspen-input-completeness-and-delivery-lessons.md",
+    "to": "modules/run/diagnostics/aspen-input-completeness-and-delivery-lessons.md"
+  },
+  {
+    "type": "whole_document",
+    "from": "references/general-verification-methods.md",
+    "to": "modules/run/diagnostics/general-verification-methods.md"
+  },
+  {
+    "type": "section",
+    "from": "references/variables-and-troubleshooting.md",
+    "heading": "## Common Failure Modes",
+    "to": "modules/run/diagnostics/variables-and-troubleshooting-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/aspen-plus-textbook-guide.md",
+    "heading": "### Troubleshooting Checklist",
+    "to": "modules/run/diagnostics/aspen-plus-textbook-guide-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/aspen-plus-textbook-guide.md",
+    "heading": "## RadFrac-Specific Convergence",
+    "to": "modules/run/diagnostics/aspen-plus-textbook-guide-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/calculator-flowsheeting-options.md",
+    "heading": "## 6. 已排除的失败路径（不要再浪费时间）",
+    "to": "modules/run/diagnostics/calculator-flowsheeting-options-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/three-component-thermal-coupling-case.md",
+    "heading": "## 3. 隐藏报错与调和（重要）",
+    "to": "modules/run/diagnostics/three-component-thermal-coupling-case-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/pdo-heat-integration-and-delivery-lessons.md",
+    "heading": "## 8. 失败试验与不应复用的做法",
+    "to": "modules/run/diagnostics/pdo-heat-integration-and-delivery-lessons-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/double-effect-distillation-and-design-spec.md",
+    "heading": "## 6. Check & Reconcile utilities",
+    "to": "modules/run/diagnostics/double-effect-distillation-and-design-spec-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/double-effect-distillation-and-design-spec.md",
+    "heading": "## 10. Getting a SERIES double-effect to ZERO warnings/errors (validated V14)",
+    "to": "modules/run/diagnostics/double-effect-distillation-and-design-spec-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/thermally-coupled-distillation.md",
+    "heading": "## 3. Initial estimates - PHASE matters (root cause of dry-up / severe errors)",
+    "to": "modules/run/diagnostics/thermally-coupled-distillation-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/heat-carrier-and-salt-properties.md",
+    "heading": "## 4. Aspen 写入用户物性的实测限制（重要）",
+    "to": "modules/run/diagnostics/heat-carrier-and-salt-properties-fixes.md"
+  },
+  {
+    "type": "whole_document",
+    "from": "LESSONS_LEARNED.md",
+    "to": "modules/run/diagnostics/historical-lessons.md"
+  },
+  {
+    "type": "section",
+    "from": "references/double-effect-user-workflow.md",
+    "heading": "## 验收与排错",
+    "to": "modules/run/diagnostics/double-effect-user-workflow-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/pdo-heat-integration-and-delivery-lessons.md",
+    "heading": "## 5. HeatX 语法、物性和单位陷阱",
+    "to": "modules/run/diagnostics/pdo-heat-integration-and-delivery-lessons-additional-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/kinetics-recycle-and-delivery-reasoning.md",
+    "heading": "## M08 灵敏度约束、失败点与最终日志",
+    "to": "modules/run/diagnostics/kinetics-recycle-and-delivery-reasoning-additional-fixes.md"
+  },
+  {
+    "type": "section",
+    "from": "references/column-splitting-and-heat-integration.md",
+    "heading": "## 7. Global acceptance & pressure-drop rules (apply to heat pumps too)",
+    "to": "modules/run/diagnostics/column-splitting-and-heat-integration-additional-fixes.md"
+  }
+]

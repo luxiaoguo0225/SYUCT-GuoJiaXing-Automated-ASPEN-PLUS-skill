@@ -1,6 +1,6 @@
 # Double-Effect Distillation with HeatX and FlowSheet-Level Design Specs
 
-> **适用范围**：本文为原案例/历史用户要求的记录。串联/并联、节能率、压缩比上限、禁止增泵、固定压降与限温只在当前任务继承/重申相应要求或数据支持时采用，不是通用设计定律。先按SKILL第2.1节的教材原理完成当前判断，再按`principle-case-map.md`借鉴实现。文中“必须”保留原任务语境，不能扩大到其他体系。
+> **适用范围**：本文为原案例/历史用户要求的记录。串联/并联、节能率、压缩比上限、禁止增泵、固定压降与限温只在当前任务继承/重申相应要求或数据支持时采用，不是通用设计定律。先按运行模块M01–M15的教材原理完成当前判断，再按`principle-case-map.md`借鉴实现。文中“必须”保留原任务语境，不能扩大到其他体系。
 
 Read this reference when the user asks to:
 
@@ -212,15 +212,7 @@ Syntax rules learned the hard way (V14 `.inp` translator):
 
 ## 6. Check & Reconcile utilities
 
-- Input completeness check: `Tree.FindNode(r"\Data").NextIncomplete("")` returns
-  `('', 0)` when complete (no missing inputs).
-- Control Panel COM: `app.Engine.ControlPanel()` returns E_NOTIMPL on V14 — the
-  control-panel messages are equivalent to the `.his` contents; read the `.his`.
-- Reconcile: `root.Reconcile(flags)` with `HAPP_RECONCILE_CODE` bit flags read from
-  `happ.tlb` (INPUT=1, TP=4, TV=8, PV=16, CF=32, TF=64, MICF* / MITF* / CICF* / CITF*
-  component-flow bits, QUIET=1048576, DONTASKWARN=2097152, ONLYSTREAMS=16777216,
-  NOSTREAMS=33554432, TEARSTREAMS=67108864). It updates tear-stream inputs to the
-  converged values in-session but the effect is lost on save/reopen.
+[M15中的诊断与修复正文](../modules/run/diagnostics/double-effect-distillation-and-design-spec-fixes.md)。本处保留案例上下文与旧锚点；修复规则统一维护在M15。
 
 ## 7. Post-run checklist (deliver before reporting)
 
@@ -313,7 +305,7 @@ Rules that were hard-won (user-corrected approach):
   (`SOLUTION OUTSIDE BOUNDS OR SPEC FUNCTION IS NOT MONOTONIC`). Fix: seed FRAC
   at ~0.0495 and tighten LIMITS to 0.049-0.051.
 - The `.his` `Summary of Simulation Errors` counts the WHOLE run including
-  transient iterations (RadFrac UDL03.3 dry-tray, CH4 phase-equilibrium UHE01.4,
+  transient iterations (RadFrac UDL03.3 dry-tray, CH4 phase-equilibrium UHR00.4,
   BROYDEN intermediate failures). Final proof = `CONVERGENCE STATUS` all
   CONVERGED + on-spec products + only the known FEED-PRESSURE warnings.
   Do not claim "0 errors" if the `.his` has transient messages; report honestly.
@@ -363,25 +355,4 @@ Workflow and hard lessons (ethylbenzene/toluene, PENG-ROB):
 
 ## 10. Getting a SERIES double-effect to ZERO warnings/errors (validated V14)
 
-The user may demand series + zero warnings/errors (energy can be lower). A
-zero-warning series HeatX case was achieved (`.his` = 0/0/0, BLOCK STATUS =
-normally, 35% saving, EB 99.99%) with these five tricks, in order of impact:
-
-1. Add the bottoms-transfer stream to the tear set: `TEAR LP-REF / LP-REBV /
-   LP-BOT / HP-REF / HP-REBV`, and give LP-BOT a non-zero initial estimate.
-   Otherwise PUMP1 warns `MIXED SUBSTREAM HAS ZERO FLOW. BLOCK BYPASSED.`
-   (UPC01I.1) every first iteration while column 1 is being established.
-2. Make tear initial component sums EXACTLY equal MOLE-FLOW, else Aspen warns
-   `COMPONENT MOLE FLOWS ... ARE NORMALIZED TO THE TOTAL MOLE FLOW VALUE`
-   (STSTRM.29) at input translation.
-3. Keep the HP polishing tower reflux ratio moderate (~30, FRAC ~0.032) — near
-   total reflux (FRAC ~0.008-0.012) makes RadFrac dry out trays (UDL03.3) and
-   the tear loop diverges or floods `.his` with transient severe errors.
-4. Initialize reboil-vapor tear streams ABOVE the dew point by a healthy margin
-   (LP-REBV 120 C at 0.39 bar, HP-REBV 165 C at 1.70 bar) and reflux slightly
-   subcooled (LP-REF 50 C), which removes the one-time initialization dry-tray
-   severe at TIME=0.02.
-5. Reflux-path pressure drops below Aspen's ~1% relative tolerance (REB-HX
-   PRES-HOT=-0.01 on a 1.5 bar top) so no FEED PRESSURE warning remains.
-Use converged tear values as the initial estimates and re-run to verify the
-`.his` stays at 0/0/0 for both `.inp` and `.bkp`.
+[M15中的诊断与修复正文](../modules/run/diagnostics/double-effect-distillation-and-design-spec-fixes.md)。本处保留案例上下文与旧锚点；修复规则统一维护在M15。

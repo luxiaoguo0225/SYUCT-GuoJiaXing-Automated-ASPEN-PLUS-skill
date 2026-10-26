@@ -49,4 +49,3 @@
 - 上篇：先讲 `PowerLaw` 和 `LHHW`，再讲 `RCSTR` 与 `RPlug`
 - 中篇：以 `LHHW` 的 `Term1`、`Term2`、`Adsorption` 拆解输入方式
 - 下篇：`RCSTR` 示例用设计规定调体积，使转化率达到目标
-

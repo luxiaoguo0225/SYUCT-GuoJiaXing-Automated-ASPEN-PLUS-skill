@@ -1,6 +1,6 @@
 # 原理—案例多对多对应（只在原理判断后读取）
 
-本文件用于回答“这条原理可以参考什么案例、这个案例包含哪些原理”。**先在 SKILL.md 定位章节，读取对应专题原理并形成需求/方案判断，再查本表读取案例**。没有案例不会阻止原则建模；不能为了复用案例而换掉用户的题目。
+本文件用于回答“这条原理可以参考什么案例、这个案例包含哪些原理”。**先经任务判断/R00定位M01–M15子模块，读取对应专题原理并形成需求/方案判断，再查本表读取案例**。没有案例不会阻止原则建模；不能为了复用案例而换掉用户的题目。
 
 ## 1. 证据与读法
 
@@ -15,27 +15,28 @@
 
 | 案例ID | 文件/具体位置 | 证据 | 能教什么及不能继承什么 |
 |---|---|---|---|
-| C01 | [反应—闪蒸—精馏](reactor-flash-column-example.md)，RadFrac Summary/Expected Results | L，实现示例/预期结果；无独立完整验收记录 | 物流/反应/分离接口和产品规格；组分、转化、纯度、热量不继承 |
-| C02 | [含水芳烃循环](styrene-recycle-and-dewatering.md)，§1–6 | H | 含水三相、脱水、补料/撕裂、压力；物性组合和冷却工况不当通用方案 |
-| C03 | [乙苯动力学验证](li-ruijiang-rplug-kinetics-validation.md)，Literature Model/Aspen Mapping/Validation | H | LHHW单位、催化基准、RPlug对照；常数仅属于原模型 |
-| C04 | [严格塔教材案例](sun-lanyi-ch7-4-radfrac-strict.md)，Example7.3a–e；[曲线](feed-stage-sensitivity-curves.md) §2–4 | T+部分H | 基础塔→DS→有效Sensitivity；固定N回流下界不等于渐近Rmin |
-| C05 | [拆塔及换热](column-splitting-and-heat-integration.md)，§1–3和Compression ratio | L，实现模式；相关接口历史证据另看C08/C09 | 外置冷凝/再沸、相态和热泵接口；压缩比2.5等为原任务限制 |
-| C06 | [三组分热耦](three-component-thermal-coupling-case.md)，§0–4；[Petlyuk经验](thermally-coupled-distillation.md) | H | 物料耦合、相正确撕裂、DS区间、同产品能源比较；分流/级数不继承 |
-| C07 | [差压热耦合](differential-pressure-thermal-coupling.md)，§1–3 | T/文章摘要 | 两塔蒸汽再压缩机制及原案例比较；适用“限制”和92.3%不当全流程通用结论 |
-| C08 | [双效流程](double-effect-distillation-and-design-spec.md)，§0–3及Pressure-drop；[用户工作流](double-effect-user-workflow.md) | H/特定用户要求 | HP/LP+HeatX、全汽初值、压力预算；串联、≥35%与不增泵限于匹配任务要求 |
-| C09 | [废热蒸汽](utility-steam-generation.md)，§1–5、物性/水力补充；[载热物性](heat-carrier-and-salt-properties.md) | H，区分原用户模型和自建验证模型 | 余热→载热→蒸汽、排污/泵功、物性反演与U；原38bar/25bar、盐配比/冻结裕量不继承 |
-| C10 | [PDO热集成](pdo-heat-integration-and-delivery-lessons.md)，§1–5 | H+U | 已验证能源子系统、级数重映射、压力/温位、交付；C-QUENCH深冷未解决 |
-| C11 | [案例库](distillation-case-library.md)，Methods/Source folders | L+部分H | 定位变压/萃取/共沸/批次/DWC模板；每个文件仍查来源/版本/状态 |
-| C12 | [Calculator](calculator-flowsheeting-options.md) §2–4；[输入完整性](aspen-input-completeness-and-delivery-lessons.md) §1–5 | H机制证据 | 执行次序、SEP矩阵/续行、文件交付；不是工艺参数案例 |
-| C13 | S04 §7.5–7.8 PDF230–250；S07 §6.6 p172–175/PDF202–205 | T；萃取PDF204正文已核 | 吸收/萃取/电解质选块、萃取DS求溶剂；不可抄6级、2000kmol/h溶剂 |
-| C14 | S05 第4章PDF212–306各案例、§3.8 PDF201–209；S06 T11 PDF228–247 | T | 夹点/HEN从热量目标到实际网络、甲醇/苯乙烯等；物流和ΔTmin重算 |
-| C15 | S06 B1 PDF282–292；S07 第7章p180–196/PDF210–226、第14章p371–404/PDF401–434 | T | 固体子物流、化学链、干燥/结晶/过滤/旋风、燃烧/气化；完全分離或平衡产率仅书例假设 |
-| C16 | S06 T12 PDF248–281；S07 第15章p405–429/PDF435–459 | T | 电解质物种、CO2捕集/胺再生与速率塔；化学平衡/动力学参数须核原页 |
-| C17 | S04 第13章例PDF502–522；S07 第13章p328–369/PDF358–399 | T | 化验表征、常减压和油品反应入口；不把假组分视为确定分子、不声称专用反应模型已验证 |
-| C18 | S04 第14章PDF527–559；S08 第5章PDF200–225、第6–9章PDF228–277；S06 B3 PDF340–373 | T | 库存/控制/压力驱动、开车/周期、批次配方；不能仅由稳态COM声称动态已跑 |
-| C19 | S06 T9 PDF189–206、T10 PDF207–227、B2 PDF293–339；S08 第3章PDF99–143；S07 第12章p302–323/PDF332–353 | T | 自定义/成本/ROM/并行/优化；价格、模型参数与并发许可需当前证据 |
-| C20 | S07 第16章p430–448/PDF460–478 | T，章节/代表页核读 | 聚合表征/动力学/产品；专用模块和参数待当前任务验证 |
-| C21 | S11甲醇文档，PDF9/15/29/39/51/55/59 | T，建立定位，未宣称复现 | 甲醇物性、两类工艺、动力学与衡算；不能当其他反应器常数库 |
+| <a id="c01"></a>C01 | [反应—闪蒸—精馏](reactor-flash-column-example.md)，RadFrac Summary/Expected Results | L，实现示例/预期结果；无独立完整验收记录 | 物流/反应/分离接口和产品规格；组分、转化、纯度、热量不继承 |
+| <a id="c02"></a>C02 | [含水芳烃循环](styrene-recycle-and-dewatering.md)，§1–6 | H | 含水三相、脱水、补料/撕裂、压力；物性组合和冷却工况不当通用方案 |
+| <a id="c03"></a>C03 | [乙苯动力学验证](li-ruijiang-rplug-kinetics-validation.md)，Literature Model/Aspen Mapping/Validation | H | LHHW单位、催化基准、RPlug对照；常数仅属于原模型 |
+| <a id="c04"></a>C04 | [严格塔教材案例](sun-lanyi-ch7-4-radfrac-strict.md)，Example7.3a–e；[曲线](feed-stage-sensitivity-curves.md) §2–4 | T+部分H | 基础塔→DS→有效Sensitivity；固定N回流下界不等于渐近Rmin |
+| <a id="c05"></a>C05 | [拆塔及换热](column-splitting-and-heat-integration.md)，§1–3和Compression ratio | L，实现模式；相关接口历史证据另看C08/C09 | 外置冷凝/再沸、相态和热泵接口；压缩比2.5等为原任务限制 |
+| <a id="c06"></a>C06 | [三组分热耦](three-component-thermal-coupling-case.md)，§0–4；[Petlyuk经验](thermally-coupled-distillation.md) | H | 物料耦合、相正确撕裂、DS区间、同产品能源比较；分流/级数不继承 |
+| <a id="c07"></a>C07 | [差压热耦合](differential-pressure-thermal-coupling.md)，§1–3 | T/文章摘要 | 两塔蒸汽再压缩机制及原案例比较；适用“限制”和92.3%不当全流程通用结论 |
+| <a id="c08"></a>C08 | [双效流程](double-effect-distillation-and-design-spec.md)，§0–3及Pressure-drop；[用户工作流](double-effect-user-workflow.md) | H/特定用户要求 | HP/LP+HeatX、全汽初值、压力预算；串联、≥35%与不增泵限于匹配任务要求 |
+| <a id="c09"></a>C09 | [废热蒸汽](utility-steam-generation.md)，§1–5、物性/水力补充；[载热物性](heat-carrier-and-salt-properties.md) | H，区分原用户模型和自建验证模型 | 余热→载热→蒸汽、排污/泵功、物性反演与U；原38bar/25bar、盐配比/冻结裕量不继承 |
+| <a id="c10"></a>C10 | [PDO热集成](pdo-heat-integration-and-delivery-lessons.md)，§1–5 | H+U | 已验证能源子系统、级数重映射、压力/温位、交付；C-QUENCH深冷未解决 |
+| <a id="c11"></a>C11 | [案例库](distillation-case-library.md)，Methods/Source folders | L+部分H | 定位变压/萃取/共沸/批次/DWC模板；每个文件仍查来源/版本/状态 |
+| <a id="c12"></a>C12 | [Calculator](calculator-flowsheeting-options.md) §2–4；[输入完整性](aspen-input-completeness-and-delivery-lessons.md) §1–5 | H机制证据 | 执行次序、SEP矩阵/续行、文件交付；不是工艺参数案例 |
+| <a id="c13"></a>C13 | S04 §7.5–7.8 PDF230–250；S07 §6.6 p172–175/PDF202–205 | T；萃取PDF204正文已核 | 吸收/萃取/电解质选块、萃取DS求溶剂；不可抄6级、2000kmol/h溶剂 |
+| <a id="c14"></a>C14 | S05 第4章PDF212–306各案例、§3.8 PDF201–209；S06 T11 PDF228–247 | T | 夹点/HEN从热量目标到实际网络、甲醇/苯乙烯等；物流和ΔTmin重算 |
+| <a id="c15"></a>C15 | S06 B1 PDF282–292；S07 第7章p180–196/PDF210–226、第14章p371–404/PDF401–434 | T | 固体子物流、化学链、干燥/结晶/过滤/旋风、燃烧/气化；完全分離或平衡产率仅书例假设 |
+| <a id="c16"></a>C16 | S06 T12 PDF248–281；S07 第15章p405–429/PDF435–459 | T | 电解质物种、CO2捕集/胺再生与速率塔；化学平衡/动力学参数须核原页 |
+| <a id="c17"></a>C17 | S04 第13章例PDF502–522；S07 第13章p328–369/PDF358–399 | T | 化验表征、常减压和油品反应入口；不把假组分视为确定分子、不声称专用反应模型已验证 |
+| <a id="c18"></a>C18 | S04 第14章PDF527–559；S08 第5章PDF200–225、第6–9章PDF228–277；S06 B3 PDF340–373 | T | 库存/控制/压力驱动、开车/周期、批次配方；不能仅由稳态COM声称动态已跑 |
+| <a id="c19"></a>C19 | S06 T9 PDF189–206、T10 PDF207–227、B2 PDF293–339；S08 第3章PDF99–143；S07 第12章p302–323/PDF332–353 | T | 自定义/成本/ROM/并行/优化；价格、模型参数与并发许可需当前证据 |
+| <a id="c20"></a>C20 | S07 第16章p430–448/PDF460–478 | T，章节/代表页核读 | 聚合表征/动力学/产品；专用模块和参数待当前任务验证 |
+| <a id="c21"></a>C21 | S11甲醇文档，PDF9/15/29/39/51/55/59 | T，建立定位，未宣称复现 | 甲醇物性、两类工艺、动力学与衡算；不能当其他反应器常数库 |
+| <a id="c22"></a>C22 | [RPlug 原生灵敏度方法](rplug-native-sensitivity-method.md)，[诊断](../modules/run/diagnostics/rplug-native-sensitivity-fixes.md) | H机制+U物理适用性；去标识经验，不附项目资产 | 条件扫描、净指标、基准插入、单点与冷重开；不继承动力学、规格、最优点或工业验证 |
 
 ## 3. 原理→案例（范围内每个K为独立主题）
 
@@ -108,3 +109,41 @@
 | C19工具/成本/ROM | M08/M09/M14，具体设备原理不得省略 |
 | C20聚合 | M01/M03/M05/M12；批次加M13 |
 | C21甲醇 | M01/M03/M04/M05/M08，先确认动力学出处与案例范围 |
+| C22原生RPlug灵敏度 | M03/M08/M09/M14/M15；入口压力连M04，热量边界连M05，最终经O02 |
+
+## 5. M15诊断原理 → 多案例与工艺模块
+
+M15-K01–K08正文见[M15](../modules/run/M15-troubleshooting.md)。下表不改变C01–C21既有H/T/L/U等级。
+
+| 原理 | 案例 | 联动模块 |
+|---|---|---|
+| M15-K01/K06 | C08/C12/C19 | M08/M09及实际设备 |
+| M15-K02 | C02/C09/C10/C16 | M01/M02/M05/M11 |
+| M15-K03/K04 | C02/C04/C06/C08/C12 | M02/M04/M06/M08 |
+| M15-K05 | C03/C09/C10 | M01/M03/M05/M10 |
+| M15-K07/K08 | C06/C08/C09/C10/C12/C19 | M01/M08/M09及原工艺 |
+
+## 6. 案例 → M15与输出检查回读
+
+| 案例 | 复用到诊断的原理 | 输出检查重点 |
+|---|---|---|
+| C02 | M15-K02/K03/K04/K07 | 相数/来源、压力、循环闭合 |
+| C03 | M15-K05/K07 | 速率单位/基准和独立核算 |
+| C04 | M15-K03/K04/K07 | 规格、有效扫描和失败点 |
+| C06/C08 | M15-K01/K03/K04/K07/K08 | 初值、隐藏消息、设置读回、冷重开 |
+| C09/C10 | M15-K02/K05/K07/K08 | 物性/单位/温位、子系统与未解决范围 |
+| C12/C19 | M15-K01/K03/K06/K07/K08 | 输入真实生效、接口和文件身份 |
+| C16 | M15-K02 | 电解质与相态参数，保留本机缺口 |
+
+这些案例还需回读原表第4节的相关工艺原理；不能因进入M15而略过M01–M14。最终候选必须经[O01/O02](../modules/output/index.md)，检查失败回[R00](../modules/run/index.md)。
+
+## 7. C22 的原理与案例双向接口
+
+| 原理 → C22 | C22 回到原理时需重核 |
+|---|---|
+| M03-K01/K03/K07/K08/K09/K13 | 净生成指标、实际速率基准/单位、轴向适用范围、几何/装填/压降及热路径 |
+| M08-K05、M14-K03/K04 | 单变量条件响应、网格与联合最优的区别、峰顶精度、未纳入的能耗/成本 |
+| M09-K01 | 实际加载对象、原生表身份/单位、归档保存、保留单点、冻结文件独立复算 |
+| M15-K01/K02/K05–K08 | 先比文档/旧表/新运行，定位兼容/单位/定义残留；修复后 RUN → OUTPUT → CHECK |
+
+C22 的 H 仅对应这些本机实现机制；仍有物理来源缺口，不能将其提升为反应体系或设备验证。

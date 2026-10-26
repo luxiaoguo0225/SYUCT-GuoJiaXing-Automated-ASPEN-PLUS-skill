@@ -9,6 +9,8 @@
 - 用户要求“继续/优化”时，也要先按用户刚刚明确的范围执行；不得再用额外目标替换用户目标。
 - 若已获得的数据是 COM 逐点重算而非 Aspen Sensitivity 结果，不得在交付中把它称为 Aspen Sensitivity 数据或灵敏度图。
 
+RPlug 参数优化/复做的专项方法见 [入口边界、指标、原生细扫与交付](rplug-native-sensitivity-method.md)。只有用户要求原生 Sensitivity 时才按其执行约束限制扫描工具；这不将所有 Aspen 优化任务一律改为同一种算法。
+
 ## 2. DSTWU 基础参数（默认交付）
 
 DSTWU 负责提供：轻/重关键组分、塔顶轻关键回收率、塔底重关键回收率、`PTOP/PBOT`、冷凝器类型、`N-RR` 表、`N×RR` 最小点对应的理论板数和回流比，以及 DSTWU 给出的进料板位置。

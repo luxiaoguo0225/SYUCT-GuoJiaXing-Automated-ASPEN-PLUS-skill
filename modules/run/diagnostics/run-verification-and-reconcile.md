@@ -1,0 +1,115 @@
+# Run Verification and Recycle Reconciliation
+
+## Table of contents
+
+1. Always read the `.his` file after a run
+2. Reconcile tear streams with `Reconcile()`
+3. HeatX `RATING` spec that stays complete and clean
+4. Report unit pitfalls
+5. Effective tolerance and initialization audit
+
+## 1. Always read the `.his` file after a run
+
+The GUI summary and `NextIncomplete` do not expose every engine message. A
+Simulation Error can hide in the `.his` file even when the control panel looks
+finished, and a WARNING is not an ERROR. Read the newest `.his` before
+reporting results.
+
+- `.bkp` runs: Aspen writes `_xxxxxx.his` next to the case file.
+- `.apwz` runs: Aspen extracts to `<name>_N` subfolders and may delete the
+  `.his` on `Quit()`. Scan recursively and copy the `.his` while the document
+  is still open.
+- 依据BOM/内容识别编码，只解码一次；解析摘要计数而非简单统计ERROR/WARNING词频。完整零摘要/clean标记无实际消息才支持日志通过。新历史只有可识别计算轨迹时，须结合相同运行的正常完成报告；空日志、未知消息、旧日志和未知格式不默认通过。
+
+- The `Summary of Simulation Errors` counts the WHOLE run, including transient
+  iteration-zero messages. A fully converged run can still show `Severe Errors`
+  / `Errors` counts (e.g. RadFrac tray dry-up `UDL03.3`, component-balance
+  `UDL03.2`, HeatX `HEATX.4` temperature crossover) even when `BLOCK STATUS` says
+  `Calculations were completed normally`. For diagnosis, use `CONVERGENCE STATUS` (tears + design specs), `BLOCK STATUS`, and independent physical residuals together with the message history to distinguish transient from persistent faults. This does not waive the final clean-delivery requirement: save corrected initialization, reopen independently, and rerun until the current task's required `.his`/Control Panel 0 Severe / 0 Error / 0 Warning is satisfied. Unresolved warnings must be reported as unmet acceptance, never hidden.
+- The newest `.his` is written next to the case/working directory with a random
+  `_xxxxxx.his` name; copy it immediately after `Run2` (it can be deleted on
+  `Quit()`), then count `*** SEVERE ERROR`, `**  ERROR`, and `*   WARNING`.
+- Reboil-vapor tear streams initialized at bubble point flash to `V=0` (liquid)
+  were a diagnosed cause in the original case of the `UDL03.3` dry-up + `UDL03.2` + `HEATX.4`
+  temperature-crossover cluster on bare-tower loops. Set their initial T above the
+  dew point (all vapor). See
+  `double-effect-distillation-and-design-spec.md`.
+
+可执行日志解析统一使用 [history_check.py](../../../scripts/history_check.py)；[输出检查](../../output/check.md)通过 [check_delivery.py](../../../scripts/check_delivery.py)核对本轮身份与证据。不要在文档复制另一套解析函数。
+
+## 2. Reconcile tear streams with `Reconcile()`
+
+When a recycle loop starts badly and throws transient first-pass errors, run
+the case once to a converged base, then copy the converged tear-stream values
+back into inputs:
+
+```python
+flags = (
+    67108864  # HAPP_RECONCILE_TEARSTREAMS
+    | 4        # HAPP_RECONCILE_TP
+    | 64       # HAPP_RECONCILE_TF
+    | 32       # HAPP_RECONCILE_CF
+    | 1048576  # HAPP_RECONCILE_QUIET
+    | 1        # HAPP_RECONCILE_INPUT
+)
+apwn.Run2(False)
+apwn.Reconcile(flags)
+```
+
+This can remove the transient crossover/error on the next in-session run.
+
+**Persistence caveat:** `Reconcile()` updates the in-memory inputs, but the
+effect does not reliably survive `SaveAs2` + reopen. A fresh open of the saved
+file can hit the same first-pass error again. Never claim a fix is persistent
+until you reopen the saved file and rerun, then read the `.his` again.
+
+## 3. HeatX `RATING` spec that stays complete and clean
+
+- `RATING` + `AREA` only runs cleanly, but the GUI can still mark the HeatX
+  "input incomplete" because no specification is set.
+- Valid `SPEC` enum values are `T-HOT`, `T-COLD`, `DUTY`, `VFRAC-HOT`,
+  `VFRAC-COLD`. Set `Input\SPEC` and `Input\VALUE`.
+- `VFRAC-HOT=0` forces full condensation and can trigger a transient
+  `TEMPERATURE CROSSOVER` ERROR on cold start. `ALLOW-TCROSS=YES` removes the
+  ERROR but leaves a WARNING in the `.his`.
+  A second root cause of the same crossover is a liquid-phase (bubble-point)
+  reboil-vapor tear initial guess — fix the initial T, not just the HeatX flag.
+- Most robust tested combination: `RATING` + `AREA` + `SPEC=T-COLD` with the
+  converged cold outlet temperature (for the styrene case, `82.08 C`). A fresh
+  open and rerun is complete, and the `.his` has no ERROR or WARNING.
+- Check completeness on the data root, not the tree root:
+
+```python
+result = apwn.Tree.FindNode(r"\Data").NextIncomplete("")
+# Observed V14 return: (path, code); complete input is ("", 0).
+path, code = result  # Verify signature on the installed version.
+```
+
+`apwn.Tree.NextIncomplete("")` can raise
+`Aspen.Navigation: feature not active` even when the model is complete.
+
+## 4. Report unit pitfalls
+
+Reports may show `HEAT DUTY` in `WATT` or `CAL/SEC` depending on the case.
+Do not assume every `CAL/SEC` uses 4.184 J/cal. The 2026-10-01 PDO V14 case
+was calibrated against explicit WATT input/export and used 4.1868 J/cal. Check
+UnitString and a known duty in the active unit set; record the measured conversion.
+`NET WORK REQUIRED` is often in `KW`, but verify the report header. Read enthalpy
+leaf values or export the report, not collection-root Value. See
+[pdo-heat-integration-and-delivery-lessons.md](../../../references/pdo-heat-integration-and-delivery-lessons.md).
+
+## 5. Effective tolerance and initialization audit
+
+A clean `.his` does not prove that the accepted solver settings survived a
+save/reopen. Read back the preset and actual algorithm/initialization settings
+before and after the independent run. Audit effective report tolerances against
+the original model; raw input fields or a preset name alone may conceal a change
+in the effective criterion. Never relax solver or acceptance tolerances.
+
+Custom convergence is permitted in justified special circumstances under the
+current user's instruction; it is not equivalent to SEP component allocation.
+Record the diagnostic basis, changed settings and verification. Independent
+reopening with saved temperature/composition profiles and tear guesses proves
+reproducibility with those disclosed guesses, not initialization independence.
+See [the detailed audit and physical validation boundary](../../../references/convergence-separation-and-energy-integrity.md),
+Sections 1–4.
