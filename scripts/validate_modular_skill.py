@@ -29,16 +29,27 @@ def validate(root):
     mods=registry['modules'];expected={f'M{i:02}' for i in range(1,16)}
     if set(mods)!=expected:errors.append('Execution module identities must be M01-M15')
     edges={tuple(x) for x in registry['transitions']}
-    required={('INTAKE','RUN'),('RUN','OUTPUT'),('OUTPUT','CHECK'),('CHECK','RUN'),('CHECK','DELIVER')}
-    if edges!=required:errors.append('Workflow must classify, run, output, check, then return or deliver')
+    required={('INTAKE','PROPERTIES'),('PROPERTIES','PROPERTY_CHECK'),
+              ('PROPERTY_CHECK','PROPERTIES'),('PROPERTY_CHECK','RUN'),
+              ('RUN','PROPERTIES'),('RUN','OUTPUT'),('OUTPUT','CHECK'),
+              ('CHECK','PROPERTIES'),('CHECK','RUN'),('CHECK','DELIVER'),('INTAKE','OUTPUT')}
+    if edges!=required:errors.append('Workflow must complete independent property input/check before process simulation')
+    guards=registry.get('transition_guards',{})
+    if guards.get('PROPERTY_CHECK->RUN')!='P01_CONTINUE_AND_CURRENT_SNAPSHOT_GATE':
+        errors.append('Process entry must require current property admission')
+    if guards.get('INTAKE->OUTPUT')!='READ_ONLY_NO_EXECUTION_NO_PROPERTY_CHANGES':
+        errors.append('Auxiliary route must forbid process execution and property changes')
     if ('RUN','DELIVER') in edges or ('OUTPUT','DELIVER') in edges:errors.append('Direct delivery bypasses output check')
-    for key in ('entry','intake','run','output','check'):
+    for key in ('entry','intake','properties','property_check','process_gate','run','output','check'):
         if not (root/registry[key]).is_file():errors.append('Missing lifecycle entry '+key)
     hooks=registry.get('validation_hooks',{})
     if set(hooks)!={'properties','kinetics'}:errors.append('Property and kinetics checks required')
     for stage,hook in hooks.items():
-        if hook.get('owner_module')!='O02' or hook.get('owner_agent'):
-            errors.append('Stage checks must be ordinary O02 modules: '+stage)
+        expected_owner='P00' if stage=='properties' else 'O02'
+        if hook.get('owner_module')!=expected_owner or hook.get('owner_agent'):
+            errors.append('Wrong stage ownership: '+stage)
+        if stage=='properties' and (hook.get('before_process_simulation') is not True or hook.get('failure_route')!='PROPERTIES'):
+            errors.append('Property check must precede process execution and return failures to properties')
         if hook.get('event')!=stage+'_entered_or_changed':errors.append('Wrong stage trigger: '+stage)
         if not (root/hook.get('path','')).is_file():errors.append('Missing check module '+stage)
         if hook.get('success_state')!='CONTINUE' or hook.get('failure_state')!='RUN':errors.append('Wrong stage return '+stage)

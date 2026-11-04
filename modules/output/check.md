@@ -30,12 +30,16 @@
 
 每项采用 `PASS / FAIL / UNVERIFIED / NOT_APPLICABLE`，保留结论对象、预期、实际值、证据路径/哈希、input_hash/run_id、检查方法及责任模块。缺证据、格式不识别、旧日志或口径不可比较都为未验证，不能默认通过。需要自动核对时按[结构化记录格式](evidence-format.md)保存冻结合同、当前候选及证据；合同改变会使原检查身份失效。
 
-任一必需项FAIL或UNVERIFIED → 生成 `issue_id、requirement_id/check_id、现象、预期/实际、证据、失效接口、owner_modules、重验条件` → 返回[R00](../run/index.md)。出错/原因未定时包含[M15](../run/M15-troubleshooting.md)。R00修复后重新运行和输出，本检查重验受影响项并核对全部必需项仍有效；不能沿用修复前失效的通过结论。
+任一必需项FAIL或UNVERIFIED → 生成 `issue_id、requirement_id/check_id、现象、预期/实际、证据、失效接口、owner_modules、重验条件` → 物性或范围问题返回[P00](../properties/index.md)，其余返回[R00](../run/index.md)。出错/原因未定时包含[M15](../run/M15-troubleshooting.md)。对应轨道修复并重验，取得当前准入后才重新运行流程和输出；本检查重验受影响项并核对全部必需项仍有效，不能沿用修复前失效的通过结论。
 
 全部必需项PASS或有据NOT_APPLICABLE，且无未闭合问题 → `DELIVER`。文件/日志预检查通过只证明其覆盖范围，不能自动提高物性/工业有效性等级。辅助脚本[check_delivery.py](../../scripts/check_delivery.py)只核对任务合同、证据身份/文件和可识别日志，工程语义仍须独立检查后如实登记。
 
 ## 回查前置检查
 
-按I01登记适用的[P01物性检查](properties-validation.md)和[K01动力学检查](kinetics-validation.md)，核其CONTINUE报告及与当前有效设置/范围一致的子快照。最终EARLY-* review项必须有新生成的有效性审计，保留原始阶段run_id/input_sha256及报告哈希，不给旧报告换标签。关联参数或条件改变必须重查；无关对象导致整文件hash变化时，也应以实际子快照比较确认其仍适用。
+按I01登记适用的[P00/P01物性前置轨道](../properties/index.md)和[K01动力学检查](kinetics-validation.md)，核其CONTINUE报告及与当前有效设置/范围一致的子快照。最终EARLY-* review项必须有新生成的有效性审计，保留原始阶段run_id/input_sha256及报告哈希，不给旧报告换标签。关联参数或条件改变必须重查；无关对象导致整文件hash变化时，也应以实际子快照比较确认其仍适用。
+
+物性证据失效或不适用退回P00，其余问题退R00。正式流程验收回查前置P01和每次正式运行的准入报告。用户明确授权的原生估算数值联算按P00单列记录，保留当时的物性缺项和原结论。最终报告不得倒签前置通过。数值检查或包检查的DELIVER不覆盖整体物性未通过。
 
 全部检查在同一会话执行；使用原始反馈、独立衡算与冷重开取证，不需要另一agent、身份声明、verdict.json或私有记忆接口。检查工具为check_delivery.py。
+
+物性USER禁用须在最终回查中再次确认：当前全模型USER和来源不明计数均为0，逐记录原生来源绑定有效。任一USER/手工/自行回归覆盖存在就退回P00；即使数值、衡算和文件检查通过也不得DELIVER。

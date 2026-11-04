@@ -16,11 +16,13 @@
 
 **专项判断**：灵敏度比较时的控制约束、最终日志身份与失败点处理见[保密项目通用经验](../../references/kinetics-recycle-and-delivery-reasoning.md#m08)。
 
+**跨工段循环**：先按[工段实算与接入](index.md#section-integration)确认上游切割和实际出口，再查[杂质出口失效与循环残差](diagnostics/kinetics-recycle-and-delivery-reasoning-additional-fixes.md#impurity-recycle-diagnosis)。
+
 **修复核验**：断流后收敛拓扑与压力闭合见[物性与流程修复关口](../../references/property-provenance-and-repair-gates.md#m08)。
 
 **收敛设置核验**：Custom的适用条件、输入/实际容差差异、独立重开与初值稳健性边界见[收敛、分离模型与节能验证](../../references/convergence-separation-and-energy-integrity.md)第1–4节。
 
-**案例层（后读）**：[对应表](../../references/principle-case-map.md) 中 C02/C04/C06/C08/C10/C12/C19。
+**案例层（后读）**：[对应表](../../references/principle-case-map.md) 中 C02/C04/C06/C08/C10/C12/C19/C23。
 
 **输出与接口**：自由度/残差、相正确初值、有效候选、诊断与最终验收、独立新开及哈希。服务所有工艺章节，不能以数值收敛代替物理可行。
 
@@ -33,3 +35,5 @@
 ## 返回与输出接口
 
 返回 [运行模块](index.md) 的是当前输入、实际执行/回读证据、模型决定、原理与案例引用、接口变更和残留问题；候选结果统一进入 [输出模块](../output/index.md)。不得在本模块单独跳过检查交付。检查退回时按问题清单修复并刷新受影响证据。
+
+萃取精馏两塔、补料与循环的分步耦合见[C23专项第6节](../../references/extractive-distillation-workflow.md#6-回收塔补料与循环闭合)，故障见[M15专项](diagnostics/extractive-distillation-fixes.md)。先开环后闭环，核Calculator/Spec/Vary唯一变量所有权；数值策略不能绕过P00准入或放宽容差。

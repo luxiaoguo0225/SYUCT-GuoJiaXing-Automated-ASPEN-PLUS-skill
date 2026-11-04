@@ -13,3 +13,5 @@
 ## 必须记住的十件事
 
 见 [迁移后的正文](modules/run/diagnostics/historical-lessons.md)。
+
+萃取精馏经验与正常/失败路径见[C23专项](references/extractive-distillation-workflow.md)及[M15诊断](modules/run/diagnostics/extractive-distillation-fixes.md)。本兼容入口不复制第二套规则。

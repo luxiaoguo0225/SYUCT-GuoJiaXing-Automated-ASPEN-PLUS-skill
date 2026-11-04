@@ -21,8 +21,10 @@ NOT_APPLICABLE仅在合同预先allow_na=true且有理由时接受，不能为�
 python "<skill>/scripts/check_delivery.py" --contract "work/task-contract.json" --candidate "work/candidate.json" --report "work/check.json"
 ```
 
-输出 `next_state=RUN` 时，R00按issues中的 `issue_id/check_id/owner_modules/recheck` 修复和重新取证，再回O01/O02；`DELIVER`只表示所声明合同及检查范围均有当前证据，不能超出审查/试验实际范围宣传工业有效性。合同真实性、完整捕捉用户要求及review推理仍由执行者负责。
+输出 `next_state=RUN` 时，按issues中的 `issue_id/check_id/owner_modules/recheck` 修复和重新取证：物性/范围问题路由P00，其余路由R00，再经当前准入及O01/O02；`DELIVER`只表示所声明合同及检查范围均有当前证据，不能超出审查/试验实际范围宣传工业有效性。合同真实性、完整捕捉用户要求及review推理仍由执行者负责。
 
 ## 即时检查合同
 
-物性/动力学录入后的检查按[阶段格式](../shared/validation-stages.md)，使用validation_stage=properties/kinetics及固定检查id；最终标final并登记validation_stages_required及EARLY-* review项。只有实际证据和完整方法/结论可支持PASS，不引入agent身份或隔离条件。
+物性独立前置轨道/动力学即时检查按[阶段格式](../shared/validation-stages.md)，使用validation_stage=properties/kinetics及固定检查id；最终标final并登记validation_stages_required及EARLY-* review项。只有实际证据和完整方法/结论可支持PASS，不引入agent身份或隔离条件。
+
+正式流程的物性阶段候选须包含property_snapshot={path,sha256}，由五项P01证据共同引用。每次正式运行前独立回读当前物性子快照并调用[流程准入](../properties/index.md)。经授权的原生估算数值联算单列工作记录。旧阶段报告hash保留，实际输入或范围改变须重验。

@@ -1,6 +1,6 @@
 # 内容归属与共享索引
 
-恢复为I01→R00/M01–M15→O01/O02的同一会话多模块流程；P01/K01是录入后的检查模块。教材/案例保留单一正文。
+I01→P00独立物性输入/P01/当前快照准入→R00/M01–M15→O01/O02；物性失败回P00，其他修复回R00。K01仍是动力学录入后检查。教材/案例保留单一正文。
 
 | 文件 | 维护模块 | 共享调用 | 内容角色 |
 |---|---|---|---|
@@ -26,7 +26,7 @@
 | [modules/output/kinetics-validation.md](../modules/output/kinetics-validation.md) | O02 | I01, R00, M01, M03, M15 | stage_check |
 | [modules/output/methods/run-audit.md](../modules/output/methods/run-audit.md) | O02 | I01, R00, M01, M03, M15 | stage_check |
 | [modules/output/process-acceptance.md](../modules/output/process-acceptance.md) | O02 | — | output_check |
-| [modules/output/properties-validation.md](../modules/output/properties-validation.md) | O02 | I01, R00, M01, M03, M15 | stage_check |
+| [modules/output/properties-validation.md](../modules/output/properties-validation.md) | P00 | I01, R00, M01, M03, M15 | compatibility |
 | [modules/registry.json](../modules/registry.json) | R00 | I01, O01, O02 | routing_metadata |
 | [modules/run/M01-properties-and-boundaries.md](../modules/run/M01-properties-and-boundaries.md) | M01 | — | run_module |
 | [modules/run/M02-distillation.md](../modules/run/M02-distillation.md) | M02 | — | run_module |
@@ -137,3 +137,10 @@
 | [scripts/validate_modular_skill.py](../scripts/validate_modular_skill.py) | O02 | — | tool |
 | [update_skill_files.py](../update_skill_files.py) | M09 | — | retired_compatibility |
 | [中文分类索引.md](../中文分类索引.md) | I01 | — | navigation |
+
+| [modules/properties/index.md](../modules/properties/index.md) | P00 | I01, R00, M01, M09, M15, O02 | preflight |
+| [modules/properties/check.md](../modules/properties/check.md) | P00 | R00, M01, M09, M15, O02 | stage_check |
+| [scripts/check_process_gate.py](../scripts/check_process_gate.py) | P00 | R00, M09, O02 | process_admission |
+| [scripts/tests/test_process_gate.py](../scripts/tests/test_process_gate.py) | P00 | R00, M09, O02 | test |
+| [references/extractive-distillation-workflow.md](../references/extractive-distillation-workflow.md) | M02 | P00, M01, M05, M07, M08, M09, M15, O02 | principle_case_method |
+| [modules/run/diagnostics/extractive-distillation-fixes.md](../modules/run/diagnostics/extractive-distillation-fixes.md) | M15 | P00, M01, M02, M05, M08, M09, O02 | diagnostic_case |

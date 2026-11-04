@@ -6,6 +6,7 @@ import argparse
 import os
 
 import win32com.client
+from check_process_gate import evaluate_gate, load
 
 
 def read(apwn, path):
@@ -29,6 +30,7 @@ def list_streams(apwn):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--inp", required=True, metavar="PATH")
+    parser.add_argument("--property-gate-request", required=True, metavar="PATH", help="Current P00/P01 property admission request")
     parser.add_argument("--save", metavar="PATH", help="save .apwz copy")
     parser.add_argument("--report", metavar="PATH", help="export .rep report")
     args = parser.parse_args()
@@ -37,6 +39,9 @@ def main():
     try:
         apwn.InitFromFile2(os.path.abspath(args.inp), True)
         print("Opened:", args.inp)
+        gate = evaluate_gate(load(args.property_gate_request))
+        if not gate['process_run_allowed']:
+            raise ValueError('Return to P00 before process Run2: ' + str(gate))
         apwn.Run2(False)
         print("Run2 OK")
 

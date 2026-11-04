@@ -1,7 +1,9 @@
 {
-  "version": 2,
+  "version": 3,
   "states": [
     "INTAKE",
+    "PROPERTIES",
+    "PROPERTY_CHECK",
     "RUN",
     "OUTPUT",
     "CHECK",
@@ -10,7 +12,23 @@
   "transitions": [
     [
       "INTAKE",
+      "PROPERTIES"
+    ],
+    [
+      "PROPERTIES",
+      "PROPERTY_CHECK"
+    ],
+    [
+      "PROPERTY_CHECK",
+      "PROPERTIES"
+    ],
+    [
+      "PROPERTY_CHECK",
       "RUN"
+    ],
+    [
+      "RUN",
+      "PROPERTIES"
     ],
     [
       "RUN",
@@ -22,11 +40,19 @@
     ],
     [
       "CHECK",
+      "PROPERTIES"
+    ],
+    [
+      "CHECK",
       "RUN"
     ],
     [
       "CHECK",
       "DELIVER"
+    ],
+    [
+      "INTAKE",
+      "OUTPUT"
     ]
   ],
   "entry": "SKILL.md",
@@ -48,7 +74,8 @@
         "C09",
         "C13",
         "C16",
-        "C19"
+        "C19",
+        "C23"
       ],
       "related": [
         "M02",
@@ -72,7 +99,8 @@
         "C04",
         "C11",
         "C13",
-        "C16"
+        "C16",
+        "C23"
       ],
       "related": [
         "M01",
@@ -221,7 +249,8 @@
         "C08",
         "C10",
         "C12",
-        "C19"
+        "C19",
+        "C23"
       ],
       "related": [
         "M01",
@@ -241,7 +270,8 @@
       ],
       "cases": [
         "C12",
-        "C22"
+        "C22",
+        "C23"
       ],
       "related": [
         "M01",
@@ -378,7 +408,8 @@
         "C12",
         "C19",
         "C16",
-        "C22"
+        "C22",
+        "C23"
       ],
       "related": [
         "M01",
@@ -1394,7 +1425,7 @@
       "role": "diagnostic_case"
     },
     "modules/output/properties-validation.md": {
-      "owner": "O02",
+      "owner": "P00",
       "shared_with": [
         "I01",
         "R00",
@@ -1402,7 +1433,7 @@
         "M03",
         "M15"
       ],
-      "role": "stage_check"
+      "role": "compatibility"
     },
     "modules/output/kinetics-validation.md": {
       "owner": "O02",
@@ -1447,12 +1478,80 @@
         "M15"
       ],
       "role": "test"
+    },
+    "modules/properties/index.md": {
+      "owner": "P00",
+      "shared_with": [
+        "I01",
+        "R00",
+        "M01",
+        "M09",
+        "M15",
+        "O02"
+      ],
+      "role": "preflight"
+    },
+    "modules/properties/check.md": {
+      "owner": "P00",
+      "shared_with": [
+        "R00",
+        "M01",
+        "M09",
+        "M15",
+        "O02"
+      ],
+      "role": "stage_check"
+    },
+    "scripts/check_process_gate.py": {
+      "owner": "P00",
+      "shared_with": [
+        "R00",
+        "M09",
+        "O02"
+      ],
+      "role": "process_admission"
+    },
+    "scripts/tests/test_process_gate.py": {
+      "owner": "P00",
+      "shared_with": [
+        "R00",
+        "M09",
+        "O02"
+      ],
+      "role": "test"
+    },
+    "references/extractive-distillation-workflow.md": {
+      "owner": "M02",
+      "shared_with": [
+        "P00",
+        "M01",
+        "M05",
+        "M07",
+        "M08",
+        "M09",
+        "M15",
+        "O02"
+      ],
+      "role": "principle_case_method"
+    },
+    "modules/run/diagnostics/extractive-distillation-fixes.md": {
+      "owner": "M15",
+      "shared_with": [
+        "P00",
+        "M01",
+        "M02",
+        "M05",
+        "M08",
+        "M09",
+        "O02"
+      ],
+      "role": "diagnostic_case"
     }
   },
   "validation_hooks": {
     "properties": {
       "id": "P01",
-      "path": "modules/output/properties-validation.md",
+      "path": "modules/properties/check.md",
       "event": "properties_entered_or_changed",
       "return_modules": [
         "M01",
@@ -1468,7 +1567,9 @@
         "PROP-PHYSICAL",
         "PROP-READBACK"
       ],
-      "owner_module": "O02"
+      "owner_module": "P00",
+      "before_process_simulation": true,
+      "failure_route": "PROPERTIES"
     },
     "kinetics": {
       "id": "K01",
@@ -1496,5 +1597,12 @@
       ],
       "owner_module": "O02"
     }
-  }
+  },
+  "transition_guards": {
+    "PROPERTY_CHECK->RUN": "P01_CONTINUE_AND_CURRENT_SNAPSHOT_GATE",
+    "INTAKE->OUTPUT": "READ_ONLY_NO_EXECUTION_NO_PROPERTY_CHANGES"
+  },
+  "properties": "modules/properties/index.md",
+  "property_check": "modules/properties/check.md",
+  "process_gate": "scripts/check_process_gate.py"
 }

@@ -2,6 +2,10 @@
 
 本文件记录一次真实交付失败后的强制改进项，必须与 `references/aspen-input-completeness-and-delivery-lessons.md` 一起阅读。
 
+## 物性输入前置的教训
+
+数据库可用≠已启用≠实际命中；系数相同≠原生来源绑定保留；非零≠体系适用；实验区拟合通过≠全工况物性通过；数值DELIVER≠整体验收。物性输入与检查必须独立前置，而不是流程跑完再补。执行顺序与修复细节统一维护在[P00](../../properties/index.md)及[来源与修复经验](property-provenance-and-repair-gates.md#m01)，不沉淀特定项目参数或永久库排名。
+
 ## 一句话结论
 
 **“能运行”不等于“输入完整”；交付 BKP 前必须用 `NextIncomplete()` 证明所有输入对象完整，并在独立目录冷启动验证。**

@@ -7,7 +7,7 @@ Example:
   python aspen_plus_bridge.py --open sour.apwz ^
     --set "\\Data\\Streams\\FEED\\Input\\TEMP\\MIXED=50" ^
     --run --get "\\Data\\Streams\\BOT1\\Output\\RES_TEMP" ^
-    --save result.apwz
+    --save result.apwz --property-gate-request work/process-gate-request.json
 """
 
 from __future__ import annotations
@@ -36,7 +36,14 @@ class AspenPlus:
         self.app.InitFromFile2(os.path.abspath(path), True)
         return self
 
-    def run(self, async_run: bool = False) -> "AspenPlus":
+    def run(self, async_run: bool = False, *, property_gate_request=None) -> "AspenPlus":
+        from check_process_gate import evaluate_gate, load
+        if property_gate_request is None:
+            raise ValueError('Complete P00/P01 and provide property_gate_request before process Run2')
+        verdict = evaluate_gate(load(property_gate_request))
+        if not verdict['process_run_allowed']:
+            raise ValueError('Return to P00 before process Run2: ' + str(verdict))
+        self.last_property_gate = verdict
         self.app.Run2(async_run)
         return self
 
@@ -86,7 +93,7 @@ def _coerce(value: str):
         return value
 
 
-def _demo():
+def _demo(property_gate_request):
     case = (
         r"C:\Program Files\AspenTech\Aspen Plus V14.0\GUI\Examples"
         r"\Midstream\sour.apwz"
@@ -111,7 +118,7 @@ def _demo():
         report("BEFORE")
         aspen.set(r"\Data\Streams\FEED\Input\TEMP\MIXED", 50.0)
         print("\nSet FEED Input TEMP -> 50 C")
-        aspen.run()
+        aspen.run(property_gate_request=property_gate_request)
         print("Run2 OK")
         report("AFTER")
 
@@ -128,6 +135,7 @@ def main(argv=None):
     )
     parser.add_argument("--open", metavar="PATH", help="case file (.bkp/.apwz)")
     parser.add_argument("--run", action="store_true", help="run the simulation")
+    parser.add_argument("--property-gate-request", metavar="PATH", help="P00/P01 and current property readback request JSON")
     parser.add_argument(
         "--get", nargs="+", metavar="PATH", help="variable paths to read"
     )
@@ -139,8 +147,11 @@ def main(argv=None):
     parser.add_argument("--demo", action="store_true", help="run built-in demo")
     args = parser.parse_args(argv)
 
+    if (args.run or args.demo) and not args.property_gate_request:
+        parser.error('--run/--demo requires --property-gate-request after P00/P01')
+
     if args.demo:
-        _demo()
+        _demo(args.property_gate_request)
         return
     if not args.open:
         parser.error("--open PATH is required (or use --demo)")
@@ -158,7 +169,7 @@ def main(argv=None):
             aspen.set(path, _coerce(value))
             print(f"Set {path} = {value}")
         if args.run:
-            aspen.run()
+            aspen.run(property_gate_request=args.property_gate_request)
             print("Run2 OK")
         for path in args.get or []:
             value, unit = aspen.get(path)

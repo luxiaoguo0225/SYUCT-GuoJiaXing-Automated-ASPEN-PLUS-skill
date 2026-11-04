@@ -1,4 +1,4 @@
 interface:
   display_name: "Aspen Plus Automation"
-  short_description: "Run Aspen modules with immediate property and kinetics checks"
-  default_prompt: "Use $aspen-plus-automation in one modular workflow: classify the task, run M01-M15, immediately check property setup and kinetics after entry, then prepare output and return failed checks to execution before delivery."
+  short_description: "Validate properties before Aspen process simulation"
+  default_prompt: "Use $aspen-plus-automation: classify the task, complete P00 property input and P01 validation before process simulation, verify current property snapshot admission, then coordinate M01-M15, kinetics checks and O01/O02. Forbid USER property inputs, manual overrides and self-regressed entries; require actual native database sources or report failure. Return property changes to P00 and never equate numerical convergence with physical validity."
