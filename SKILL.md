@@ -11,7 +11,7 @@ description: Automate and verify Aspen Plus flowsheet building and troubleshooti
 ```mermaid
 flowchart TD
   I[I01任务判断：BUILD / TROUBLESHOOT] --> P[P00物性前置轨道：边界与输入]
-  P --> PC[P01来源、查零、适用性、实验及重开检查]
+  P --> PC[P01二元输入、方法适用性与重开检查]
   PC -->|失败或缺证据| P
   PC -->|CONTINUE + 当前快照准入通过| R[R00流程模拟]
   R --> B[M01–M15按需联调；动力学变更立即K01]
@@ -26,12 +26,18 @@ flowchart TD
 ```
 
 1. 读[I01](modules/intake.md)，冻结搭建/报错目标、范围、禁止项和验收要求；旧模型可先读文件/日志取证，但不能直接复算。
-2. 先独立执行[P00物性前置轨道](modules/properties/index.md)：需要二元参数时**先启用全部可用数据源，再逐对查零，随后比较非零候选的体系适用性**。缺失/未知零值不放行；有据固定零项与用户约束分别处理，不为消零拼参数。**物性输入禁止USER，只能使用适用且实际绑定的原生数据库记录；没有合适来源就报告未通过，不转USER。**
+2. 先执行[P00物性前置轨道](modules/properties/index.md)。**全局方法按当前相态、工况和分离任务选一套最合适的近似方法**，说明选用依据及适用范围，优先引用相关文献。常规模拟以所选方法的实际必需物性输入完整、适用并已生效为准，Aspen 数据库与文献参数存在差异本身不阻断建模。按需核查纯组分、二元参数及其他必需输入；二元参数先启用全部可用源，再逐对检查命中、方向、单位、适用范围、缺项和零值。适用的原生记录直接留用，缺失和未知零值须追溯，物性输入禁止 USER、手填或拼接系数。原生估算按已授权范围执行。
 3. P00调用[P01](modules/properties/check.md)，五项必需检查全部通过仅CONTINUE；[流程准入脚本](scripts/check_process_gate.py)重验当前物性快照后才进入[R00](modules/run/index.md)。失败留在物性轨道修复，不以“流程已收敛”倒推物性有效。
 4. R00联调M01–M15，动力学录入/改变立即[K01](modules/output/kinetics-validation.md)，先有有效物性。任何物性/温压组成包络变更返回P00，废弃受影响旧结果，再验再算。
 5. 当前候选进入[O01](modules/output/index.md)并必须调用[O02](modules/output/check.md)。物性问题退P00，其他问题退R00；全部必需项通过才最终交付。纯读任务按冻结范围检查，不借辅助路线运行流程。
 
 复杂回路按[工段实算与接入](modules/run/index.md#section-integration)逐段验收，优先在上游形成真实杂质出口。用户明确允许使用原生估算进行数值联算时，可按[P00 数值诊断](modules/properties/index.md#native-estimate-diagnostic)执行获准范围内的试算，物性验收状态仍保留。
+
+搭建含多级回收的流程，或复核设备冗余、弛放及物料损失时，调用[设备贡献与净排出审查](modules/run/diagnostics/kinetics-recycle-and-delivery-reasoning-additional-fixes.md#unit-contribution-and-net-disposal)。
+
+同一项目多轮改进料、物性、采出、位号或交付口径时，按 [I01 输入合同](modules/intake.md) 更新要求，结合[回收工段续改复盘](modules/run/diagnostics/acrylonitrile-recovery-revision-lessons.md)核对已撤回要求、成品回收率、回流比和同版交付。案例参数只用于复盘。
+
+常用配置直接查[各类塔的设计规范](modules/run/M02-distillation.md#tower-design-specs)、[吸收塔与相分离配置](modules/run/M11-mass-transfer.md#absorber-and-phase-separation)、[闪蒸与澄清器操作](modules/run/M11-mass-transfer.md#flash-setup)、[组分沸点排序及二元参数](modules/properties/index.md#component-order-and-bip)和[设备模块位号与中文作业说明](modules/run/M09-execution-interfaces.md#block-identifiers-and-labels)。完成后按 [O02](modules/output/check.md) 回读验证。
 
 ## 2. 运行子模块：同级、互通、原理加案例
 
@@ -70,6 +76,7 @@ RPlug 参数优化或仅限原生 Sensitivity 的复做，按需读 [专项方�
 - 原理、公式、物性、动力学、单位和参数必须可溯源；文献事实、推导、假设、拟合及未核验外推分别记录。[共享约束](modules/shared/modeling-contract.md)、[教材来源](references/textbook-source-coverage.md)。
 - 不得放宽求解或验收容差，必须核实际生效值；Custom/OTHERS仅在当前允许范围内、有数值诊断和复算支持时使用。不得用SEP人为组分分配、自定义模块或写入结果凑分离指标。[诚信边界](references/convergence-separation-and-energy-integrity.md)。
 - 精馏搭塔前先物性核验与[相图分析](references/phase-diagram-before-distillation.md)；关键物性、压力或溶剂改变后重核相关判断。属性换库、来源或适用包络变化统一退回P00，经M01/M15修复并重验后再进入流程模拟。
+- 新建或重做塔的正式规格按分离任务选用塔顶或塔底关键组分回收率、质量纯度和回流比。关键组分回收率优先以99%以上为目标。Design Spec 目标按工程精度录入，通常最多四位有效数字。Vary 上下限按可操作范围取整或用简洁小数。再沸器和冷凝器负荷作为计算结果验核。[M02塔设备设计规范](modules/run/M02-distillation.md#tower-design-specs)
 - 编辑和验证在副本中进行，不在交付目录初始化；保留原件和交付字节。只关闭本次拥有的COM会话，不影响用户/未知实例。接口、版本、许可和专用模块能力按本机核验。
 - COM与MCP共用同一原理和验收；常用操作可用已核验MCP，复杂审计/批量/冷重开可用COM，接口成功不等于模型有效。细节由M09管理，不擅自重配环境。
 - 数值收敛、物性有效、独立复现、水力/设备评级、图形可见和包完整分开验收。日志/Control Panel仍需零Severe/Error/Warning；缺证据不能通过。

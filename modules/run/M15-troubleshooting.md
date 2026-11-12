@@ -72,6 +72,8 @@
 
 - [RPlug 原生灵敏度复做](diagnostics/rplug-native-sensitivity-fixes.md)：文档/存表不一致、数据库兼容、分析改名残留、文本定义缺失、日志落盘和归档误判；与 M03/M09/M14 联调。
 
+- [丙烯腈回收工段续改复盘](diagnostics/acrylonitrile-recovery-revision-lessons.md)：用户要求、撤回顺序、输入完整性、成品回收率、分相、回流比及 Word 同版验收。
+
 ## 修复—返回合同
 
 每轮记录 issue_id → 观测事实 → 根因假设及排除证据 → 调用模块 → 修改前后值/单位/来源 → 新运行与残差 → 关联影响 → 未解决项。禁止只清日志、隐藏报警、改输出、禁用必要对象或放宽容差来宣称修复。

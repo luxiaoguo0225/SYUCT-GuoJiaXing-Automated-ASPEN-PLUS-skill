@@ -45,7 +45,7 @@ flowchart TD
 
 ## 3. P00：完整体系选源及验证
 
-完整规则以[P00](../modules/properties/index.md)和[P01](../modules/properties/check.md)为准。本专项增加以下萃取精馏判断：
+先按[P00](../modules/properties/index.md#method-selection-and-binary-gate)选一套适用的全局方法。下列细化用于萃取精馏的关键相平衡和受影响二元记录，实验验证深度按项目及关键分离结论确定。输入完成和估算范围按[二元判断](../modules/properties/index.md#binary-input-decisions)及[P01](../modules/properties/check.md)判定。
 
 1. 包络同时考虑萃取塔各段、溶剂回收塔、富溶剂塔底、冷却/混合与循环。溶剂是少挥发组分不等于其交互作用不重要；不能只在原料或塔顶温度验参。
 2. 需要三组二元记录时全部展开并审计两个方向；多溶剂、杂质或其他相态需要增加相应记录，不能因缺数据删掉组分。全选当前可用二元源后，先查零、缺项及默认回退，再比较适用来源。物性禁止USER/手工覆盖/自行回归写入；没有合适原生库记录就保留未通过，不用文献数值替代录成USER。

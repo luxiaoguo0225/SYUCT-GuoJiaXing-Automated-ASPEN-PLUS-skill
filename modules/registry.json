@@ -1534,6 +1534,11 @@
       ],
       "role": "principle_case_method"
     },
+    "modules/run/diagnostics/acrylonitrile-recovery-revision-lessons.md": {
+      "owner": "M15",
+      "shared_with": ["I01", "P00", "M01", "M02", "M05", "M08", "M09", "O02"],
+      "role": "diagnostic_case"
+    },
     "modules/run/diagnostics/extractive-distillation-fixes.md": {
       "owner": "M15",
       "shared_with": [

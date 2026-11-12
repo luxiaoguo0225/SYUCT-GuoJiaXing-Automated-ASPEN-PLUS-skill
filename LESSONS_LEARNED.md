@@ -15,3 +15,5 @@
 见 [迁移后的正文](modules/run/diagnostics/historical-lessons.md)。
 
 萃取精馏经验与正常/失败路径见[C23专项](references/extractive-distillation-workflow.md)及[M15诊断](modules/run/diagnostics/extractive-distillation-fixes.md)。本兼容入口不复制第二套规则。
+
+回收精制多轮更改的用户要求和错误拦截见[丙烯腈回收工段续改复盘](modules/run/diagnostics/acrylonitrile-recovery-revision-lessons.md)。

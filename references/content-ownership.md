@@ -43,6 +43,7 @@ I01→P00独立物性输入/P01/当前快照准入→R00/M01–M15→O01/O02；�
 | [modules/run/M13-dynamics-batch.md](../modules/run/M13-dynamics-batch.md) | M13 | — | run_module |
 | [modules/run/M14-optimization-custom.md](../modules/run/M14-optimization-custom.md) | M14 | — | run_module |
 | [modules/run/M15-troubleshooting.md](../modules/run/M15-troubleshooting.md) | M15 | — | run_module |
+| [modules/run/diagnostics/acrylonitrile-recovery-revision-lessons.md](../modules/run/diagnostics/acrylonitrile-recovery-revision-lessons.md) | M15 | I01, P00, M01, M02, M05, M08, M09, O02 | diagnostic_case |
 | [modules/run/diagnostics/aspen-input-completeness-and-delivery-lessons.md](../modules/run/diagnostics/aspen-input-completeness-and-delivery-lessons.md) | M15 | O02 | diagnostic |
 | [modules/run/diagnostics/aspen-plus-textbook-guide-fixes.md](../modules/run/diagnostics/aspen-plus-textbook-guide-fixes.md) | M15 | O02 | diagnostic |
 | [modules/run/diagnostics/calculator-flowsheeting-options-fixes.md](../modules/run/diagnostics/calculator-flowsheeting-options-fixes.md) | M15 | O02 | diagnostic |

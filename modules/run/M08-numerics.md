@@ -26,6 +26,8 @@
 
 **输出与接口**：自由度/残差、相正确初值、有效候选、诊断与最终验收、独立新开及哈希。服务所有工艺章节，不能以数值收敛代替物理可行。
 
+塔内纯度和回收率的操纵量在溶剂闭环中耦合时，先确认单塔可达性及独立变量。可把其中一项建成流程级原生 Design Spec，让循环先收敛，再调节具有实际物理作用的变量。验证计算顺序、实际活动状态和目标残差。 流程级 Design Spec 的目标值和 Vary 上下限同样按[M02录入及回读规则](M02-distillation.md#tower-design-specs)检查。见[双规范分层案例](diagnostics/acrylonitrile-recovery-revision-lessons.md#case)。
+
 ## 与其他模块贯通
 
 可直接联调：[M01](M01-properties-and-boundaries.md)、[M02](M02-distillation.md)、[M03](M03-reactors.md)、[M06](M06-thermal-coupling.md)、[M09](M09-execution-interfaces.md)、[M14](M14-optimization-custom.md)、[M15](M15-troubleshooting.md)。把跨模块流股的组成、流量、相态、T/P、焓/热量、单位基准、变量所有权及未验证项一起传递；接口改变后通知所有受影响模块复算。
